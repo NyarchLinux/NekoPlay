@@ -230,6 +230,7 @@ template $CineWindow: Adw.ApplicationWindow {
                   styles [
                     "circular",
                     "flat",
+                    "first-label-bold",
                   ]
 
                   direction: up;
@@ -237,23 +238,14 @@ template $CineWindow: Adw.ApplicationWindow {
                   icon-name: "media-view-subtitles-symbolic";
                   tooltip-text: _("Subtitles");
 
-                  menu-model: menu subtitles_menu {
-                    // item {
-                    //   label: _("Add Subtitle Track");
-                    //   action: "win.add-sub-files";
-                    // }
-                    // item {
-                    //   label: _("None");
-                    //   action: "win.select-subtitle";
-                    //   target: "none";
-                    // }
-                  };
+                  menu-model: menu subtitles_menu {};
                 }
 
                 MenuButton audio_tracks_menu_button {
                   styles [
                     "circular",
                     "flat",
+                    "first-label-bold",
                   ]
 
                   direction: up;
@@ -261,12 +253,7 @@ template $CineWindow: Adw.ApplicationWindow {
                   icon-name: "audio-x-generic-symbolic";
                   tooltip-text: _("Audio");
 
-                  menu-model: menu audio_tracks_menu {
-                    // item {
-                    //   label: _("Add Audio Track");
-                    //   action: "win.add-audio-files";
-                    // }
-                  };
+                  menu-model: menu audio_tracks_menu {};
                 }
 
                 MenuButton video_tracks_menu_button {

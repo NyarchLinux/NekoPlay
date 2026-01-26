@@ -438,6 +438,18 @@ class CineWindow(Adw.ApplicationWindow):
         )
         self.video_tracks_menu_button.set_visible(video_count > 1)
 
+        def hide_box_first_modelbutton(menu_button):
+            """Hide the space before add track label"""
+            target = menu_button.get_popover()
+            for _ in range(8):
+                if target:
+                    target = target.get_first_child()
+            if target:
+                target.set_visible(False)
+
+        hide_box_first_modelbutton(self.subtitles_menu_button)
+        hide_box_first_modelbutton(self.audio_tracks_menu_button)
+
     def _add_track_to_menu(self, track):
         track_id = int(track.get("id", 0))
         track_type = track.get("type")
