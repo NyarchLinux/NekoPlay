@@ -1205,6 +1205,22 @@ class CineWindow(Adw.ApplicationWindow):
         def on_quit(_event):
             GLib.idle_add(self.close)
 
+    # --- RESET VIDEO OPTIONS ---
+    @Gtk.Template.Callback()
+    def _on_reset_all_options(self, _btn):
+        self.mpv.command_async("set", "video-aspect-override", "-1")
+        self.mpv.command_async("set", "video-rotate", 0)
+        self.mpv.command_async("vf", "remove", "@hflip")
+        self.mpv.command_async("vf", "remove", "@vflip")
+        self.mpv.command_async("set", "video-zoom", 0)
+        self.mpv.command_async("set", "contrast", 0)
+        self.mpv.command_async("set", "brightness", 0)
+        self.mpv.command_async("set", "gamma", 0)
+        self.mpv.command_async("set", "saturation", 0)
+        self.mpv.command_async("set", "sub-delay", 0)
+        self.mpv.command_async("set", "audio-delay", 0)
+        self.mpv.command_async("set", "speed", 1.0)
+
     # --- ASPECT RATIO ---
     @Gtk.Template.Callback()
     def _on_aspect_next(self, _btn):
@@ -1251,17 +1267,18 @@ class CineWindow(Adw.ApplicationWindow):
     # --- FLIP ---
     @Gtk.Template.Callback()
     def _on_flip_horiz(self, _btn):
-        self.mpv.command("vf", "toggle", "hflip")
+        self.mpv.command("vf", "toggle", "@hflip:hflip")
         self.mpv.show_text(_("Flip: Horizontal"))
 
     @Gtk.Template.Callback()
     def _on_flip_vert(self, _btn):
-        self.mpv.command("vf", "toggle", "vflip")
+        self.mpv.command("vf", "toggle", "@vflip:vflip")
         self.mpv.show_text(_("Flip: Vertical"))
 
     @Gtk.Template.Callback()
     def _on_flip_reset(self, _btn):
-        self.mpv.command("set", "vf", "")
+        self.mpv.command("vf", "remove", "@hflip")
+        self.mpv.command("vf", "remove", "@vflip")
         self.mpv.show_text(_("Flip: Reset"))
 
     # --- ZOOM ---

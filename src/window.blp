@@ -348,6 +348,15 @@ template $CineWindow: Adw.ApplicationWindow {
                       Box {
                         orientation: vertical;
                         spacing: 8;
+
+                        Box {
+                          Button {
+                            hexpand: true;
+                            label: _("Reset All");
+                            clicked => $_on_reset_all_options();
+                          }
+                        }
+
                         // --- ASPECT RATIO ---
                         Box {
                           Box {
