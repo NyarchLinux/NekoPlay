@@ -153,3 +153,13 @@ statuspage box {
 .playing-item-playlist:hover {
   background-color: rgb(from var(--accent-color) r g b / calc(alpha * 0.21));
 }
+
+#options spinbutton {
+  background: none;
+  outline: none;
+  padding: 0;
+}
+
+#options dropdown button * {
+  background: none;
+}

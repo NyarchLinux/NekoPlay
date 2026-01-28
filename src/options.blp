@@ -1,6 +1,8 @@
 using Gtk 4.0;
 
 template $OptionsMenuButton: MenuButton {
+  name: "options";
+
   styles [
     "circular",
     "flat",
@@ -65,23 +67,26 @@ template $OptionsMenuButton: MenuButton {
             margin-end: 16;
           }
 
-          Box {
+          Gtk.DropDown aspect_dropdown {
             halign: end;
-            spacing: 8;
+            width-request: 106;
+            focus-on-click: false;
 
-            Button {
-              width-request: 50;
-              icon-name: "go-previous-symbolic";
-              tooltip-text: _("Previous Aspect Ratio");
-              clicked => $_on_aspect_prev();
-            }
+            model: Gtk.StringList aspect_list {
+              strings [
+                _("Original"),
+                "16:9",
+                "4:3",
+                "1:1",
+                "16:10",
+                "2.21:1",
+                "2.35:1",
+                "2.39:1",
+                "5:4",
+              ]
+            };
 
-            Button {
-              width-request: 50;
-              icon-name: "go-next-symbolic";
-              tooltip-text: _("Next Aspect Ratio");
-              clicked => $_on_aspect_next();
-            }
+            notify::selected => $_on_aspect_changed();
           }
         }
 
@@ -123,14 +128,16 @@ template $OptionsMenuButton: MenuButton {
             spacing: 8;
 
             Button {
-              width-request: 50;
+              valign: center;
+              width-request: 49;
               icon-name: "object-rotate-left-symbolic";
               tooltip-text: _("Rotate Left");
               clicked => $_on_rotate_left();
             }
 
             Button {
-              width-request: 50;
+              valign: center;
+              width-request: 49;
               icon-name: "object-rotate-right-symbolic";
               tooltip-text: _("Rotate Right");
               clicked => $_on_rotate_right();
@@ -176,14 +183,16 @@ template $OptionsMenuButton: MenuButton {
             spacing: 8;
 
             Button {
-              width-request: 50;
+              valign: center;
+              width-request: 49;
               icon-name: "object-flip-horizontal-symbolic";
               tooltip-text: _("Flip Horizontally");
               clicked => $_on_flip_horiz();
             }
 
             Button {
-              width-request: 50;
+              valign: center;
+              width-request: 49;
               icon-name: "object-flip-vertical-symbolic";
               tooltip-text: _("Flip Vertically");
               clicked => $_on_flip_vert();
@@ -224,23 +233,23 @@ template $OptionsMenuButton: MenuButton {
             margin-end: 16;
           }
 
-          Box {
+          SpinButton zoom_spin {
             halign: end;
-            spacing: 8;
+            climb-rate: 1;
+            digits: 2;
 
-            Button {
-              width-request: 50;
-              icon-name: "value-decrease-symbolic";
-              tooltip-text: _("Zoom Out");
-              clicked => $_on_zoom_dec();
+            accessibility {
+              label: _("Zoom");
             }
 
-            Button {
-              width-request: 50;
-              icon-name: "value-increase-symbolic";
-              tooltip-text: _("Zoom In");
-              clicked => $_on_zoom_inc();
-            }
+            adjustment: Adjustment {
+              lower: 0;
+              upper: 5;
+              step-increment: 0.05;
+              value: 0;
+            };
+
+            value-changed => $_on_zoom_changed();
           }
         }
 
@@ -277,23 +286,22 @@ template $OptionsMenuButton: MenuButton {
             margin-end: 16;
           }
 
-          Box {
+          SpinButton contrast_spin {
             halign: end;
-            spacing: 8;
+            climb-rate: 1;
 
-            Button {
-              width-request: 50;
-              icon-name: "value-decrease-symbolic";
-              tooltip-text: _("Decrease Contrast");
-              clicked => $_on_contrast_dec();
+            accessibility {
+              label: _("Contrast");
             }
 
-            Button {
-              width-request: 50;
-              icon-name: "value-increase-symbolic";
-              tooltip-text: _("Increase Contrast");
-              clicked => $_on_contrast_inc();
-            }
+            adjustment: Adjustment {
+              lower: -100;
+              upper: 100;
+              step-increment: 1;
+              value: 0;
+            };
+
+            value-changed => $_on_contrast_changed();
           }
         }
 
@@ -330,23 +338,22 @@ template $OptionsMenuButton: MenuButton {
             margin-end: 16;
           }
 
-          Box {
+          SpinButton brightness_spin {
             halign: end;
-            spacing: 8;
+            climb-rate: 1;
 
-            Button {
-              width-request: 50;
-              icon-name: "value-decrease-symbolic";
-              tooltip-text: _("Decrease Brightness");
-              clicked => $_on_brightness_dec();
+            accessibility {
+              label: _("Brightness");
             }
 
-            Button {
-              width-request: 50;
-              icon-name: "value-increase-symbolic";
-              tooltip-text: _("Increase Brightness");
-              clicked => $_on_brightness_inc();
-            }
+            adjustment: Adjustment {
+              lower: -100;
+              upper: 100;
+              step-increment: 1;
+              value: 0;
+            };
+
+            value-changed => $_on_brightness_changed();
           }
         }
 
@@ -383,23 +390,22 @@ template $OptionsMenuButton: MenuButton {
             margin-end: 16;
           }
 
-          Box {
+          SpinButton gamma_spin {
             halign: end;
-            spacing: 8;
+            climb-rate: 1;
 
-            Button {
-              width-request: 50;
-              icon-name: "value-decrease-symbolic";
-              tooltip-text: _("Decrease Gamma");
-              clicked => $_on_gamma_dec();
+            accessibility {
+              label: _("Gamma");
             }
 
-            Button {
-              width-request: 50;
-              icon-name: "value-increase-symbolic";
-              tooltip-text: _("Increase Gamma");
-              clicked => $_on_gamma_inc();
-            }
+            adjustment: Adjustment {
+              lower: -100;
+              upper: 100;
+              step-increment: 1;
+              value: 0;
+            };
+
+            value-changed => $_on_gamma_changed();
           }
         }
 
@@ -436,23 +442,22 @@ template $OptionsMenuButton: MenuButton {
             margin-end: 16;
           }
 
-          Box {
+          SpinButton saturation_spin {
             halign: end;
-            spacing: 8;
+            climb-rate: 1;
 
-            Button {
-              width-request: 50;
-              icon-name: "value-decrease-symbolic";
-              tooltip-text: _("Decrease Saturation");
-              clicked => $_on_saturation_dec();
+            accessibility {
+              label: _("Saturation");
             }
 
-            Button {
-              width-request: 50;
-              icon-name: "value-increase-symbolic";
-              tooltip-text: _("Increase Saturation");
-              clicked => $_on_saturation_inc();
-            }
+            adjustment: Adjustment {
+              lower: -100;
+              upper: 100;
+              step-increment: 1;
+              value: 0;
+            };
+
+            value-changed => $_on_saturation_changed();
           }
         }
 
@@ -489,23 +494,23 @@ template $OptionsMenuButton: MenuButton {
             margin-end: 16;
           }
 
-          Box {
+          SpinButton sub_delay_spin {
             halign: end;
-            spacing: 8;
+            climb-rate: 1;
+            digits: 1;
 
-            Button {
-              width-request: 50;
-              icon-name: "value-decrease-symbolic";
-              tooltip-text: _("Decrease Subtitle Delay");
-              clicked => $_on_sub_delay_down();
+            accessibility {
+              label: _("Subtitle Delay");
             }
 
-            Button {
-              width-request: 50;
-              icon-name: "value-increase-symbolic";
-              tooltip-text: _("Increase Subtitle Delay");
-              clicked => $_on_sub_delay_up();
-            }
+            adjustment: Adjustment {
+              lower: -999.9;
+              upper: 999.9;
+              step-increment: 0.1;
+              value: 0;
+            };
+
+            value-changed => $_on_sub_delay_changed();
           }
         }
 
@@ -542,23 +547,23 @@ template $OptionsMenuButton: MenuButton {
             margin-end: 16;
           }
 
-          Box {
+          SpinButton audio_delay_spin {
             halign: end;
-            spacing: 8;
+            climb-rate: 1;
+            digits: 1;
 
-            Button {
-              width-request: 50;
-              icon-name: "value-decrease-symbolic";
-              tooltip-text: _("Decrease Audio Delay");
-              clicked => $_on_audio_delay_down();
+            accessibility {
+              label: _("Audio Delay");
             }
 
-            Button {
-              width-request: 50;
-              icon-name: "value-increase-symbolic";
-              tooltip-text: _("Increase Audio Delay");
-              clicked => $_on_audio_delay_up();
-            }
+            adjustment: Adjustment {
+              lower: -999.9;
+              upper: 999.9;
+              step-increment: 0.1;
+              value: 0;
+            };
+
+            value-changed => $_on_audio_delay_changed();
           }
         }
 
@@ -595,23 +600,23 @@ template $OptionsMenuButton: MenuButton {
             margin-end: 16;
           }
 
-          Box {
+          SpinButton speed_spin {
             halign: end;
-            spacing: 8;
+            climb-rate: 1;
+            digits: 2;
 
-            Button {
-              width-request: 50;
-              icon-name: "value-decrease-symbolic";
-              tooltip-text: _("Increase Playback Speed");
-              clicked => $_on_speed_dec();
+            accessibility {
+              label: _("Playback Speed");
             }
 
-            Button {
-              width-request: 50;
-              icon-name: "value-increase-symbolic";
-              tooltip-text: _("Decrease Playback Speed");
-              clicked => $_on_speed_inc();
-            }
+            adjustment: Adjustment {
+              lower: 0.25;
+              upper: 10;
+              step-increment: 0.25;
+              value: 1;
+            };
+
+            value-changed => $_on_speed_changed();
           }
         }
       }

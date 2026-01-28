@@ -51,18 +51,6 @@ def format_time(seconds):
         return f"{m}:{s:02d}"
 
 
-ASPECT_RATIOS: tuple = (
-    "-1",
-    "16:9",
-    "4:3",
-    "1:1",
-    "16:10",
-    "2.21:1",
-    "2.35:1",
-    "2.39:1",
-    "5:4",
-)
-
 MBTN_MAP: dict = {
     1: "MBTN_LEFT",
     2: "MBTN_MID",
