@@ -164,6 +164,7 @@ statuspage box {
   outline: none;
   padding: 0;
   font-weight: bold;
+  box-shadow: none;
 }
 
 #options dropdown button * {
