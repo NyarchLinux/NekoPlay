@@ -541,7 +541,7 @@ msgstr "Salva anche le opzioni come la luminosità, il ritardo dei sottotitoli, 
 msgid ""
 "Requires flatpak permission to read the folder where the video is stored"
 msgstr ""
-"Sono richiesti di impostare i permessi al flatpak per leggere la cartella dov'è il video"
+"È richiesto di impostare i permessi al flatpak per leggere la cartella dov'è memorizzato il video"
 
 #: src/shortcuts-dialog.blp:8
 msgid "Shortcuts"
