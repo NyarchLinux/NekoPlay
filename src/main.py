@@ -216,7 +216,7 @@ class CineApplication(Adw.Application):
         )
         try:
             # Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
-            about.set_translator_credits(_("Mimolet <theMimolet@proton.me>, 2026"))
+            about.set_translator_credits(_("translator-credits"))
         except NameError:
             pass
 
