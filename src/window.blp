@@ -166,7 +166,7 @@ template $CineWindow: Adw.ApplicationWindow {
                     "flat",
                   ]
 
-                  icon-name: "media-skip-backward-symbolic";
+                  icon-name: "cine-skip-backward-symbolic";
                   tooltip-text: _("Previous");
                 }
 
@@ -176,7 +176,7 @@ template $CineWindow: Adw.ApplicationWindow {
                     "flat",
                   ]
 
-                  icon-name: "media-playback-start-symbolic";
+                  icon-name: "cine-playback-start-symbolic";
                   tooltip-text: _("Play/Pause");
                 }
 
@@ -186,13 +186,13 @@ template $CineWindow: Adw.ApplicationWindow {
                     "flat",
                   ]
 
-                  icon-name: "media-skip-forward-symbolic";
+                  icon-name: "cine-skip-forward-symbolic";
                   tooltip-text: _("Next");
                 }
 
                 MenuButton volume_menu_button {
                   halign: center;
-                  icon-name: "audio-volume-high-symbolic";
+                  icon-name: "cine-volume-max-symbolic";
                   direction: up;
                   tooltip-text: _("Volume");
 
@@ -204,7 +204,7 @@ template $CineWindow: Adw.ApplicationWindow {
                   popover: Popover {
                     Box {
                       ToggleButton mute_toggle_button {
-                        icon-name: "audio-volume-muted-symbolic";
+                        icon-name: "cine-volume-mute-symbolic";
                         tooltip-text: _("Mute");
 
                         styles [
@@ -235,7 +235,7 @@ template $CineWindow: Adw.ApplicationWindow {
 
                   direction: up;
                   halign: center;
-                  icon-name: "media-view-subtitles-symbolic";
+                  icon-name: "cine-subtitles-symbolic";
                   tooltip-text: _("Subtitles");
 
                   menu-model: menu subtitles_menu {};
@@ -250,7 +250,7 @@ template $CineWindow: Adw.ApplicationWindow {
 
                   direction: up;
                   halign: center;
-                  icon-name: "audio-x-generic-symbolic";
+                  icon-name: "cine-audio-symbolic";
                   tooltip-text: _("Audio");
 
                   menu-model: menu audio_tracks_menu {};
@@ -264,7 +264,7 @@ template $CineWindow: Adw.ApplicationWindow {
 
                   direction: up;
                   halign: center;
-                  icon-name: "video-x-generic-symbolic";
+                  icon-name: "cine-video-symbolic";
                   tooltip-text: _("Video");
 
                   menu-model: menu video_tracks_menu {};
@@ -281,7 +281,7 @@ template $CineWindow: Adw.ApplicationWindow {
                     "flat",
                   ]
 
-                  icon-name: "media-playlist-shuffle-symbolic";
+                  icon-name: "cine-playlist-shuffle-symbolic";
                   tooltip-text: _("Shuffle Playlist");
                   valign: end;
                 }
@@ -292,7 +292,7 @@ template $CineWindow: Adw.ApplicationWindow {
                     "flat",
                   ]
 
-                  icon-name: "media-playlist-repeat-symbolic";
+                  icon-name: "cine-playlist-repeat-symbolic";
                   tooltip-text: _("Loop Playlist");
                   valign: end;
                 }
@@ -303,7 +303,7 @@ template $CineWindow: Adw.ApplicationWindow {
                     "flat",
                   ]
 
-                  icon-name: "media-playlist-repeat-song-symbolic";
+                  icon-name: "cine-repeat-file-symbolic";
                   tooltip-text: _("Loop File");
                   valign: end;
                 }
@@ -315,12 +315,7 @@ template $CineWindow: Adw.ApplicationWindow {
                   ]
 
                   tooltip-text: _("Playlist");
-
-                  Image {
-                    use-fallback: true;
-                    icon-name: "view-list-bullet-symbolic";
-                  }
-
+                  icon-name: "cine-playlist-symbolic";
                   valign: end;
                   action-name: "win.open-playlist-dialog";
                 }
@@ -333,7 +328,7 @@ template $CineWindow: Adw.ApplicationWindow {
                     "flat",
                   ]
 
-                  icon-name: "view-fullscreen-symbolic";
+                  icon-name: "cine-view-fullscreen-symbolic";
                   tooltip-text: _("Fullscreen");
                   valign: end;
                 }

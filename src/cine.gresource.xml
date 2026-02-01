@@ -8,6 +8,36 @@
     <file preprocess="xml-stripblanks">window.ui</file>
     <file preprocess="xml-stripblanks">shortcuts-dialog.ui</file>
   </gresource>
+  <gresource prefix="/io/github/diegopvlk/Cine/icons/scalable/actions">
+    <file alias="cine-audio-symbolic.svg">../data/icons/scalable/actions/cine-audio-symbolic.svg</file>
+    <file alias="cine-list-add-symbolic.svg">../data/icons/scalable/actions/cine-list-add-symbolic.svg</file>
+    <file alias="cine-options-symbolic.svg">../data/icons/scalable/actions/cine-options-symbolic.svg</file>
+    <file alias="cine-playback-pause-symbolic.svg">../data/icons/scalable/actions/cine-playback-pause-symbolic.svg</file>
+    <file alias="cine-playback-start-symbolic.svg">../data/icons/scalable/actions/cine-playback-start-symbolic.svg</file>
+    <file alias="cine-playlist-repeat-symbolic.svg">../data/icons/scalable/actions/cine-playlist-repeat-symbolic.svg</file>
+    <file alias="cine-playlist-shuffle-symbolic.svg">../data/icons/scalable/actions/cine-playlist-shuffle-symbolic.svg</file>
+    <file alias="cine-playlist-symbolic.svg">../data/icons/scalable/actions/cine-playlist-symbolic.svg</file>
+    <file alias="cine-playlist-symbolic-rtl.svg">../data/icons/scalable/actions/cine-playlist-symbolic-rtl.svg</file>
+    <file alias="cine-repeat-file-symbolic.svg">../data/icons/scalable/actions/cine-repeat-file-symbolic.svg</file>
+    <file alias="cine-skip-backward-symbolic.svg">../data/icons/scalable/actions/cine-skip-backward-symbolic.svg</file>
+    <file alias="cine-skip-backward-symbolic-rtl.svg">../data/icons/scalable/actions/cine-skip-backward-symbolic-rtl.svg</file>
+    <file alias="cine-skip-forward-symbolic.svg">../data/icons/scalable/actions/cine-skip-forward-symbolic.svg</file>
+    <file alias="cine-skip-forward-symbolic-rtl.svg">../data/icons/scalable/actions/cine-skip-forward-symbolic-rtl.svg</file>
+    <file alias="cine-volume-mute-symbolic-rtl.svg">../data/icons/scalable/actions/cine-volume-mute-symbolic-rtl.svg</file>
+    <file alias="cine-volume-mute-symbolic.svg">../data/icons/scalable/actions/cine-volume-mute-symbolic.svg</file>
+    <file alias="cine-volume-max-symbolic-rtl.svg">../data/icons/scalable/actions/cine-volume-max-symbolic-rtl.svg</file>
+    <file alias="cine-volume-max-symbolic.svg">../data/icons/scalable/actions/cine-volume-max-symbolic.svg</file>
+    <file alias="cine-volume-mid-symbolic-rtl.svg">../data/icons/scalable/actions/cine-volume-mid-symbolic-rtl.svg</file>
+    <file alias="cine-volume-mid-symbolic.svg">../data/icons/scalable/actions/cine-volume-mid-symbolic.svg</file>
+    <file alias="cine-volume-low-symbolic-rtl.svg">../data/icons/scalable/actions/cine-volume-low-symbolic-rtl.svg</file>
+    <file alias="cine-volume-low-symbolic.svg">../data/icons/scalable/actions/cine-volume-low-symbolic.svg</file>
+    <file alias="cine-volume-overamp-symbolic-rtl.svg">../data/icons/scalable/actions/cine-volume-overamp-symbolic-rtl.svg</file>
+    <file alias="cine-volume-overamp-symbolic.svg">../data/icons/scalable/actions/cine-volume-overamp-symbolic.svg</file>
+    <file alias="cine-subtitles-symbolic.svg">../data/icons/scalable/actions/cine-subtitles-symbolic.svg</file>
+    <file alias="cine-video-symbolic.svg">../data/icons/scalable/actions/cine-video-symbolic.svg</file>
+    <file alias="cine-view-fullscreen-symbolic.svg">../data/icons/scalable/actions/cine-view-fullscreen-symbolic.svg</file>
+    <file alias="cine-view-restore-symbolic.svg">../data/icons/scalable/actions/cine-view-restore-symbolic.svg</file>
+  </gresource>
   <gresource prefix="/io/github/diegopvlk/Cine/icons/scalable/apps">
     <file alias="io.github.diegopvlk.Dosage.svg">../data/icons/scalable/apps/io.github.diegopvlk.Dosage.svg</file>
     <file alias="io.github.diegopvlk.Tomatillo.svg">../data/icons/scalable/apps/io.github.diegopvlk.Tomatillo.svg</file>

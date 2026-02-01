@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" gpa:keywords="media-view-subtitles sub srt video screen" gpa:state="1" gpa:version="1" xmlns="http://www.w3.org/2000/svg" xmlns:gpa="https://www.gtk.org/grappa">
+ <path id="path3" class="transparent-fill foreground-stroke" d="m1 4v8c0 1.1046 0.89543 2 2 2h10c1.1046 0 2-0.89543 2-2v-8c0-1.1046-0.89543-2-2-2h-10c-1.1046 0-2 0.89543-2 2z" fill="none" stroke='url("#gpa:foreground") rgb(0,0,0)' stroke-linecap="round" stroke-linejoin="round" stroke-width="2" gpa:fill="none" gpa:stroke="foreground" gpa:stroke-width="0.5 2 3"></path>
+ <path id="path9" class="transparent-fill foreground-stroke" d="m10 11.5h3m-7 0h3m-6 0h2m7-2h1m-5 0h3m-8 0h4" fill="none" stroke='url("#gpa:foreground") rgb(0,0,0)' stroke-linejoin="round" gpa:fill="none" gpa:stroke="foreground" gpa:stroke-width="0 1 2"></path>
+</svg>

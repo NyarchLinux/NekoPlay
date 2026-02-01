@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" gpa:keywords="list-add add plus create" gpa:state="0" gpa:version="1" xmlns="http://www.w3.org/2000/svg" xmlns:gpa="https://www.gtk.org/grappa">
+ <path id="path0" class="transparent-fill foreground-stroke" d="m2 8h12m-6-6v12" fill="none" stroke='url("#gpa:foreground") rgb(0,0,0)' stroke-linecap="round" stroke-linejoin="round" stroke-width="2" gpa:fill="none" gpa:stroke="foreground" gpa:stroke-width="0.5 2 3"></path>
+</svg>

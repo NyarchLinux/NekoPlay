@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" gpa:keywords="audio-volume-low-rtl sound speaker" gpa:state="1" gpa:version="1" xmlns="http://www.w3.org/2000/svg" xmlns:gpa="https://www.gtk.org/grappa">
+ <style type="text/css">.not-initial-state {
+      display: none;
+    }</style>
+ <path id="fill" class="foreground-stroke foreground-fill" d="m10 3v10l3-3h2v-4h-2z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" gpa:fill="foreground" gpa:states="1" gpa:stroke="foreground"/>
+ <path id="wave1" class="foreground-stroke transparent-fill" d="m5.8147 4.9594c-1.0863 1.8815-1.0863 4.1997 0 6.0812" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" gpa:animation-type="automatic" gpa:origin="0.5" gpa:states="0 1" gpa:stroke="foreground" gpa:transition-type="animate"/>
+ <path id="outline" class="foreground-stroke transparent-fill not-initial-state" d="m10 3v10l3-3h2v-4h-2z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" gpa:states="0" gpa:stroke="foreground"/>
+</svg>

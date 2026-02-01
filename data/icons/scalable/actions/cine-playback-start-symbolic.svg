@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg1" width="16" height="16" gpa:keywords="media-playback-start play triangle" gpa:state="1" gpa:version="1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:gpa="https://www.gtk.org/grappa">
+ <style id="style1" type="text/css">.not-initial-state {
+      display: none;
+    }</style>
+ <path id="path0" class="foreground-fill" d="m3.0388 2.9444v10.112c1.108e-4 0.3136 0.14847 0.60481 0.39215 0.76972 0.24368 0.16491 0.54797 0.18004 0.8043 0.04l9.2916-5.0855c0.26987-0.14794 0.44029-0.44999 0.44029-0.78037 0-0.33038-0.17042-0.63244-0.44029-0.78037l-9.2916-5.0866c-0.25665-0.14022-0.56135-0.12487-0.80515 0.040569-0.2438 0.16544-0.39188 0.45734-0.3913 0.77132" stroke="#000" stroke-width="2.0776" gpa:fill="foreground" gpa:states="1" gpa:transition-duration="200ms" gpa:transition-type="fade"/>
+ <path id="path1" class="foreground-stroke transparent-fill not-initial-state" d="m3 3.348v9.304c1.1158e-4 0.28854 0.14953 0.55647 0.39495 0.7082 0.24542 0.15173 0.55188 0.16565 0.81005 0.0368l9.358-4.679c0.2718-0.13611 0.44344-0.41403 0.44344-0.718 0-0.30397-0.17164-0.58189-0.44344-0.718l-9.358-4.68c-0.25849-0.12901-0.56536-0.11489-0.8109 0.037326-0.24554 0.15221-0.39468 0.42078-0.3941 0.70967" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" gpa:states="0" gpa:stroke="foreground" gpa:transition-duration="200ms" gpa:transition-type="fade"/>
+</svg>

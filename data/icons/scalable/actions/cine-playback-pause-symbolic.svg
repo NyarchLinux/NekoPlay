@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg1" width="16" height="16" gpa:keywords="media-playback-pause" gpa:state="1" gpa:version="1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:gpa="https://www.gtk.org/grappa">
+ <style id="style1" type="text/css">.not-initial-state {
+      display: none;
+    }</style>
+ <path id="path0" class="foreground-fill" d="m6 3.5v9c0 0.82843-0.67157 1.5-1.5 1.5-0.82843 0-1.5-0.67157-1.5-1.5v-9c0-0.82843 0.67157-1.5 1.5-1.5 0.82843 0 1.5 0.67157 1.5 1.5zm7 0v9c0 0.82843-0.67157 1.5-1.5 1.5s-1.5-0.67157-1.5-1.5v-9c0-0.82843 0.67157-1.5 1.5-1.5s1.5 0.67157 1.5 1.5z" stroke="#000" stroke-width="2" gpa:fill="foreground" gpa:states="1" gpa:transition-duration="200ms" gpa:transition-type="fade"/>
+ <path id="path1" class="foreground-stroke transparent-fill not-initial-state" d="m6 3.5v9c0 0.82843-0.67157 1.5-1.5 1.5-0.82843 0-1.5-0.67157-1.5-1.5v-9c0-0.82843 0.67157-1.5 1.5-1.5 0.82843 0 1.5 0.67157 1.5 1.5zm7 0v9c0 0.82843-0.67157 1.5-1.5 1.5s-1.5-0.67157-1.5-1.5v-9c0-0.82843 0.67157-1.5 1.5-1.5s1.5 0.67157 1.5 1.5z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" gpa:states="0" gpa:stroke="foreground" gpa:transition-duration="200ms" gpa:transition-type="fade"/>
+</svg>

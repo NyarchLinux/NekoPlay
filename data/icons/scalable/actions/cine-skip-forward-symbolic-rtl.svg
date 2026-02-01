@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg1" width="16" height="16" gpa:keywords="media-skip-backward start" gpa:state="1" gpa:version="1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:gpa="https://www.gtk.org/grappa">
+ <style id="style1" type="text/css">.not-initial-state {
+      display: none;
+    }</style>
+ <path id="path1" d="m13.73 3.0293c0.20281 0.13326 0.32806 0.3825 0.32791 0.65251v8.6402c-3.35e-4 0.58223-0.54871 0.94181-0.98009 0.64267l-7.7882-4.3201c-0.41877-0.29125-0.41877-0.99409 0-1.2853l7.7882-4.3201c0.19998-0.1391 0.44913-0.14286 0.65218-0.00984z" stroke="#000" stroke-width="1.8845"/>
+ <rect id="rect2" transform="scale(-1,1)" x="-3" y="2" width="2" height="12" ry="1" style="paint-order:stroke markers fill"/>
+</svg>

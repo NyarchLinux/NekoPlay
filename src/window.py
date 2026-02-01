@@ -693,15 +693,15 @@ class CineWindow(Adw.ApplicationWindow):
     def _update_volume_icon(self, is_muted):
         volume = cast(int, self.mpv.volume)
         if is_muted or volume == 0:
-            icon = "audio-volume-muted-symbolic"
+            icon = "cine-volume-mute-symbolic"
         elif volume < 33:
-            icon = "audio-volume-low-symbolic"
+            icon = "cine-volume-low-symbolic"
         elif volume < 66:
-            icon = "audio-volume-medium-symbolic"
+            icon = "cine-volume-mid-symbolic"
         elif volume <= 100:
-            icon = "audio-volume-high-symbolic"
+            icon = "cine-volume-max-symbolic"
         else:
-            icon = "audio-volume-overamplified-symbolic"
+            icon = "cine-volume-overamp-symbolic"
         self.volume_menu_button.set_icon_name(icon)
 
     def _update_progress(self, current_time):
@@ -756,8 +756,8 @@ class CineWindow(Adw.ApplicationWindow):
         action.set_state(parameter)
 
     def _update_play_pause_icon(self, is_paused):
-        play_icon = "media-playback-start-symbolic"
-        pause_icon = "media-playback-pause-symbolic"
+        play_icon = "cine-playback-start-symbolic"
+        pause_icon = "cine-playback-pause-symbolic"
 
         icon = play_icon if is_paused else pause_icon
         icon_indicator = pause_icon if is_paused else play_icon
@@ -857,11 +857,11 @@ class CineWindow(Adw.ApplicationWindow):
                 is_playing = not self.mpv.idle_active
 
                 if is_playing and any(f_name.endswith(ext) for ext in SUB_EXTS):
-                    self.drop_icon.props.icon_name = "media-view-subtitles-symbolic"
+                    self.drop_icon.props.icon_name = "cine-subtitles-symbolic"
                     self.drop_label.props.label = _("Add Subtitle Track")
                     return
 
-                self.drop_icon.props.icon_name = "list-add-symbolic"
+                self.drop_icon.props.icon_name = "cine-list-add-symbolic"
                 self.drop_label.props.label = _("Add to Playlist")
 
             except GLib.Error as e:
@@ -876,7 +876,9 @@ class CineWindow(Adw.ApplicationWindow):
 
     def _on_drop_leave(self, _target):
         GLib.timeout_add(10, self.revealer_drop_indicator.set_reveal_child, False)
-        GLib.timeout_add(100, self.drop_icon.set_from_icon_name, "list-add-symbolic")
+        GLib.timeout_add(
+            100, self.drop_icon.set_from_icon_name, "cine-list-add-symbolic"
+        )
         GLib.timeout_add(100, self.drop_label.set_text, _("Add to Playlist"))
 
     def _on_drop(self, _target, value, _x, _y, from_playlist=False):
@@ -1167,7 +1169,11 @@ class CineWindow(Adw.ApplicationWindow):
         @self.mpv.property_observer("fullscreen")
         def on_fs_change(_name, value):
             def update():
-                icon = "view-restore-symbolic" if value else "view-fullscreen-symbolic"
+                icon = (
+                    "cine-view-restore-symbolic"
+                    if value
+                    else "cine-view-fullscreen-symbolic"
+                )
                 self.fullscreen_button.set_icon_name(icon)
                 self._sync_fullscreen(value)
 

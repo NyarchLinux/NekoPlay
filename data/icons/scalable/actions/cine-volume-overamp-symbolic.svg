@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" gpa:keywords="audio-speakers audio-volume-overamplified sound audio volume high loud" gpa:state="1" gpa:version="1" xmlns="http://www.w3.org/2000/svg" xmlns:gpa="https://www.gtk.org/grappa">
+ <style type="text/css">.not-initial-state {
+      display: none;
+    }</style>
+ <path id="outline" class="foreground-stroke transparent-fill not-initial-state" d="m6 3v10l-3-3h-2v-4h2z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" gpa:states="0" gpa:stroke="foreground"/>
+ <path id="fill" class="foreground-stroke foreground-fill" d="m6 3v10l-3-3h-2v-4h2z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" gpa:fill="foreground" gpa:states="1" gpa:stroke="foreground"/>
+ <path id="path2" class="foreground-stroke transparent-fill" d="m14 1v14m-4-11v8" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+</svg>

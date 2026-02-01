@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" gpa:keywords="media-playlist-shuffle" gpa:state="0" gpa:version="1" xmlns="http://www.w3.org/2000/svg" xmlns:gpa="https://www.gtk.org/grappa">
+ <style type="text/css">.not-initial-state {
+      display: none;
+    }</style>
+ <path id="path5" class="foreground-stroke transparent-fill" d="m13 6 2-2-2-2m0 12 2-2-2-2" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+ <path id="path7" class="foreground-stroke transparent-fill" d="m15 4h-5.622c-0.84453-2.4e-7 -1.6166 0.47715-1.9943 1.2325l-2.7675 5.535c-0.37768 0.75537-1.1497 1.2325-1.9943 1.2325h-2.622m15 0h-5.622c-0.84453 0-1.6166-0.47715-1.9943-1.2325l-2.7675-5.535c-0.37768-0.75537-1.1497-1.2325-1.9943-1.2325h-2.622" fill="none" stroke="#000" stroke-linejoin="round" stroke-width="2"/>
+</svg>

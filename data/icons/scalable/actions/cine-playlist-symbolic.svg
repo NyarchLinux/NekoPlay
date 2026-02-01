@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" gpa:keywords="view-list-bullet" gpa:state="0" gpa:version="1" xmlns="http://www.w3.org/2000/svg" xmlns:gpa="https://www.gtk.org/grappa">
+ <style type="text/css">.not-initial-state {
+      display: none;
+    }</style>
+ <path id="path3" class="foreground-stroke transparent-fill" d="m2 3h0.011719m-0.011719 4.9835h0.011719m-0.011719 5.0165h0.011719m2.9883 0h9m-9-5h9m-9-5h9" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+</svg>
