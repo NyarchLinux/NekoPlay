@@ -57,12 +57,12 @@ msgid ""
 "MPV-Based: Leverages the robust power of MPV for great playback and format "
 "support"
 msgstr ""
-"مبني على MPV: يستغل قوة محرك MPV لتوفير تجربة تشغيل رائعة ودعم صيغ واسع"
+"MPV كأساس: مستغلًا قوة MPV لتجربة تشغيل رائعة ودعم جيد للصيغة"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:29
 msgid ""
 "Audio and Subtitles: Control track selection and synchronization for both"
-msgstr "الصوت والترجمات: تحكم بإختيار المسار وزامنهما"
+msgstr "الصوت والترجمات: تحكم بإختيار المسار وزامن كلاهما"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:30
 msgid ""
@@ -132,7 +132,7 @@ msgstr "الترجمات"
 
 #: src/shortcuts.py:36
 msgid "Show/Hide Subtitles"
-msgstr "اظهر/اخفي النصوص الترجمات"
+msgstr "اظهر/اخفي الترجمات"
 
 #: src/shortcuts.py:37
 msgid "Seek 10s Backward"
@@ -232,7 +232,7 @@ msgstr "اسعي للفصل التالي"
 
 #: src/shortcuts.py:79
 msgid "Take Screenshot With Subtitles"
-msgstr "ألتقط لقطة شاشة بالترجمات"
+msgstr "ألتقط لقطة شاشة مع الترجمات"
 
 #: src/shortcuts.py:80
 msgid "Take Screenshot Without Subtitles"
@@ -417,19 +417,19 @@ msgstr "الدوران"
 
 #: src/options.blp:138
 msgid "Rotate Left"
-msgstr "ادر لليسار"
+msgstr "ادِر يسارًا"
 
 #: src/options.blp:146
 msgid "Rotate Right"
-msgstr "ادر يمينًا"
+msgstr "ادِر يمينًا"
 
 #: src/options.blp:159
 msgid "Reset Flip"
-msgstr "صفّر القلب"
+msgstr "صفّر القَلب"
 
 #: src/options.blp:169
 msgid "Flip"
-msgstr "القلب"
+msgstr "القَلب"
 
 #: src/options.blp:195
 msgid "Flip Horizontally"
@@ -534,12 +534,12 @@ msgstr "احفظ موضع الفيديو عند الإغلاق"
 
 #: src/preferences.blp:119
 msgid "Also save options like brightness, subtitle delay, etc."
-msgstr "ايضًا يحفظ الخيارات كالسطوع، تأخير الترجمة، إلخ."
+msgstr "يحفظ ايضًا الخيارات كالسطوع، تأخير الترجمة، إلخ."
 
 #: src/preferences.blp:134
 msgid ""
 "Requires flatpak permission to read the folder where the video is stored"
-msgstr "يتطلب صلاحية فلاتباك لقراءة المجلد الذي يتواجد فيه الفيديو"
+msgstr "قراءة المجلد الذي يتواجد فيه الفيديو يتطلب صلاحية من فلاتباك"
 
 #: src/shortcuts-dialog.blp:8
 msgid "Shortcuts"
@@ -567,7 +567,7 @@ msgstr "اغلق النافذة"
 
 #: src/shortcuts-dialog.blp:51
 msgid "Quit"
-msgstr "غادر"
+msgstr "غادِر"
 
 #: src/window.blp:75
 msgid "Open"
@@ -603,11 +603,11 @@ msgstr "اخلط قائمة التشغيل"
 
 #: src/window.blp:296
 msgid "Loop Playlist"
-msgstr "تكرار قائمة التشغيل"
+msgstr "كرّر قائمة التشغيل"
 
 #: src/window.blp:307
 msgid "Loop File"
-msgstr "تكرار الملف"
+msgstr "كرّر الملف"
 
 #: src/window.blp:402
 msgid "Drag and Drop Files Here"
