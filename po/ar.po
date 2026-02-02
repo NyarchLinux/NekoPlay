@@ -59,12 +59,12 @@ msgid ""
 "MPV-Based: Leverages the robust power of MPV for great playback and format "
 "support"
 msgstr ""
-"مبني على MPV: يستغل قوة محرك MPV لتوفير تجربة تشغيل رائعة ودعم صيغ واسع"
+"MPV كأساس: مستغلًا قوة MPV لتجربة تشغيل رائعة ودعم جيد للصيغة"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:29
 msgid ""
 "Audio and Subtitles: Control track selection and synchronization for both"
-msgstr "الصوت والترجمات: تحكم بإختيار المسار وزامنهما"
+msgstr "الصوت والترجمات: تحكم بإختيار المسار وزامن كلاهما"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:30
 msgid ""
