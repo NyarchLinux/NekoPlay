@@ -25,6 +25,7 @@ from typing import cast
 from gettext import gettext as _
 
 from .utils import (
+    get_gpu_vendor,
     format_time,
     MBTN_MAP,
     KEY_REMAP,
@@ -120,7 +121,11 @@ class CineWindow(Adw.ApplicationWindow):
         self.gl_area: Gtk.GLArea = Gtk.GLArea()
         self.offload: Gtk.GraphicsOffload = Gtk.GraphicsOffload(child=self.gl_area)
         self.offload.set_black_background(True)
-        self.offload.set_enabled(Gtk.GraphicsOffloadEnabled.ENABLED)
+
+        vendor: str | None = get_gpu_vendor(display, libgl)
+        if vendor and "nvidia" in vendor:
+            self.offload.set_enabled(Gtk.GraphicsOffloadEnabled.DISABLED)
+
         self.video_overlay.set_child(self.offload)
 
         self.can_go_prev: bool = False

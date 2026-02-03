@@ -19,6 +19,7 @@
 
 import gi
 import os
+import ctypes
 from gettext import gettext as _
 
 gi.require_version("GLib", "2.0")
@@ -31,6 +32,23 @@ base_config = GLib.get_user_config_dir()
 CONFIG_DIR = os.path.join(base_config, "cine")
 INPUT_CONF = os.path.join(CONFIG_DIR, "input.conf")
 os.makedirs(CONFIG_DIR, exist_ok=True)
+
+
+def get_gpu_vendor(display, libgl):
+    try:
+        context = display.get_default_seat().get_display().create_gl_context()
+        context.realize()
+        context.make_current()
+
+        glGetString = libgl.glGetString
+        glGetString.restype = ctypes.c_char_p
+        glGetString.argtypes = [ctypes.c_uint]
+
+        # GL_VENDOR is 0x1F00
+        return glGetString(0x1F00).decode("utf-8").lower()
+    except Exception as e:
+        print(f"get_gpu_vendor error: {e}")
+        return None
 
 
 def format_time(seconds):
