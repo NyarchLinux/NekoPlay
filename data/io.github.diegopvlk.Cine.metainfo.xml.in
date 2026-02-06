@@ -71,6 +71,13 @@
   </requires>
 
   <releases>
+    <release version="1.0.6" date="2026-02-06">
+      <description translate="no">
+        <ul>
+          <li>Added Dutch translation + small fixes</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.0.5" date="2026-02-04">
       <description translate="no">
         <ul>
