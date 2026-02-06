@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.diegopvlk.Cine\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-03 21:52-0300\n"
+"POT-Creation-Date: 2026-02-06 08:53-0300\n"
 "PO-Revision-Date: 2026-02-02 08:45-0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Poedit 3.8\n"
 
 #: data/io.github.diegopvlk.Cine.desktop.in:2 src/main.py:210 src/mpris.py:146
-#: src/mpris.py:364 src/window.py:147 src/window.py:243 src/window.py:1292
+#: src/mpris.py:364 src/window.py:148 src/window.py:244 src/window.py:1295
 #: src/window.blp:6
 msgid "Cine"
 msgstr "Cine"
@@ -91,7 +91,7 @@ msgid "Main Window"
 msgstr "Ana Pencere"
 
 #. Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
-#: src/main.py:219
+#: src/main.py:220
 msgid "translator-credits"
 msgstr "Sabri Ünal <yakushabb@gmail.com>, 2026"
 
@@ -103,15 +103,15 @@ msgstr "Bilinmeyen başlık"
 msgid "Original"
 msgstr "Özgün"
 
-#: src/playlist.py:48 src/window.py:884 src/window.py:1171
+#: src/playlist.py:48 src/window.py:887 src/window.py:1174
 msgid "File Error"
 msgstr "Dosya Hatası"
 
-#: src/playlist.py:146 src/window.py:560 src/playlist.blp:23 src/window.blp:91
+#: src/playlist.py:146 src/window.py:562 src/playlist.blp:23 src/window.blp:91
 msgid "Add Files"
 msgstr "Dosya Ekle"
 
-#: src/shortcuts.py:29 src/shortcuts.py:30 src/window.py:1222
+#: src/shortcuts.py:29 src/shortcuts.py:30 src/window.py:1225
 #: src/window.blp:197
 msgid "Volume"
 msgstr "Ses"
@@ -153,7 +153,7 @@ msgstr "5 sn Geri Sar"
 msgid "Seek 5s Forward"
 msgstr "5 sn İleri Sar"
 
-#: src/shortcuts.py:41 src/shortcuts.py:42 src/window.py:1201
+#: src/shortcuts.py:41 src/shortcuts.py:42 src/window.py:1204
 #: src/window.blp:332
 msgid "Fullscreen"
 msgstr "Tam Ekran"
@@ -346,60 +346,60 @@ msgstr "Oynatma"
 msgid "Miscellaneous"
 msgstr "Çeşitli"
 
-#: src/window.py:442 src/window.py:877 src/window.blp:96
+#: src/window.py:444 src/window.py:879 src/window.blp:96
 msgid "Add Subtitle Track"
 msgstr "Alt Yazı Parçası Ekle"
 
-#: src/window.py:444 src/window.py:453
+#: src/window.py:446 src/window.py:455
 msgid "None"
 msgstr "Yok"
 
-#: src/window.py:451 src/window.blp:101
+#: src/window.py:453 src/window.blp:101
 msgid "Add Audio Track"
 msgstr "Ses Parçası Ekle"
 
-#: src/window.py:490
+#: src/window.py:492
 msgid "Track"
 msgstr "Parça"
 
-#: src/window.py:532 src/shortcuts-dialog.blp:21 src/window.blp:86
+#: src/window.py:534 src/shortcuts-dialog.blp:21 src/window.blp:86
 #: src/window.blp:426
 msgid "Open Folder"
 msgstr "Klasör Aç"
 
-#: src/window.py:557 src/shortcuts-dialog.blp:16 src/window.blp:81
+#: src/window.py:559 src/shortcuts-dialog.blp:16 src/window.blp:81
 msgid "Open Files"
 msgstr "Dosya Aç"
 
-#: src/window.py:563
+#: src/window.py:565
 msgid "Add Subtitle"
 msgstr "Alt Yazı Ekle"
 
-#: src/window.py:566
+#: src/window.py:568
 msgid "Add Audio"
 msgstr "Ses Ekle"
 
-#: src/window.py:579
+#: src/window.py:581
 msgid "Subtitle"
 msgstr "Alt Yazı"
 
-#: src/window.py:584 src/window.blp:254
+#: src/window.py:586 src/window.blp:254
 msgid "Audio"
 msgstr "Ses"
 
-#: src/window.py:588
+#: src/window.py:590
 msgid "Media"
 msgstr "Ortam"
 
-#: src/window.py:781
+#: src/window.py:783
 msgid "Pause"
 msgstr "Duraklat"
 
-#: src/window.py:781 src/window.py:881 src/window.py:898
+#: src/window.py:783 src/window.py:883
 msgid "Play"
 msgstr "Oynat"
 
-#: src/window.py:1201
+#: src/window.py:1204
 msgid "Exit Fullscreen"
 msgstr "Tam Ekrandan Çık"
 
@@ -529,7 +529,7 @@ msgid "Preferred Subtitle Languages"
 msgstr "Yeğlenen Alt Yazı Dilleri"
 
 #: src/preferences.blp:101 src/preferences.blp:106
-msgid "Example: pt-BR,en,es"
+msgid "Example: en,es,pt"
 msgstr "Örnek: tr,en,es"
 
 #: src/preferences.blp:105
