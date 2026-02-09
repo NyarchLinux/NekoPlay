@@ -101,10 +101,24 @@ class Playlist(Adw.Dialog):
 
             icon_name = "applications-multimedia-symbolic"
 
-            if os.path.isdir(path):
+            info = Gio.File.new_for_path(path).query_info(
+                "standard::content-type", Gio.FileQueryInfoFlags.NONE, None
+            )
+            content_type = info.get_content_type()
+
+            if content_type == "inode/directory":
                 icon_name = "folder-symbolic"
                 if not os.listdir(path):
                     row.set_sensitive(False)
+            elif content_type:
+                if "mpegurl" in content_type:
+                    icon_name = "applications-multimedia-symbolic"
+                elif "audio" in content_type:
+                    icon_name = "audio-x-generic-symbolic"
+                elif "video" in content_type:
+                    icon_name = "video-x-generic-symbolic"
+                elif "image" in content_type:
+                    icon_name = "image-x-generic-symbolic"
 
             row.set_icon_name(icon_name)
             row.connect("activated", self._on_file_activated, index)
