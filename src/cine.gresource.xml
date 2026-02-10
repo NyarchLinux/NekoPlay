@@ -39,6 +39,13 @@
     <file alias="cine-video-symbolic.svg">../data/icons/scalable/actions/cine-video-symbolic.svg</file>
     <file alias="cine-view-fullscreen-symbolic.svg">../data/icons/scalable/actions/cine-view-fullscreen-symbolic.svg</file>
     <file alias="cine-view-restore-symbolic.svg">../data/icons/scalable/actions/cine-view-restore-symbolic.svg</file>
+
+    <!-- missing icons from runtime(?) -->
+    <file alias="edit-undo-symbolic.svg">../data/icons/scalable/actions/edit-undo-symbolic.svg</file>
+    <file alias="object-flip-horizontal-symbolic.svg">../data/icons/scalable/actions/object-flip-horizontal-symbolic.svg</file>
+    <file alias="object-flip-vertical-symbolic.svg">../data/icons/scalable/actions/object-flip-vertical-symbolic.svg</file>
+    <file alias="object-rotate-left-symbolic.svg">../data/icons/scalable/actions/object-rotate-left-symbolic.svg</file>
+    <file alias="object-rotate-right-symbolic.svg">../data/icons/scalable/actions/object-rotate-right-symbolic.svg</file>
   </gresource>
   <gresource prefix="/io/github/diegopvlk/Cine/icons/scalable/apps">
     <file alias="io.github.diegopvlk.Dosage.svg">../data/icons/scalable/apps/io.github.diegopvlk.Dosage.svg</file>
