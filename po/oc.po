@@ -8,25 +8,26 @@ msgstr ""
 "Project-Id-Version: io.github.diegopvlk.Cine\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-09 20:01-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-02-13 22:09+0000\n"
+"Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
+"Language-Team: Occitan <https://hosted.weblate.org/projects/cine/app/oc/>\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 #: data/io.github.diegopvlk.Cine.desktop.in:2 src/main.py:210 src/mpris.py:146
 #: src/mpris.py:364 src/window.py:148 src/window.py:244 src/window.py:1295
 #: src/window.blp:6
 msgid "Cine"
-msgstr ""
+msgstr "Cine"
 
 #: data/io.github.diegopvlk.Cine.desktop.in:3
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:23
 msgid "Play your videos"
-msgstr ""
+msgstr "Agachatz vòstras vidèos"
 
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/io.github.diegopvlk.Cine.desktop.in:10
@@ -36,7 +37,7 @@ msgstr ""
 #: data/io.github.diegopvlk.Cine.desktop.in:18 src/shortcuts-dialog.blp:11
 #: src/window.blp:117
 msgid "New Window"
-msgstr ""
+msgstr "Fenèstra novèla"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:25
 msgid ""
@@ -66,16 +67,16 @@ msgstr ""
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:42
 msgid "Video Playing"
-msgstr ""
+msgstr "Lectura vidèo"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:46 src/preferences.blp:5
 #: src/window.blp:122
 msgid "Preferences"
-msgstr ""
+msgstr "Preferéncias"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:50
 msgid "Video Options"
-msgstr ""
+msgstr "Opcions vidèo"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:54
 msgid "Main Window"
@@ -88,7 +89,7 @@ msgstr ""
 
 #: src/mpris.py:153 src/mpris.py:221 src/mpris.py:356
 msgid "Unknown title"
-msgstr ""
+msgstr "Títol desconegut"
 
 #: src/options.py:151 src/options.blp:79
 msgid "Original"
@@ -105,7 +106,7 @@ msgstr ""
 #: src/shortcuts.py:29 src/shortcuts.py:30 src/window.py:1225
 #: src/window.blp:197
 msgid "Volume"
-msgstr ""
+msgstr "Volum"
 
 #: src/shortcuts.py:29
 msgid "Volume Increase"
@@ -118,7 +119,7 @@ msgstr ""
 #: src/shortcuts.py:33 src/shortcuts.py:34 src/shortcuts.py:35
 #: src/window.blp:180
 msgid "Play/Pause"
-msgstr ""
+msgstr "Lectura/Pausa"
 
 #: src/shortcuts.py:36 src/shortcuts.py:199 src/window.blp:239
 msgid "Subtitles"
@@ -147,7 +148,7 @@ msgstr ""
 #: src/shortcuts.py:41 src/shortcuts.py:42 src/window.py:1204
 #: src/window.blp:332
 msgid "Fullscreen"
-msgstr ""
+msgstr "Ecran complèt"
 
 #: src/shortcuts.py:50 src/shortcuts.py:51 src/shortcuts.py:52
 #: src/shortcuts.py:53 src/shortcuts.py:54 src/options.blp:226
@@ -190,7 +191,7 @@ msgstr ""
 
 #: src/shortcuts.py:59 src/window.blp:208
 msgid "Mute"
-msgstr ""
+msgstr "Amudir"
 
 #: src/shortcuts.py:59
 msgid "Mute/Unmute"
@@ -303,7 +304,7 @@ msgstr ""
 
 #: src/shortcuts.py:92 src/shortcuts.py:93 src/shortcuts.py:94
 msgid "Speed"
-msgstr ""
+msgstr "Velocitat"
 
 #: src/shortcuts.py:92
 msgid "Decrease Playback Speed"
