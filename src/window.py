@@ -138,6 +138,7 @@ class CineWindow(Adw.ApplicationWindow):
         self.inhibit_id: int = 0
         self.last_seek_scroll_time: float = 0
         self.loaded_path: str
+        self.startup: bool = True
 
         self.mpv_ctx: mpv.MpvRenderContext
 
@@ -175,13 +176,13 @@ class CineWindow(Adw.ApplicationWindow):
             osd_margin_x=66,
             osd_margin_y=66,
             volume_max=150,
+            keep_open=True,
+            keep_open_pause=False,
         )
 
         self.conf_hwdec = list(
             filter(lambda x: x != "no", cast(list, self.mpv["hwdec"]))
         )
-        self.mpv["keep-open"] = "yes"
-        self.mpv["keep-open-pause"] = "no"
         self.mpv["vo"] = "libmpv"
         self.mpv["osc"] = "no"
         self.mpv["load-console"] = "no"
@@ -1295,6 +1296,11 @@ class CineWindow(Adw.ApplicationWindow):
                     self.set_title(_("Cine"))
 
                 self._sync_inhibit()
+
+            if not self.mpv.keep_open and is_idle and not self.startup:
+                self.close()
+
+            self.startup = False
 
             GLib.idle_add(update_state)
 
