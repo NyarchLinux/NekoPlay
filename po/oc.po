@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.github.diegopvlk.Cine\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-09 20:01-0300\n"
-"PO-Revision-Date: 2026-02-13 22:09+0000\n"
+"PO-Revision-Date: 2026-02-14 17:47+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/cine/app/oc/>\n"
 "Language: oc\n"
@@ -32,7 +32,7 @@ msgstr "Agachatz vòstras vidèos"
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/io.github.diegopvlk.Cine.desktop.in:10
 msgid "Audio;Video;Movie;TV;Film;Clip;Player;Cine;mpv;"
-msgstr ""
+msgstr "àudio;vidèo;film;tv;clip;lector;legidor;cine;mpv;"
 
 #: data/io.github.diegopvlk.Cine.desktop.in:18 src/shortcuts-dialog.blp:11
 #: src/window.blp:117
@@ -44,16 +44,20 @@ msgid ""
 "Cine combines a clean interface with a high-performance engine to deliver a "
 "seamless viewing experience."
 msgstr ""
+"Cine combina una interfàcia clara amb un motor de nautas performanças per "
+"ofrir una experiéncia de visionatge fluida."
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:27
 msgid "Simple Design: A refined, distraction-free interface"
-msgstr ""
+msgstr "Design simple : una interfàcia refinada sens distraccion"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:28
 msgid ""
 "MPV-Based: Leverages the robust power of MPV for great playback and format "
 "support"
 msgstr ""
+"Basat sus MPV : espleita lo poder de MPV per una lectura e una presa en "
+"carga dels formats excepcionala"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:29
 msgid ""
