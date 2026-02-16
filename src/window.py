@@ -999,7 +999,6 @@ class CineWindow(Adw.ApplicationWindow):
         def on_click_hold():
             self.click_holding = True
             self.click_hold_id = 0
-            new_speed = self.prev_speed * 2
 
             controls_hover = self.motion_controls.props.contains_pointer
             header_hover = self.motion_header.props.contains_pointer
@@ -1009,6 +1008,7 @@ class CineWindow(Adw.ApplicationWindow):
 
             try:
                 self.prev_speed = cast(float, self.mpv["speed"])
+                new_speed = self.prev_speed * 2
                 self.mpv["speed"] = new_speed
                 self.mpv.show_text(f"{new_speed:g}× ⯈⯈", "100000000")
                 self.mpv.keypress(button)
