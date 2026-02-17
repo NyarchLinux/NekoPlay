@@ -34,10 +34,10 @@ k              cycle pause; #{_("Play/Pause")}
 p              cycle pause; #{_("Play/Pause")}
 SPACE          cycle pause; #{_("Play/Pause")}
 c              cycle sub-visibility; show-text "{_("Subtitles")}: ${{sub-visibility}}" #{_("Show/Hide Subtitles")}
-j              seek -10 exact; show-text "⮜⮜" #{_("Seek 10s Backward")}
-l              seek 10 exact; show-text "⮞⮞" #{_("Seek 10s Forward")}
-LEFT           seek -5 exact; show-text "⮜⮜" #{_("Seek 5s Backward")}
-RIGHT          seek 5 exact; show-text "⮞⮞" #{_("Seek 5s Forward")}
+j              seek -10 exact; show-text "⯇⯇" #{_("Seek 10s Backward")}
+l              seek 10 exact; show-text "⯈⯈" #{_("Seek 10s Forward")}
+LEFT           seek -5 exact; show-text "⯇⯇" #{_("Seek 5s Backward")}
+RIGHT          seek 5 exact; show-text "⯈⯈" #{_("Seek 5s Forward")}
 F11            cycle fullscreen; #{_("Fullscreen")}
 f              cycle fullscreen; #{_("Fullscreen")}
 MBTN_LEFT_DBL  cycle fullscreen
@@ -45,8 +45,8 @@ MBTN_MID       cycle fullscreen
 MBTN_RIGHT     cycle pause
 MBTN_BACK      playlist-prev; 
 MBTN_FORWARD   playlist-next; 
-WHEEL_LEFT     seek -10; show-text "⮜⮜"
-WHEEL_RIGHT    seek 10; show-text "⮞⮞"
+WHEEL_LEFT     seek -10; show-text "⯇⯇"
+WHEEL_RIGHT    seek 10; show-text "⯈⯈"
 =              add video-zoom 0.05; show-text "{_("Zoom")}: ${{video-zoom}}" #{_("Zoom In")}
 +              add video-zoom 0.05; show-text "{_("Zoom")}: ${{video-zoom}}" #{_("Zoom In")}
 ZOOMIN         add video-zoom 0.05; show-text "{_("Zoom")}: ${{video-zoom}}" #{_("Zoom In")}
