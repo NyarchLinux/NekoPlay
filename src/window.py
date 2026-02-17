@@ -213,10 +213,12 @@ class CineWindow(Adw.ApplicationWindow):
         self._create_action("add-audio-tracks", self._on_add_audio_dialog)
         self._create_action("add-playlist-files", self._on_add_playlist_dialog)
         self._create_action("open-folder", self._on_open_folder_dialog)
+        self._create_action("add-playlist-folder", self._on_open_folder_dialog)
         self._create_action("open-playlist-dialog", self._on_open_playlist)
         self._create_action("open-sub-menu", self._on_open_sub_menu)
         self._create_action("open-audio-menu", self._on_open_audio_menu)
         self.app.set_accels_for_action("win.open-folder", ["<primary>i"])
+        self.app.set_accels_for_action("win.add-playlist-folder", ["<shift><primary>i"])
         self.app.set_accels_for_action("win.open-playlist-dialog", ["<primary>p"])
         self.app.set_accels_for_action("win.clear-and-add", ["<primary>o"])
         self.app.set_accels_for_action("win.add-playlist-files", ["<shift><primary>o"])
@@ -537,10 +539,12 @@ class CineWindow(Adw.ApplicationWindow):
         playlist = Playlist(self)
         playlist.present(self)
 
-    def _on_open_folder_dialog(self, _action, _param):
-        dialog = Gtk.FileDialog(title=_("Open Folder"))
-
+    def _on_open_folder_dialog(self, action, *arg):
+        add_mode = True if action.props.name == "add-playlist-folder" else False
+        title = _("Add Folder") if add_mode else _("Open Folder")
+        dialog = Gtk.FileDialog(title=title)
         curr_path = self.mpv.path
+
         if isinstance(curr_path, str) and os.path.exists(curr_path):
             folder_path = os.path.dirname(curr_path)
             dialog.set_initial_folder(Gio.File.new_for_path(folder_path))
@@ -548,7 +552,10 @@ class CineWindow(Adw.ApplicationWindow):
         def on_open(dialog, result):
             try:
                 folder = dialog.select_folder_finish(result)
-                self.mpv.stop()
+
+                if not add_mode:
+                    self.mpv.stop()
+
                 path = folder.get_path()
                 self.mpv.loadfile(path, "append-play")
                 GLib.idle_add(

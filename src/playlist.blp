@@ -23,6 +23,12 @@ template $Playlist: Adw.Dialog {
 						tooltip-text: _("Add Files");
 					}
 
+					Button {
+						icon-name: "folder-new-symbolic";
+						action-name: "win.add-playlist-folder";
+						tooltip-text: _("Add Folder");
+					}
+
 					[start]
 					Adw.Spinner spinner {
 						visible: false;
