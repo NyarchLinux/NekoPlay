@@ -362,14 +362,22 @@ template $CineWindow: Adw.ApplicationWindow {
                   }
                 }
 
-                Label time_elapsed_label {
+                Button time_elapsed_button {
                   halign: end;
-                  label: "0:00";
-                  width-chars: 5;
+                  valign: center;
+                  clicked => $_toggle_elapsed_remaining();
+                  tooltip-text: _("Toggle Elapsed/Remaining");
+
+                  child: Label time_elapsed_label {
+                    label: "0:00";
+                    width-chars: 5;
+                  };
 
                   styles [
                     "heading",
                     "numeric",
+                    "flat",
+                    "circular",
                     "time-elapsed",
                   ]
                 }

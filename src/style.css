@@ -121,6 +121,7 @@ scale mark {
 
 .time-elapsed {
   margin: 0 -7px;
+  min-height: 26px;
 }
 
 .icon-pause-play {

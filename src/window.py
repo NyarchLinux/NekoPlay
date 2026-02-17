@@ -733,13 +733,34 @@ class CineWindow(Adw.ApplicationWindow):
             icon = "cine-volume-overamp-symbolic"
         self.volume_menu_button.set_icon_name(icon)
 
-    def _update_progress(self, current_time):
-        self.time_elapsed_label.set_text(format_time(current_time))
-        self.video_progress_adjustment.handler_block_by_func(self._on_progress_adjusted)
-        self.video_progress_adjustment.set_value(current_time)
-        self.video_progress_adjustment.handler_unblock_by_func(
-            self._on_progress_adjusted
+    @Gtk.Template.Callback()
+    def _toggle_elapsed_remaining(self, _btn):
+        settings.set_boolean(
+            "show-remaining", not settings.get_boolean("show-remaining")
         )
+        pos = float(self.mpv.time_pos or 0)
+        self._update_progress(pos, update_bar=False)
+
+    def _update_progress(self, current_time, update_bar=True):
+        if update_bar:
+            self.video_progress_adjustment.handler_block_by_func(
+                self._on_progress_adjusted
+            )
+            self.video_progress_adjustment.set_value(current_time)
+            self.video_progress_adjustment.handler_unblock_by_func(
+                self._on_progress_adjusted
+            )
+        try:
+            if settings.get_boolean("show-remaining"):
+                duration = float(self.mpv.duration or 0)
+                remaining = duration - current_time
+                self.time_elapsed_label.set_text(f"-{format_time(remaining)}")
+                self.time_elapsed_label.props.margin_end = 3
+            else:
+                self.time_elapsed_label.set_text(format_time(current_time))
+                self.time_elapsed_label.props.margin_end = 0
+        except mpv.ShutdownError:
+            pass
 
     def _update_chapter_marks(self, chapters):
         if not chapters:
