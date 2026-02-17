@@ -18,6 +18,7 @@ def sync_mpv_with_settings(window):
     player["slang"] = settings.get_string("subtitle-languages")
     player["alang"] = settings.get_string("audio-languages")
     player["save-position-on-quit"] = settings.get_boolean("save-video-position")
+    player["volume"] = settings.get_int("volume")
     hwdec_enabled = settings.get_boolean("hwdec")
     norm_enabled = settings.get_boolean("normalize-volume")
 

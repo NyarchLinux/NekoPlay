@@ -39,7 +39,7 @@ DEFAULT_WIDTH, DEFAULT_HEIGHT = 1088, 612
 
 from .options import OptionsMenuButton
 from .playlist import Playlist
-from .preferences import sync_mpv_with_settings
+from .preferences import settings, sync_mpv_with_settings
 from .shortcuts import INTERNAL_BINDINGS, populate_shortcuts_dialog_mpv
 
 gi.require_version("Adw", "1")
@@ -1277,6 +1277,7 @@ class CineWindow(Adw.ApplicationWindow):
                 self.mpv.show_text(_("Volume") + f": {int(value)}%")
                 self.volume_scale.handler_unblock(self.volume_handler_id)
                 self._update_volume_icon(self.mpv.mute)
+                settings.set_int("volume", int(value))
 
             GLib.idle_add(update_icon_and_vol_adj)
 
