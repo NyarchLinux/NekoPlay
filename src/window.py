@@ -739,7 +739,7 @@ class CineWindow(Adw.ApplicationWindow):
         else:
             icon = "cine-volume-overamp-symbolic"
 
-        self.volume_menu_button.set_icon_name(icon)
+        self.volume_menu_button.props.icon_name = icon
 
     @Gtk.Template.Callback()
     def _toggle_elapsed_remaining(self, _btn):
@@ -1423,11 +1423,10 @@ class CineWindow(Adw.ApplicationWindow):
                 if self.volume_menu_button.props.active:
                     return
 
-                mute_on_icon = "cine-volume-mute-symbolic"
-                mute_off_icon = "cine-volume-max-symbolic"
+                self.icon_indicator.props.icon_name = (
+                    self.volume_menu_button.props.icon_name
+                )
 
-                icon = mute_on_icon if muted else mute_off_icon
-                self.icon_indicator.props.icon_name = icon
                 self._show_icon_indicator()
 
             GLib.idle_add(update)
