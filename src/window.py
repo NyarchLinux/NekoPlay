@@ -724,8 +724,10 @@ class CineWindow(Adw.ApplicationWindow):
 
         return True
 
-    def _update_volume_icon(self, is_muted):
+    def _update_volume_icon(self):
         volume = cast(int, self.mpv.volume)
+        is_muted = cast(bool, self.mpv.mute)
+
         if is_muted or volume == 0:
             icon = "cine-volume-mute-symbolic"
         elif volume < 33:
@@ -736,6 +738,7 @@ class CineWindow(Adw.ApplicationWindow):
             icon = "cine-volume-max-symbolic"
         else:
             icon = "cine-volume-overamp-symbolic"
+
         self.volume_menu_button.set_icon_name(icon)
 
     @Gtk.Template.Callback()
@@ -1316,7 +1319,7 @@ class CineWindow(Adw.ApplicationWindow):
                 elif vol > 0:
                     self.mpv.mute = False
 
-                self._update_volume_icon(self.mpv.mute)
+                self._update_volume_icon()
                 settings.set_int("volume", vol)
 
             GLib.idle_add(update_icon_and_vol_adj)
@@ -1415,7 +1418,7 @@ class CineWindow(Adw.ApplicationWindow):
         def on_mute_change(_name, muted):
             def update():
                 self.mute_toggle_button.set_active(muted)
-                self._update_volume_icon(muted)
+                self._update_volume_icon()
 
                 if self.volume_menu_button.props.active:
                     return
