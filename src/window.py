@@ -727,7 +727,7 @@ class CineWindow(Adw.ApplicationWindow):
 
     def _update_volume_icon(self):
         volume = cast(int, self.mpv.volume)
-        is_muted = cast(bool, self.mpv.mute)
+        is_muted = self.mpv.mute
 
         if is_muted or volume == 0:
             icon = "cine-volume-mute-symbolic"
