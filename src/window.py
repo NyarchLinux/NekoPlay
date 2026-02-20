@@ -1108,7 +1108,7 @@ class CineWindow(Adw.ApplicationWindow):
             wheel = RIGHT if dx > 0 else LEFT
 
         if wheel:
-            self.mpv.keypress(wheel)
+            GLib.idle_add(lambda: self.mpv.keypress(wheel))
             return True
 
     def _on_mouse_scroll_volume(self, controller, _dx, dy):
