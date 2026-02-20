@@ -193,6 +193,7 @@ class CineWindow(Adw.ApplicationWindow):
         self.mpv["load-console"] = "no"
         self.mpv.command("change-list", "watch-later-options", "remove", "vid")
         self.mpv.command("change-list", "watch-later-options", "remove", "aid")
+        self.mpv.command("change-list", "watch-later-options", "remove", "volume")
 
         self._setup_actions()
         self._setup_elements()
@@ -256,7 +257,11 @@ class CineWindow(Adw.ApplicationWindow):
         self.play_pause_button.connect("clicked", self._on_play_pause_clicked)
         self.previous_button.connect("clicked", self._on_previous_clicked)
         self.next_button.connect("clicked", self._on_next_clicked)
-        self.mute_toggle_button.connect("toggled", self._on_mute_toggled)
+
+        self.mute_handler_id = self.mute_toggle_button.connect(
+            "toggled", lambda btn: setattr(self.mpv, "mute", btn.get_active())
+        )
+
         self.playlist_shuffle_toggle_button.connect("toggled", self._on_shuffle_toggled)
         self.playlist_loop_toggle_button.connect(
             "toggled", self._on_loop_playlist_toggled
@@ -662,10 +667,6 @@ class CineWindow(Adw.ApplicationWindow):
     def _on_open_audio_menu(self, *args):
         self._show_ui()
         self.audio_tracks_menu_button.popup()
-
-    def _on_mute_toggled(self, button):
-        is_muted = button.props.active
-        self.mpv.mute = is_muted
 
     def _on_progress_motion(self, _controller, x, y):
         if (x, y) == self.prev_prog_motion_xy:
@@ -1305,6 +1306,29 @@ class CineWindow(Adw.ApplicationWindow):
         def on_duration_change(_name, value):
             GLib.idle_add(self._update_duration, float(value or 0))
 
+        @self.mpv.property_observer("mute")
+        def on_mute_change(_name, muted):
+            def update_mute():
+                self.mute_toggle_button.handler_block(self.mute_handler_id)
+                self.mute_toggle_button.set_active(muted)
+                self.mute_toggle_button.handler_unblock(self.mute_handler_id)
+                self._update_volume_icon()
+                show_icon = None
+
+                try:
+                    show_icon = self.mpv._get_property("user-data/show-icon")
+                except AttributeError:
+                    pass
+
+                if show_icon == "yes":
+                    self.icon_indicator.props.icon_name = (
+                        self.volume_menu_button.props.icon_name
+                    )
+                    self._show_icon_indicator()
+                    self.mpv._set_property("user-data/show-icon", False)
+
+            GLib.idle_add(update_mute)
+
         @self.mpv.property_observer("volume")
         def on_volume_change(_name, value):
             def update_icon_and_vol_adj():
@@ -1314,7 +1338,7 @@ class CineWindow(Adw.ApplicationWindow):
                 self.volume_scale_adjustment.set_value(vol)
                 self.volume_scale.handler_unblock(self.volume_handler_id)
 
-                if vol > 0:
+                if vol > 0 and self.mpv.mute:
                     self.mpv.mute = False
 
                 if self.volume_menu_button.props.active:
@@ -1414,27 +1438,6 @@ class CineWindow(Adw.ApplicationWindow):
 
             if title:
                 GLib.idle_add(set)
-
-        @self.mpv.property_observer("mute")
-        def on_mute_change(_name, muted):
-            def update():
-                self.mute_toggle_button.set_active(muted)
-                self._update_volume_icon()
-                show_icon = None
-
-                try:
-                    show_icon = self.mpv._get_property("user-data/show-icon")
-                except AttributeError:
-                    pass
-
-                if show_icon == "yes":
-                    self.icon_indicator.props.icon_name = (
-                        self.volume_menu_button.props.icon_name
-                    )
-                    self._show_icon_indicator()
-                    self.mpv._set_property("user-data/show-icon", False)
-
-            GLib.idle_add(update)
 
         @self.mpv.property_observer("sub-scale")
         def on_sub_scale_change(_name, value):
