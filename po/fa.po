@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: io.github.diegopvlk.Cine\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-18 15:54-0300\n"
-"PO-Revision-Date: 2026-02-20 12:33+0000\n"
-"Last-Translator: Diego Povliuk <diego.pvlk@gmail.com>\n"
+"PO-Revision-Date: 2026-02-20 19:37+0000\n"
+"Last-Translator: avds <avds@disroot.org>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cine/app/fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
@@ -86,7 +86,7 @@ msgstr "گزینه‌های ویدیو"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:54
 msgid "Main Window"
-msgstr "فهرست اصلی"
+msgstr "پنجرهٔ اصلی"
 
 #. Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
 #: src/main.py:220
@@ -547,101 +547,101 @@ msgstr "زبان‌های صوت دلخواه"
 
 #: src/preferences.blp:110
 msgid "Hardware Decoding"
-msgstr ""
+msgstr "رمزگشایی سخت‌افزاری"
 
 #: src/preferences.blp:114
 msgid "Normalize Volume"
-msgstr ""
+msgstr "عادی‌سازی حجم صدا"
 
 #: src/preferences.blp:118
 msgid "Save Video Position on Close"
-msgstr ""
+msgstr "ذخیره موقعیت ویدیو هنگام بستن"
 
 #: src/preferences.blp:119
 msgid "Also save options like brightness, subtitle delay, etc."
-msgstr ""
+msgstr "همچنین ذخیره گزینه‌هایی مانند روشنایی، تأخیر زیرنویس و..."
 
 #: src/preferences.blp:134
 msgid ""
 "Requires flatpak permission to read the folder where the video is stored"
-msgstr ""
+msgstr "نیازمند مجوز فلت‌پک برای خواندن شاخهٔ محل ذخیرهٔ ویدیو است"
 
 #: src/shortcuts-dialog.blp:8
 msgid "Shortcuts"
-msgstr ""
+msgstr "میان‌برها"
 
 #: src/shortcuts-dialog.blp:26
 msgid "Add Files to Playlist"
-msgstr ""
+msgstr "افزودن پرونده‌ها به فهرست پخش"
 
 #: src/shortcuts-dialog.blp:31
 msgid "Add Folder to Playlist"
-msgstr ""
+msgstr "افزودن شاخه به فهرست پخش"
 
 #: src/shortcuts-dialog.blp:36
 msgid "Open Subtitles Menu"
-msgstr ""
+msgstr "گشودن فهرست زیرنویس‌ها"
 
 #: src/shortcuts-dialog.blp:41
 msgid "Open Audio Menu"
-msgstr ""
+msgstr "گشودن فهرست صوت"
 
 #: src/shortcuts-dialog.blp:46
 msgid "Show Shortcuts"
-msgstr ""
+msgstr "نمایش میان‌برها"
 
 #: src/shortcuts-dialog.blp:51
 msgid "Close Window"
-msgstr ""
+msgstr "بستن پنجره"
 
 #: src/shortcuts-dialog.blp:56
 msgid "Quit"
-msgstr ""
+msgstr "خروج"
 
 #: src/window.blp:75
 msgid "Open"
-msgstr ""
+msgstr "گشودن"
 
 #: src/window.blp:117
 msgid "Main Menu"
-msgstr ""
+msgstr "فهرست اصلی"
 
 #: src/window.blp:132
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "میان‌برهای صفحه‌کلید"
 
 #: src/window.blp:137
 msgid "About Cine"
-msgstr ""
+msgstr "دربارهٔ سین"
 
 #: src/window.blp:175
 msgid "Previous"
-msgstr ""
+msgstr "پیشین"
 
 #: src/window.blp:195
 msgid "Next"
-msgstr ""
+msgstr "بعدی"
 
 #: src/window.blp:273
 msgid "Video"
-msgstr ""
+msgstr "ویدیو"
 
 #: src/window.blp:290
 msgid "Shuffle Playlist"
-msgstr ""
+msgstr "بًر زدن فهرست پخش"
 
 #: src/window.blp:301
 msgid "Loop Playlist"
-msgstr ""
+msgstr "حلقهٔ بی‌پایان فهرست پخش"
 
 #: src/window.blp:369
 msgid "Toggle Elapsed/Remaining"
-msgstr ""
+msgstr "تغییر وضعیت زمان سپری‌شده/باقی‌مانده"
 
 #: src/window.blp:415
 msgid "Drag and Drop Files Here"
-msgstr ""
+msgstr "کشیدن و رها کردن پرونده‌ها در این‌جا"
 
 #: src/window.blp:428
 msgid "Open…"
-msgstr ""
+msgstr "گشودن…"
