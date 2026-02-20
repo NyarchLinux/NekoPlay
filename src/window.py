@@ -1420,15 +1420,19 @@ class CineWindow(Adw.ApplicationWindow):
             def update():
                 self.mute_toggle_button.set_active(muted)
                 self._update_volume_icon()
+                show_icon = None
 
-                if self.volume_menu_button.props.active:
-                    return
+                try:
+                    show_icon = self.mpv._get_property("user-data/show-icon")
+                except AttributeError:
+                    pass
 
-                self.icon_indicator.props.icon_name = (
-                    self.volume_menu_button.props.icon_name
-                )
-
-                self._show_icon_indicator()
+                if show_icon == "yes":
+                    self.icon_indicator.props.icon_name = (
+                        self.volume_menu_button.props.icon_name
+                    )
+                    self._show_icon_indicator()
+                    self.mpv._set_property("user-data/show-icon", False)
 
             GLib.idle_add(update)
 
@@ -1452,10 +1456,18 @@ class CineWindow(Adw.ApplicationWindow):
                     if name != "sub-visibility":
                         return
 
-                    icon = sub_on_icon if sub_on else sub_off_icon
-                    self.icon_indicator.props.icon_name = icon
-                    self._show_icon_indicator()
+                    show_icon = None
 
+                    try:
+                        show_icon = self.mpv._get_property("user-data/show-icon")
+                    except AttributeError:
+                        pass
+
+                    if show_icon == "yes":
+                        icon = sub_on_icon if sub_on else sub_off_icon
+                        self.icon_indicator.props.icon_name = icon
+                        self._show_icon_indicator()
+                        self.mpv._set_property("user-data/show-icon", False)
                 except mpv.ShutdownError:
                     pass
 
