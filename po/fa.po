@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-18 15:54-0300\n"
 "PO-Revision-Date: 2026-02-20 19:37+0000\n"
-"Last-Translator: avds <avds@disroot.org>\n"
+"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cine/app/fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
@@ -27,12 +27,13 @@ msgstr "سین"
 #: data/io.github.diegopvlk.Cine.desktop.in:3
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:23
 msgid "Play your videos"
-msgstr "ویدیوهایتان را پخش کنید"
+msgstr "پخش ویدیوهایتان"
 
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/io.github.diegopvlk.Cine.desktop.in:10
 msgid "Audio;Video;Movie;TV;Film;Clip;Player;Cine;mpv;"
-msgstr "صدا;صوت;ویدیو;سینما;تلویزیون;فیلم;کلیپ;پخش‌کننده;سین;Cine;mpv;"
+msgstr ""
+"Audio;Video;Movie;TV;Film;Clip;Player;Cine;mpv;صدا;تصویر;ویدیو;فیلم;تلویزیون;کلیپ;قطعه;پخش;"
 
 #: data/io.github.diegopvlk.Cine.desktop.in:18 src/shortcuts-dialog.blp:11
 #: src/window.blp:122
@@ -73,7 +74,7 @@ msgstr ""
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:42
 msgid "Video Playing"
-msgstr "پخش ویدیو"
+msgstr "پخش کردن ویدیو"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:46 src/preferences.blp:5
 #: src/window.blp:127
@@ -99,7 +100,7 @@ msgstr "عنوان ناشناخته"
 
 #: src/options.py:151 src/options.blp:79
 msgid "Original"
-msgstr "نسخه اصلی"
+msgstr "اصلی"
 
 #: src/playlist.py:47 src/window.py:928 src/window.py:1263
 msgid "File Error"
@@ -126,11 +127,11 @@ msgstr "کاهش حجم صدا"
 #: src/shortcuts.py:33 src/shortcuts.py:34 src/shortcuts.py:35
 #: src/window.blp:185
 msgid "Play/Pause"
-msgstr "پخش/مکث"
+msgstr "پخش یا مکث"
 
 #: src/shortcuts.py:36
 msgid "Show/Hide Subtitles"
-msgstr "نمایش/پنهان کردن زیرنویس"
+msgstr "نمایش یا نهفتن زیرنویس‌ها"
 
 #: src/shortcuts.py:37
 msgid "Seek 10s Backward"
@@ -157,7 +158,7 @@ msgstr "تمام‌صفحه"
 #: src/shortcuts.py:53 src/shortcuts.py:54 src/options.blp:226
 #: src/options.blp:250
 msgid "Zoom"
-msgstr "بزرگ‌نمایی"
+msgstr "بزرگنمایی"
 
 #: src/shortcuts.py:50 src/shortcuts.py:51 src/shortcuts.py:52
 msgid "Zoom In"
@@ -206,7 +207,7 @@ msgstr "کاهش مقیاس زیرنویس"
 
 #: src/shortcuts.py:61 src/window.blp:213
 msgid "Mute/Unmute"
-msgstr "خموشی/ناخموشی"
+msgstr "خموشی یا ناخموشی"
 
 #: src/shortcuts.py:62 src/shortcuts.py:63 src/shortcuts.py:64
 #: src/options.blp:607 src/options.blp:631
@@ -223,19 +224,19 @@ msgstr "افزایش تاخیر صوت"
 
 #: src/shortcuts.py:74
 msgid "Go Back One Frame"
-msgstr "یک قاب به پیش"
+msgstr "یک قاب پس‌روی"
 
 #: src/shortcuts.py:75
 msgid "Advance One Frame"
-msgstr "پیش‌روی به پس"
+msgstr "یک قاب پیش‌روی"
 
 #: src/shortcuts.py:76
 msgid "Seek to the Previous Chapter"
-msgstr "پیش رفتن به فصل پیشین"
+msgstr "رفتن به فصل پیش"
 
 #: src/shortcuts.py:77
 msgid "Seek to the Next Chapter"
-msgstr "پس رفتن به بخش بعدی"
+msgstr "رفتن به فصل بعد"
 
 #: src/shortcuts.py:81
 msgid "Take Screenshot With Subtitles"
@@ -256,11 +257,11 @@ msgstr "لایه آمار"
 
 #: src/shortcuts.py:85
 msgid "Loop"
-msgstr "حلقهٔ بی‌پایان"
+msgstr "حلقه"
 
 #: src/shortcuts.py:85 src/window.blp:312
 msgid "Loop File"
-msgstr "حلقهٔ بی‌پایان پرونده"
+msgstr "پروندهٔ حلقه"
 
 #: src/shortcuts.py:86 src/shortcuts.py:87 src/options.blp:281
 #: src/options.blp:304
@@ -332,7 +333,7 @@ msgstr "بازنشانی سرعت پخش"
 
 #: src/shortcuts.py:185
 msgid "Display & Video"
-msgstr "نمایش و ویدئو"
+msgstr "نمایش و ویدیو"
 
 #: src/shortcuts.py:201 src/window.blp:244
 msgid "Subtitles"
@@ -344,11 +345,11 @@ msgstr "صوت و حجم صدا"
 
 #: src/shortcuts.py:203
 msgid "Navigation"
-msgstr "ناوبری"
+msgstr "پیمایش"
 
 #: src/shortcuts.py:204
 msgid "Playback"
-msgstr "بازپخش"
+msgstr "پخش"
 
 #: src/shortcuts.py:208 src/shortcuts.py:214
 msgid "Miscellaneous"
@@ -432,9 +433,8 @@ msgid "Aspect Ratio"
 msgstr "نسبت ابعاد"
 
 #: src/options.blp:102
-#, fuzzy
 msgid "Reset Rotation"
-msgstr "بازهدایت"
+msgstr "بازنشانی چرخش"
 
 #: src/options.blp:112
 msgid "Rotate"
@@ -458,11 +458,11 @@ msgstr "وارون"
 
 #: src/options.blp:195
 msgid "Flip Horizontally"
-msgstr "آینه افقی"
+msgstr "وارونی افقی"
 
 #: src/options.blp:203
 msgid "Flip Vertically"
-msgstr "آینه عمودی"
+msgstr "وارونی عمودی"
 
 #: src/options.blp:216
 msgid "Reset Zoom"
@@ -486,12 +486,12 @@ msgstr "بازنشانی اشباع"
 
 #: src/options.blp:487
 msgid "Reset Hue"
-msgstr "بازنشانی رنگ"
+msgstr "بازنشانی ته‌رنگ"
 
 #. TRANSLATORS: Do not use "Color" or "Temperature", those are different things
 #: src/options.blp:498 src/options.blp:521
 msgid "Hue"
-msgstr "رنگ"
+msgstr "ته‌رنگ"
 
 #: src/options.blp:542
 msgid "Reset Subtitle Delay"
@@ -511,7 +511,7 @@ msgstr "فهرست پخش"
 
 #: src/playlist.blp:84
 msgid "Add to Playlist"
-msgstr "افزودن به فهرست پخش"
+msgstr "افزودن به سیاههٔ پخش"
 
 #: src/preferences.blp:16
 msgid "Open New Window for New Files"
@@ -539,15 +539,15 @@ msgstr "زبان‌های زیرنویس دلخواه"
 
 #: src/preferences.blp:101 src/preferences.blp:106
 msgid "Example: en,es,pt"
-msgstr "نمونه: fa، en، es"
+msgstr "نمونه: fa,en,es"
 
 #: src/preferences.blp:105
 msgid "Preferred Audio Languages"
-msgstr "زبان‌های صوت دلخواه"
+msgstr "زبان‌های صدای دلخواه"
 
 #: src/preferences.blp:110
 msgid "Hardware Decoding"
-msgstr "رمزگشایی سخت‌افزاری"
+msgstr "کدگشایی سخت‌افزاری"
 
 #: src/preferences.blp:114
 msgid "Normalize Volume"
@@ -564,7 +564,7 @@ msgstr "همچنین ذخیره گزینه‌هایی مانند روشنایی�
 #: src/preferences.blp:134
 msgid ""
 "Requires flatpak permission to read the folder where the video is stored"
-msgstr "نیازمند مجوز فلت‌پک برای خواندن شاخهٔ محل ذخیرهٔ ویدیو است"
+msgstr "نیازمند اجازهٔ فلت‌پک برای خواندن شاخهٔ محل ذخیرهٔ ویدیو"
 
 #: src/shortcuts-dialog.blp:8
 msgid "Shortcuts"
@@ -572,11 +572,11 @@ msgstr "میان‌برها"
 
 #: src/shortcuts-dialog.blp:26
 msgid "Add Files to Playlist"
-msgstr "افزودن پرونده‌ها به فهرست پخش"
+msgstr "افزودن پرونده‌ها به سیاههٔ پخش"
 
 #: src/shortcuts-dialog.blp:31
 msgid "Add Folder to Playlist"
-msgstr "افزودن شاخه به فهرست پخش"
+msgstr "افزودن شاخه به سیاههٔ پخش"
 
 #: src/shortcuts-dialog.blp:36
 msgid "Open Subtitles Menu"
@@ -584,7 +584,7 @@ msgstr "گشودن فهرست زیرنویس‌ها"
 
 #: src/shortcuts-dialog.blp:41
 msgid "Open Audio Menu"
-msgstr "گشودن فهرست صوت"
+msgstr "گشودن فهرست صدا"
 
 #: src/shortcuts-dialog.blp:46
 msgid "Show Shortcuts"
@@ -632,11 +632,11 @@ msgstr "بًر زدن فهرست پخش"
 
 #: src/window.blp:301
 msgid "Loop Playlist"
-msgstr "حلقهٔ بی‌پایان فهرست پخش"
+msgstr "حلقه کردن سیاههٔ پخش"
 
 #: src/window.blp:369
 msgid "Toggle Elapsed/Remaining"
-msgstr "تغییر وضعیت زمان سپری‌شده/باقی‌مانده"
+msgstr "تغییر وضعیت رفته و مانده"
 
 #: src/window.blp:415
 msgid "Drag and Drop Files Here"
