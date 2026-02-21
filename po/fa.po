@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: io.github.diegopvlk.Cine\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-18 15:54-0300\n"
-"PO-Revision-Date: 2026-02-20 19:37+0000\n"
-"Last-Translator: avds <avds@disroot.org>\n"
+"PO-Revision-Date: 2026-02-22 12:09+0000\n"
+"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/cine/app/fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
@@ -627,7 +627,7 @@ msgstr "ویدیو"
 
 #: src/window.blp:290
 msgid "Shuffle Playlist"
-msgstr "بًر زدن فهرست پخش"
+msgstr "بُر زدن سیاههٔ پخش"
 
 #: src/window.blp:301
 msgid "Loop Playlist"
