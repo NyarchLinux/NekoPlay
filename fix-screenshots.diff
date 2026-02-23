@@ -1,5 +1,4 @@
-// Fix from haruna: https://github.com/flathub/org.kde.haruna/blob/master/fix-screenshots.diff
-// Credits: https://github.com/g-fb
+// https://github.com/mpv-player/mpv/commit/c66204b69ba201cf6611daae7e515442eed4b9cd
 
 diff --git a/player/screenshot.c b/player/screenshot.c
 index c733a2bdb1490..32d10a047db58 100644
