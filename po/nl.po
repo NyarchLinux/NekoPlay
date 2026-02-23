@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.diegopvlk.Cine\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-18 15:54-0300\n"
+"POT-Creation-Date: 2026-02-23 17:21-0300\n"
 "PO-Revision-Date: 2026-02-17 14:50-0300\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.8\n"
 
 #: data/io.github.diegopvlk.Cine.desktop.in:2 src/main.py:210 src/mpris.py:146
-#: src/mpris.py:364 src/window.py:154 src/window.py:252 src/window.py:1392
+#: src/mpris.py:364 src/window.py:154 src/window.py:253 src/window.py:1416
 #: src/window.blp:6
 msgid "Cine"
 msgstr "Cine"
@@ -35,7 +35,7 @@ msgid "Audio;Video;Movie;TV;Film;Clip;Player;Cine;mpv;"
 msgstr "Audio;Video;Film;TV;Clip;Player;Speler;Cine;mpv;"
 
 #: data/io.github.diegopvlk.Cine.desktop.in:18 src/shortcuts-dialog.blp:11
-#: src/window.blp:122
+#: src/window.blp:125
 msgid "New Window"
 msgstr "Nieuw venster"
 
@@ -78,7 +78,7 @@ msgid "Video Playing"
 msgstr "Afspelen"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:46 src/preferences.blp:5
-#: src/window.blp:127
+#: src/window.blp:130
 msgid "Preferences"
 msgstr "Voorkeuren"
 
@@ -103,17 +103,17 @@ msgstr "Onbekend"
 msgid "Original"
 msgstr "Origineel"
 
-#: src/playlist.py:47 src/window.py:928 src/window.py:1263
+#: src/playlist.py:47 src/window.py:929 src/window.py:1264
 msgid "File Error"
 msgstr "Bestandsfout"
 
-#: src/playlist.py:161 src/window.py:581 src/playlist.blp:23 src/window.blp:91
+#: src/playlist.py:161 src/window.py:586 src/playlist.blp:23 src/window.blp:94
 msgid "Add Files"
 msgstr "Bestanden toevoegen"
 
 #: src/shortcuts.py:29 src/shortcuts.py:30 src/shortcuts.py:31
 #: src/shortcuts.py:32 src/shortcuts.py:78 src/shortcuts.py:79
-#: src/window.py:1321 src/window.blp:202
+#: src/window.py:1345 src/window.blp:205
 msgid "Volume"
 msgstr "Volumeniveau"
 
@@ -126,7 +126,7 @@ msgid "Volume Decrease"
 msgstr "Volumeniveau verlagen"
 
 #: src/shortcuts.py:33 src/shortcuts.py:34 src/shortcuts.py:35
-#: src/window.blp:185
+#: src/window.blp:188
 msgid "Play/Pause"
 msgstr "Afspelen/Pauzeren"
 
@@ -150,8 +150,8 @@ msgstr "5 sec. terugspoelen"
 msgid "Seek 5s Forward"
 msgstr "5 sec. vooruitspoelen"
 
-#: src/shortcuts.py:41 src/shortcuts.py:42 src/window.py:1293
-#: src/window.blp:337
+#: src/shortcuts.py:41 src/shortcuts.py:42 src/window.py:1294
+#: src/window.blp:340
 msgid "Fullscreen"
 msgstr "Schermvullende weergave"
 
@@ -206,7 +206,7 @@ msgstr "Ondertiteling vergroten"
 msgid "Decrease Subtitle Scale"
 msgstr "Ondertiteling verkleinen"
 
-#: src/shortcuts.py:61 src/window.blp:213
+#: src/shortcuts.py:61 src/window.blp:216
 msgid "Mute/Unmute"
 msgstr "Dempen/Ontdempen"
 
@@ -259,7 +259,7 @@ msgstr "Statistiekenoverzicht"
 msgid "Loop"
 msgstr "Herhalen"
 
-#: src/shortcuts.py:85 src/window.blp:312
+#: src/shortcuts.py:85 src/window.blp:315
 msgid "Loop File"
 msgstr "Bestand herhalen"
 
@@ -335,7 +335,7 @@ msgstr "Standaard afspeelsnelheid"
 msgid "Display & Video"
 msgstr "Weergave en video"
 
-#: src/shortcuts.py:201 src/window.blp:244
+#: src/shortcuts.py:201 src/window.blp:247
 msgid "Subtitles"
 msgstr "Ondertiteling"
 
@@ -355,64 +355,64 @@ msgstr "Afspelen"
 msgid "Miscellaneous"
 msgstr "Overig"
 
-#: src/window.py:458 src/window.py:920 src/window.blp:101
+#: src/window.py:463 src/window.py:921 src/window.blp:104
 msgid "Add Subtitle Track"
 msgstr "Ondertitelspoor toevoegen"
 
-#: src/window.py:460 src/window.py:469
+#: src/window.py:465 src/window.py:474
 msgid "None"
 msgstr "Geen"
 
-#: src/window.py:467 src/window.blp:106
+#: src/window.py:472 src/window.blp:109
 msgid "Add Audio Track"
 msgstr "Audiospoor toevoegen"
 
-#: src/window.py:506
+#: src/window.py:511
 msgid "Track"
 msgstr "Spoor"
 
-#: src/window.py:549 src/playlist.blp:29 src/window.blp:96
+#: src/window.py:554 src/playlist.blp:29 src/window.blp:99
 msgid "Add Folder"
 msgstr "Map toevoegen"
 
-#: src/window.py:549 src/shortcuts-dialog.blp:21 src/window.blp:86
-#: src/window.blp:439
+#: src/window.py:554 src/shortcuts-dialog.blp:21 src/window.blp:89
+#: src/window.blp:442
 msgid "Open Folder"
 msgstr "Map openen"
 
-#: src/window.py:578 src/shortcuts-dialog.blp:16 src/window.blp:81
+#: src/window.py:583 src/shortcuts-dialog.blp:16 src/window.blp:84
 msgid "Open Files"
 msgstr "Bestanden openen"
 
-#: src/window.py:584
+#: src/window.py:589
 msgid "Add Subtitle"
 msgstr "Ondertiteling toevoegen"
 
-#: src/window.py:587
+#: src/window.py:592
 msgid "Add Audio"
 msgstr "Audio toevoegen"
 
-#: src/window.py:600
+#: src/window.py:605
 msgid "Subtitle"
 msgstr "Ondertiteling"
 
-#: src/window.py:605 src/window.blp:259
+#: src/window.py:610 src/window.blp:262
 msgid "Audio"
 msgstr "Audio"
 
-#: src/window.py:609
+#: src/window.py:614
 msgid "Media"
 msgstr "Media"
 
-#: src/window.py:826
+#: src/window.py:827
 msgid "Pause"
 msgstr "Pauzeren"
 
-#: src/window.py:826 src/window.py:924
+#: src/window.py:827 src/window.py:925
 msgid "Play"
 msgstr "Afspelen"
 
-#: src/window.py:1293
+#: src/window.py:1294
 msgid "Exit Fullscreen"
 msgstr "Schermvullende weergave verlaten"
 
@@ -505,7 +505,7 @@ msgstr "Standaard audiovertraging"
 msgid "Playback Speed"
 msgstr "Afspeelsnelheid"
 
-#: src/playlist.blp:5 src/window.blp:322
+#: src/playlist.blp:5 src/window.blp:325
 msgid "Playlist"
 msgstr "Afspeellijst"
 
@@ -601,51 +601,51 @@ msgstr "Venster sluiten"
 msgid "Quit"
 msgstr "Afsluiten"
 
-#: src/window.blp:75
+#: src/window.blp:78
 msgid "Open"
 msgstr "Openen"
 
-#: src/window.blp:117
+#: src/window.blp:120
 msgid "Main Menu"
 msgstr "Hoofdmenu"
 
-#: src/window.blp:132
+#: src/window.blp:135
 msgid "Keyboard Shortcuts"
 msgstr "Sneltoetsen"
 
-#: src/window.blp:137
+#: src/window.blp:140
 msgid "About Cine"
 msgstr "Over Cine"
 
-#: src/window.blp:175
+#: src/window.blp:178
 msgid "Previous"
 msgstr "Vorige"
 
-#: src/window.blp:195
+#: src/window.blp:198
 msgid "Next"
 msgstr "Volgende"
 
-#: src/window.blp:273
+#: src/window.blp:276
 msgid "Video"
 msgstr "Video"
 
-#: src/window.blp:290
+#: src/window.blp:293
 msgid "Shuffle Playlist"
 msgstr "Afspeellijst willekeurig afspelen"
 
-#: src/window.blp:301
+#: src/window.blp:304
 msgid "Loop Playlist"
 msgstr "Afspeellijst herhalen"
 
-#: src/window.blp:369
+#: src/window.blp:372
 msgid "Toggle Elapsed/Remaining"
 msgstr "Verstreken/Resterend omschakelen"
 
-#: src/window.blp:415
+#: src/window.blp:418
 msgid "Drag and Drop Files Here"
 msgstr "Sleep bestanden hierheen"
 
-#: src/window.blp:428
+#: src/window.blp:431
 msgid "Open…"
 msgstr "Openen…"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.diegopvlk.Cine\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-18 15:54-0300\n"
+"POT-Creation-Date: 2026-02-23 17:21-0300\n"
 "PO-Revision-Date: 2026-02-17 14:50-0300\n"
 "Last-Translator: Diego Povliuk <diegopvlk@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/io.github.diegopvlk.Cine.desktop.in:2 src/main.py:210 src/mpris.py:146
-#: src/mpris.py:364 src/window.py:154 src/window.py:252 src/window.py:1392
+#: src/mpris.py:364 src/window.py:154 src/window.py:253 src/window.py:1416
 #: src/window.blp:6
 msgid "Cine"
 msgstr "Cine"
@@ -34,7 +34,7 @@ msgid "Audio;Video;Movie;TV;Film;Clip;Player;Cine;mpv;"
 msgstr "Audio;Vídeo;Película;Film;Clip;Reproductor;Cine;mpv;"
 
 #: data/io.github.diegopvlk.Cine.desktop.in:18 src/shortcuts-dialog.blp:11
-#: src/window.blp:122
+#: src/window.blp:125
 msgid "New Window"
 msgstr "Nueva Ventana"
 
@@ -77,7 +77,7 @@ msgid "Video Playing"
 msgstr "Reproducción de Vídeo"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:46 src/preferences.blp:5
-#: src/window.blp:127
+#: src/window.blp:130
 msgid "Preferences"
 msgstr "Preferencias"
 
@@ -102,17 +102,17 @@ msgstr "Título desconocido"
 msgid "Original"
 msgstr "Original"
 
-#: src/playlist.py:47 src/window.py:928 src/window.py:1263
+#: src/playlist.py:47 src/window.py:929 src/window.py:1264
 msgid "File Error"
 msgstr "Error de Archivo"
 
-#: src/playlist.py:161 src/window.py:581 src/playlist.blp:23 src/window.blp:91
+#: src/playlist.py:161 src/window.py:586 src/playlist.blp:23 src/window.blp:94
 msgid "Add Files"
 msgstr "Añadir Archivos"
 
 #: src/shortcuts.py:29 src/shortcuts.py:30 src/shortcuts.py:31
 #: src/shortcuts.py:32 src/shortcuts.py:78 src/shortcuts.py:79
-#: src/window.py:1321 src/window.blp:202
+#: src/window.py:1345 src/window.blp:205
 msgid "Volume"
 msgstr "Volumen"
 
@@ -125,7 +125,7 @@ msgid "Volume Decrease"
 msgstr "Bajar Volumen"
 
 #: src/shortcuts.py:33 src/shortcuts.py:34 src/shortcuts.py:35
-#: src/window.blp:185
+#: src/window.blp:188
 msgid "Play/Pause"
 msgstr "Reproducir/Pausar"
 
@@ -149,8 +149,8 @@ msgstr "Retroceder 5s"
 msgid "Seek 5s Forward"
 msgstr "Adelantar 5s"
 
-#: src/shortcuts.py:41 src/shortcuts.py:42 src/window.py:1293
-#: src/window.blp:337
+#: src/shortcuts.py:41 src/shortcuts.py:42 src/window.py:1294
+#: src/window.blp:340
 msgid "Fullscreen"
 msgstr "Pantalla Completa"
 
@@ -205,7 +205,7 @@ msgstr "Aumentar Escala de Subtítulos"
 msgid "Decrease Subtitle Scale"
 msgstr "Disminuir Escala de Subtítulos"
 
-#: src/shortcuts.py:61 src/window.blp:213
+#: src/shortcuts.py:61 src/window.blp:216
 msgid "Mute/Unmute"
 msgstr "Silenciar/Activar Sonido"
 
@@ -258,7 +258,7 @@ msgstr "Superposición de Estadísticas"
 msgid "Loop"
 msgstr "Repetir"
 
-#: src/shortcuts.py:85 src/window.blp:312
+#: src/shortcuts.py:85 src/window.blp:315
 msgid "Loop File"
 msgstr "Repetir Archivo"
 
@@ -334,7 +334,7 @@ msgstr "Restablecer Velocidad"
 msgid "Display & Video"
 msgstr "Pantalla y Vídeo"
 
-#: src/shortcuts.py:201 src/window.blp:244
+#: src/shortcuts.py:201 src/window.blp:247
 msgid "Subtitles"
 msgstr "Subtítulos"
 
@@ -354,64 +354,64 @@ msgstr "Reproducción"
 msgid "Miscellaneous"
 msgstr "Miscelánea"
 
-#: src/window.py:458 src/window.py:920 src/window.blp:101
+#: src/window.py:463 src/window.py:921 src/window.blp:104
 msgid "Add Subtitle Track"
 msgstr "Añadir Pista de Subtítulos"
 
-#: src/window.py:460 src/window.py:469
+#: src/window.py:465 src/window.py:474
 msgid "None"
 msgstr "Ninguno"
 
-#: src/window.py:467 src/window.blp:106
+#: src/window.py:472 src/window.blp:109
 msgid "Add Audio Track"
 msgstr "Añadir Pista de Audio"
 
-#: src/window.py:506
+#: src/window.py:511
 msgid "Track"
 msgstr "Pista"
 
-#: src/window.py:549 src/playlist.blp:29 src/window.blp:96
+#: src/window.py:554 src/playlist.blp:29 src/window.blp:99
 msgid "Add Folder"
 msgstr "Añadir Carpeta"
 
-#: src/window.py:549 src/shortcuts-dialog.blp:21 src/window.blp:86
-#: src/window.blp:439
+#: src/window.py:554 src/shortcuts-dialog.blp:21 src/window.blp:89
+#: src/window.blp:442
 msgid "Open Folder"
 msgstr "Abrir Carpeta"
 
-#: src/window.py:578 src/shortcuts-dialog.blp:16 src/window.blp:81
+#: src/window.py:583 src/shortcuts-dialog.blp:16 src/window.blp:84
 msgid "Open Files"
 msgstr "Abrir Archivos"
 
-#: src/window.py:584
+#: src/window.py:589
 msgid "Add Subtitle"
 msgstr "Añadir Subtítulo"
 
-#: src/window.py:587
+#: src/window.py:592
 msgid "Add Audio"
 msgstr "Añadir Audio"
 
-#: src/window.py:600
+#: src/window.py:605
 msgid "Subtitle"
 msgstr "Subtítulo"
 
-#: src/window.py:605 src/window.blp:259
+#: src/window.py:610 src/window.blp:262
 msgid "Audio"
 msgstr "Audio"
 
-#: src/window.py:609
+#: src/window.py:614
 msgid "Media"
 msgstr "Medio"
 
-#: src/window.py:826
+#: src/window.py:827
 msgid "Pause"
 msgstr "Pausar"
 
-#: src/window.py:826 src/window.py:924
+#: src/window.py:827 src/window.py:925
 msgid "Play"
 msgstr "Reproducir"
 
-#: src/window.py:1293
+#: src/window.py:1294
 msgid "Exit Fullscreen"
 msgstr "Salir de pantalla completa"
 
@@ -504,7 +504,7 @@ msgstr "Restablecer Retraso de Audio"
 msgid "Playback Speed"
 msgstr "Velocidad de Reproducción"
 
-#: src/playlist.blp:5 src/window.blp:322
+#: src/playlist.blp:5 src/window.blp:325
 msgid "Playlist"
 msgstr "Lista de Reproducción"
 
@@ -599,51 +599,51 @@ msgstr "Cerrar Ventana"
 msgid "Quit"
 msgstr "Salir"
 
-#: src/window.blp:75
+#: src/window.blp:78
 msgid "Open"
 msgstr "Abrir"
 
-#: src/window.blp:117
+#: src/window.blp:120
 msgid "Main Menu"
 msgstr "Menu Principal"
 
-#: src/window.blp:132
+#: src/window.blp:135
 msgid "Keyboard Shortcuts"
 msgstr "Atajos de Teclado"
 
-#: src/window.blp:137
+#: src/window.blp:140
 msgid "About Cine"
 msgstr "Acerca de Cine"
 
-#: src/window.blp:175
+#: src/window.blp:178
 msgid "Previous"
 msgstr "Anterior"
 
-#: src/window.blp:195
+#: src/window.blp:198
 msgid "Next"
 msgstr "Siguiente"
 
-#: src/window.blp:273
+#: src/window.blp:276
 msgid "Video"
 msgstr "Vídeo"
 
-#: src/window.blp:290
+#: src/window.blp:293
 msgid "Shuffle Playlist"
 msgstr "Mezclar lista"
 
-#: src/window.blp:301
+#: src/window.blp:304
 msgid "Loop Playlist"
 msgstr "Repetir Lista"
 
-#: src/window.blp:369
+#: src/window.blp:372
 msgid "Toggle Elapsed/Remaining"
 msgstr "Alternar Transcurrido/Restante"
 
-#: src/window.blp:415
+#: src/window.blp:418
 msgid "Drag and Drop Files Here"
 msgstr "Arrastre y Suelte Archivos Aquí"
 
-#: src/window.blp:428
+#: src/window.blp:431
 msgid "Open…"
 msgstr "Abrir…"
 
