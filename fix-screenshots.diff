@@ -1,0 +1,16 @@
+// Fix from haruna: https://github.com/flathub/org.kde.haruna/blob/master/fix-screenshots.diff
+// Credits: https://github.com/g-fb
+
+diff --git a/player/screenshot.c b/player/screenshot.c
+index c733a2bdb1490..32d10a047db58 100644
+--- a/player/screenshot.c
++++ b/player/screenshot.c
+@@ -377,7 +377,7 @@ static struct mp_image *screenshot_get(struct MPContext *mpctx, int mode,
+     }
+
+     // vo_get_current_frame() can return a hardware frame, which we have to download first.
+-    if (image && image->fmt.flags & MP_IMGFLAG_HWACCEL) {
++    if (image && IMGFMT_IS_HWACCEL(image->imgfmt)) {
+         struct mp_image *nimage = mp_image_hw_download(image, NULL);
+         talloc_free(image);
+         if (!nimage)
