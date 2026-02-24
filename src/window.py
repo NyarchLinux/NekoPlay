@@ -80,6 +80,7 @@ class CineWindow(Adw.ApplicationWindow):
     icon_indicator: Gtk.Image = Gtk.Template.Child()
     headerbar: Adw.HeaderBar = Gtk.Template.Child()
     controls_box: Gtk.Box = Gtk.Template.Child()
+    controls_wrap_box: Adw.WrapBox = Gtk.Template.Child()
     controls_separator: Gtk.Separator = Gtk.Template.Child()
     revealer_ui: Gtk.Revealer = Gtk.Template.Child()
     revealer_drop_indicator: Gtk.Revealer = Gtk.Template.Child()
@@ -94,6 +95,7 @@ class CineWindow(Adw.ApplicationWindow):
     next_button: Gtk.Button = Gtk.Template.Child()
     volume_menu_button: Gtk.MenuButton = Gtk.Template.Child()
     mute_toggle_button: Gtk.ToggleButton = Gtk.Template.Child()
+    volume_box: Gtk.Box = Gtk.Template.Child()
     volume_scale: Gtk.Scale = Gtk.Template.Child()
     volume_scale_adjustment: Gtk.Adjustment = Gtk.Template.Child()
     subtitles_menu_button: Gtk.MenuButton = Gtk.Template.Child()
@@ -108,6 +110,7 @@ class CineWindow(Adw.ApplicationWindow):
     loop_file_toggle_button: Gtk.ToggleButton = Gtk.Template.Child()
     fullscreen_button: Gtk.Button = Gtk.Template.Child()
     time_elapsed_label: Gtk.Label = Gtk.Template.Child()
+    progress_box: Gtk.Box = Gtk.Template.Child()
     vid_progress_scale_box: Gtk.Box = Gtk.Template.Child()
     video_progress_scale: Gtk.Scale = Gtk.Template.Child()
     video_progress_adjustment: Gtk.Adjustment = Gtk.Template.Child()
@@ -251,6 +254,18 @@ class CineWindow(Adw.ApplicationWindow):
     def _setup_elements(self):
         self.set_default_size(DEFAULT_WIDTH, DEFAULT_HEIGHT)
         self.set_title(_("Cine"))
+
+        for widget in [
+            self.controls_wrap_box,
+            self.volume_box,
+            self.volume_scale,
+            self.progress_box,
+            self.vid_progress_scale_box,
+            self.video_progress_scale,
+            self.time_elapsed_label,
+        ]:
+            widget.set_direction(Gtk.TextDirection.LTR)
+
         max_vol = cast(int, self.mpv.volume_max)
         self.volume_scale_adjustment.set_upper(max_vol)
 
