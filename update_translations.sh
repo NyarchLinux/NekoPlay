@@ -10,17 +10,17 @@ grep '\.blp$' po/POTFILES.in > /tmp/POTFILES_CINE.blp
 
 # create pot
 xgettext --files-from=/tmp/POTFILES_CINE \
-	--output="$OUTPUT" --package-name="$PACKAGE_NAME" \
-	--from-code="$ENCODING" --add-comments \
-	--keyword=_ --keyword=C_:1c,2
+         --output="$OUTPUT" --package-name="$PACKAGE_NAME" \
+         --from-code="$ENCODING" --add-comments \
+         --keyword=_ --keyword=C_:1c,2
 
 # join pot
 xgettext --files-from=/tmp/POTFILES_CINE.blp \
-	--output="$OUTPUT" --package-name="$PACKAGE_NAME" \
-	--from-code="$ENCODING" --add-comments \
-	--keyword=_ --keyword=C_:1c,2 \
-	$LANGUAGE_BLP \
-	--join-existing
+         --output="$OUTPUT" --package-name="$PACKAGE_NAME" \
+         --from-code="$ENCODING" --add-comments \
+         --keyword=_ --keyword=C_:1c,2 \
+         $LANGUAGE_BLP \
+         --join-existing
 
 
 rm /tmp/POTFILES_CINE /tmp/POTFILES_CINE.blp
