@@ -94,6 +94,7 @@ class CineWindow(Adw.ApplicationWindow):
     previous_button: Gtk.Button = Gtk.Template.Child()
     play_pause_button: Gtk.Button = Gtk.Template.Child()
     next_button: Gtk.Button = Gtk.Template.Child()
+    skip_90_button: Gtk.Button = Gtk.Template.Child()
     volume_menu_button: Gtk.MenuButton = Gtk.Template.Child()
     mute_toggle_button: Gtk.ToggleButton = Gtk.Template.Child()
     volume_box: Gtk.Box = Gtk.Template.Child()
@@ -224,6 +225,7 @@ class CineWindow(Adw.ApplicationWindow):
         self._create_action("open-playlist-dialog", self._on_open_playlist)
         self._create_action("open-sub-menu", self._on_open_sub_menu)
         self._create_action("open-audio-menu", self._on_open_audio_menu)
+        self._create_action("skip-90", self._on_skip_90_action)
         self.app.set_accels_for_action("win.open-folder", ["<primary>i"])
         self.app.set_accels_for_action("win.add-playlist-folder", ["<shift><primary>i"])
         self.app.set_accels_for_action("win.open-playlist-dialog", ["<primary>p"])
@@ -231,6 +233,7 @@ class CineWindow(Adw.ApplicationWindow):
         self.app.set_accels_for_action("win.add-playlist-files", ["<shift><primary>o"])
         self.app.set_accels_for_action("win.open-sub-menu", ["<primary>s"])
         self.app.set_accels_for_action("win.open-audio-menu", ["<primary>a"])
+        self.app.set_accels_for_action("win.skip-90", ["<alt>Right"])
 
         self._create_action("quit", lambda *a: self.close())
         self.app.set_accels_for_action("win.quit", ["q", "<primary>w"])
@@ -273,6 +276,7 @@ class CineWindow(Adw.ApplicationWindow):
         self.play_pause_button.connect("clicked", self._on_play_pause_clicked)
         self.previous_button.connect("clicked", self._on_previous_clicked)
         self.next_button.connect("clicked", self._on_next_clicked)
+        self.skip_90_button.connect("clicked", self._on_skip_90_clicked)
 
         self.mute_handler_id = self.mute_toggle_button.connect(
             "toggled", lambda btn: setattr(self.mpv, "mute", btn.get_active())
@@ -813,6 +817,12 @@ class CineWindow(Adw.ApplicationWindow):
             self.mpv.playlist_pos = 0
         else:
             self.mpv.playlist_next()
+
+    def _on_skip_90_clicked(self, _):
+        self.mpv.seek(90, reference="relative")
+
+    def _on_skip_90_action(self, *_):
+        self._on_skip_90_clicked(None)
 
     def _on_subtitle_selected(self, action, parameter):
         self.mpv.command("set", "sub-visibility", "yes")

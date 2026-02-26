@@ -198,6 +198,16 @@ template $CineWindow: Adw.ApplicationWindow {
                   tooltip-text: _("Next");
                 }
 
+                Button skip_90_button {
+                  styles [
+                    "circular",
+                    "flat",
+                  ]
+
+                  icon-name: "cine-skip-forward-symbolic";
+                  tooltip-text: _("Skip 90s");
+                }
+
                 MenuButton volume_menu_button {
                   halign: center;
                   icon-name: "cine-volume-max-symbolic";
