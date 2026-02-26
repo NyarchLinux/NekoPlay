@@ -114,6 +114,23 @@ template $Preferences: Adw.Dialog {
 						title: _("Normalize Volume");
 					}
 
+					Adw.ComboRow anime4k_mode_row {
+						title: _("Default Upscale Mode (Anime4K)");
+						subtitle: _("Applied automatically when a video is loaded");
+
+						model: Gtk.StringList {
+							strings [
+								_("Off"),
+								// TRANSLATORS: Anime4K preset optimized for 1080p anime
+								_("1080p Anime"),
+								// TRANSLATORS: Anime4K preset optimized for 720p anime
+								_("720p Anime"),
+								// TRANSLATORS: Anime4K preset optimized for 480p anime
+								_("480p Anime"),
+							]
+						};
+					}
+
 					Adw.ActionRow {
 						title: _("Save Video Position on Close");
 						subtitle: _("Also save options like brightness, subtitle delay, etc.");

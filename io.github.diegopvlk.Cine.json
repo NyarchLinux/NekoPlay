@@ -150,6 +150,22 @@
       ]
     },
     {
+      "name": "anime4k-shaders",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/share/cine/shaders",
+        "cp *.glsl /app/share/cine/shaders/"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/bloc97/Anime4K/releases/download/v4.0.1/Anime4K_v4.0.zip",
+          "sha256": "139cd282086457c5adc79caf7b75b8b825091d71c9b54958c18745fea62d7ed7",
+          "strip-components": 0
+        }
+      ]
+    },
+    {
       "name": "cine",
       "builddir": true,
       "buildsystem": "meson",

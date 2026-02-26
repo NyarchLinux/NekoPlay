@@ -41,6 +41,7 @@ from .options import OptionsMenuButton
 from .playlist import Playlist
 from .preferences import settings, sync_mpv_with_settings
 from .shortcuts import INTERNAL_BINDINGS, populate_shortcuts_dialog_mpv
+from .anime4k import apply_anime4k_shaders
 
 gi.require_version("Adw", "1")
 gi.require_version("Gio", "2.0")
@@ -1008,6 +1009,27 @@ class CineWindow(Adw.ApplicationWindow):
             self.revealer_ui.set_reveal_child(True)
             self._hide_ui_timeout(s=3)
             return
+
+        if state & Gdk.ModifierType.CONTROL_MASK:
+            anime4k_mode_map = {
+                "0": "off",
+                "1": "a",
+                "2": "b",
+                "3": "c",
+            }
+            anime4k_mode = anime4k_mode_map.get(key_name)
+            if anime4k_mode is not None:
+                settings.set_string("anime4k-mode", anime4k_mode)
+                apply_anime4k_shaders(self.mpv, anime4k_mode)
+
+                mode_labels = {
+                    "off": _("Upscale: Off"),
+                    "a": _("Upscale: 1080p Anime"),
+                    "b": _("Upscale: 720p Anime"),
+                    "c": _("Upscale: 480p Anime"),
+                }
+                self.mpv.show_text(mode_labels[anime4k_mode])
+                return True
 
         app: Gtk.Application | None = self.get_application()
         clean_state = state & Gtk.accelerator_get_default_mod_mask()

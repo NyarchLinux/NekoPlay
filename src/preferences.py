@@ -25,6 +25,8 @@ gi.require_version("Gio", "2.0")
 gi.require_version("Gtk", "4.0")
 from gi.repository import Adw, Gdk, Gio, Gtk
 
+from .anime4k import apply_anime4k_shaders, MODE_INDEX_MAP, MODE_TO_INDEX
+
 settings = Gio.Settings.new("io.github.diegopvlk.Cine")
 
 
@@ -51,6 +53,11 @@ def sync_mpv_with_settings(window):
     if norm_enabled:
         player.command("af", "add", "@cine_loudnorm:lavfi=[loudnorm=I=-20]")
 
+    # Apply Anime4K shaders if a default mode is set
+    anime4k_mode = settings.get_string("anime4k-mode")
+    if anime4k_mode != "off":
+        apply_anime4k_shaders(player, anime4k_mode)
+
 
 @Gtk.Template(resource_path="/io/github/diegopvlk/Cine/preferences.ui")
 class Preferences(Adw.Dialog):
@@ -68,6 +75,7 @@ class Preferences(Adw.Dialog):
     audio_lang_row: Adw.EntryRow = Gtk.Template.Child()
     hwdec_row: Adw.SwitchRow = Gtk.Template.Child()
     normalize_volume_row: Adw.SwitchRow = Gtk.Template.Child()
+    anime4k_mode_row: Adw.ComboRow = Gtk.Template.Child()
     save_position_switch: Gtk.Switch = Gtk.Template.Child()
 
     def __init__(self, active_window, **kwargs):
@@ -80,6 +88,13 @@ class Preferences(Adw.Dialog):
 
         font = settings.get_string("subtitle-font")
         self.font_label.set_label(font)
+
+        # Initialize Anime4K combo rows from GSettings
+        anime4k_mode = settings.get_string("anime4k-mode")
+        mode_idx = MODE_TO_INDEX.get(anime4k_mode, 0)
+        self.anime4k_mode_row.set_selected(mode_idx)
+
+        self.anime4k_mode_row.connect("notify::selected", self._on_anime4k_mode_ui_changed)
 
         self.color_dialog_button.connect("notify::rgba", self._on_color_selected)
         self.reset_sub_color.connect("clicked", self._on_color_reset)
@@ -152,6 +167,7 @@ class Preferences(Adw.Dialog):
             "hwdec": self._on_hwdec_changed,
             "normalize-volume": self._on_norm_volume_changed,
             "save-video-position": self._on_save_pos_changed,
+            "anime4k-mode": self._on_anime4k_mode_setting_changed,
         }
 
         self._setting_ids = [
@@ -198,6 +214,15 @@ class Preferences(Adw.Dialog):
             self.player.command("af", "add", "@cine_loudnorm:lavfi=[loudnorm=I=-20]")
         else:
             self.player.command("af", "remove", "@cine_loudnorm")
+
+    def _on_anime4k_mode_ui_changed(self, row, *a):
+        idx = row.get_selected()
+        mode = MODE_INDEX_MAP[idx] if idx < len(MODE_INDEX_MAP) else "off"
+        settings.set_string("anime4k-mode", mode)
+
+    def _on_anime4k_mode_setting_changed(self, settings, _key):
+        mode = settings.get_string("anime4k-mode")
+        apply_anime4k_shaders(self.player, mode)
 
     def _on_color_selected(self, color_btn, *arg):
         rgba = color_btn.get_rgba()

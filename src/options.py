@@ -23,6 +23,7 @@ from typing import cast
 from gettext import gettext as _
 
 from .preferences import settings
+from .anime4k import apply_anime4k_shaders, get_current_mode, MODE_INDEX_MAP, MODE_TO_INDEX
 
 gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk
@@ -35,6 +36,7 @@ class OptionsMenuButton(Gtk.MenuButton):
     flip_box: Gtk.Box = Gtk.Template.Child()
     aspect_dropdown: Gtk.DropDown = Gtk.Template.Child()
     aspect_list: Gtk.StringList = Gtk.Template.Child()
+    upscale_dropdown: Gtk.DropDown = Gtk.Template.Child()
     zoom_spin: Gtk.SpinButton = Gtk.Template.Child()
     contrast_spin: Gtk.SpinButton = Gtk.Template.Child()
     brightness_spin: Gtk.SpinButton = Gtk.Template.Child()
@@ -128,11 +130,18 @@ class OptionsMenuButton(Gtk.MenuButton):
         set_open_val(self.audio_delay_spin, float(self.win.mpv["audio-delay"] or 0))
         set_open_val(self.speed_spin, float(self.win.mpv["speed"] or 1.0))
 
+        # Sync upscale dropdown with current shader state
+        current_mode = get_current_mode(self.win.mpv)
+        upscale_idx = MODE_TO_INDEX.get(current_mode, 0)
+        if self.upscale_dropdown.get_selected() != upscale_idx:
+            self.upscale_dropdown.set_selected(upscale_idx)
+
     @Gtk.Template.Callback()
     def _on_reset_all_options(self, _btn):
         self.aspect_dropdown.set_selected(0)
         self._on_rotate_reset(None)
         self._on_flip_reset(None)
+        self.upscale_dropdown.set_selected(0)
         self.zoom_spin.set_value(0)
         self.contrast_spin.set_value(0)
         self.brightness_spin.set_value(0)
@@ -264,3 +273,14 @@ class OptionsMenuButton(Gtk.MenuButton):
     @Gtk.Template.Callback()
     def _on_speed_reset(self, _btn):
         self.speed_spin.set_value(1.0)
+
+    # --- UPSCALE (ANIME4K) ---
+    @Gtk.Template.Callback()
+    def _on_upscale_changed(self, dropdown, *arg):
+        idx = dropdown.get_selected()
+        mode = MODE_INDEX_MAP[idx] if idx < len(MODE_INDEX_MAP) else "off"
+        apply_anime4k_shaders(self.win.mpv, mode)
+
+    @Gtk.Template.Callback()
+    def _on_upscale_reset(self, _btn):
+        self.upscale_dropdown.set_selected(0)
