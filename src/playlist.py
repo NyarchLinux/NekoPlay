@@ -25,7 +25,8 @@ gi.require_version("Gio", "2.0")
 gi.require_version("Gdk", "4.0")
 gi.require_version("GLib", "2.0")
 gi.require_version("Gtk", "4.0")
-from gi.repository import Adw, Gio, Gdk, GLib, Gtk
+gi.require_version("GObject", "2.0")
+from gi.repository import Adw, Gio, Gdk, GLib, Gtk, GObject
 from gettext import gettext as _
 from .utils import is_local_path
 
@@ -50,6 +51,7 @@ class Playlist(Adw.Dialog):
         self._populate_list()
 
         drop_target = Gtk.DropTarget.new(Gdk.FileList, Gdk.DragAction.COPY)
+        drop_target.set_gtypes([Gdk.FileList, GObject.TYPE_STRING])
         drop_target.connect("enter", self._on_drop_enter)
         drop_target.connect("leave", self._on_drop_leave)
         drop_target.connect("drop", self._on_drop)
@@ -58,6 +60,10 @@ class Playlist(Adw.Dialog):
     def _on_drop_enter(self, target, _x, _y):
         GLib.timeout_add(10, self.drop_indicator_revealer.set_reveal_child, True)
         drop = target.get_current_drop()
+        formats = drop.get_formats()
+        target_type = (
+            Gdk.FileList if formats.contain_gtype(Gdk.FileList) else GObject.TYPE_STRING
+        )
 
         def on_read_done(source, result):
             try:
@@ -68,7 +74,7 @@ class Playlist(Adw.Dialog):
                 self.toast_overlay.add_toast(toast)
                 return
 
-        drop.read_value_async(Gdk.FileList, GLib.PRIORITY_DEFAULT, None, on_read_done)
+        drop.read_value_async(target_type, GLib.PRIORITY_DEFAULT, None, on_read_done)
 
         return True
 
@@ -76,31 +82,49 @@ class Playlist(Adw.Dialog):
         self.spinner.set_visible(False)
         GLib.timeout_add(10, self.drop_indicator_revealer.set_reveal_child, False)
 
-    def _on_drop(self, _target, list: Gdk.FileList, _x, _y):
-        for file in list.get_files():
-            info = file.query_info(
-                "standard::content-type,standard::type",
-                Gio.FileQueryInfoFlags.NONE,
-                None,
-            )
-
-            path = file.get_path() or file.get_uri()
-            file_type = info.get_file_type()
-            mime_type = info.get_content_type() or ""
-
-            if file_type == Gio.FileType.DIRECTORY:
-                self.mpv.loadfile(path, "append-play")
-                continue
-
-            valid_types = ("video/", "audio/", "image/")
-            if mime_type.startswith(valid_types):
-                self.mpv.loadfile(path, "append-play")
-
-        GLib.idle_add(
-            lambda *a: self.win._on_shuffle_toggled(
-                self.win.playlist_shuffle_toggle_button
-            )
+    def _on_drop(self, _target, value, _x, _y):
+        items: list[Gio.File] | list[str] = (
+            value.get_files()
+            if isinstance(value, Gdk.FileList)
+            else [value] if isinstance(value, str) else []
         )
+
+        for item in items:
+            if isinstance(item, Gio.File):
+                path = item.get_path() or item.get_uri()
+
+                # URL Thumbnail
+                is_url = not is_local_path(path)
+
+                if is_url:
+                    self.mpv.loadfile(path, "append-play")
+                    continue
+                else:
+                    info = item.query_info(
+                        "standard::content-type,standard::type",
+                        Gio.FileQueryInfoFlags.NONE,
+                        None,
+                    )
+
+                file_type = info.get_file_type()
+                mime_type = info.get_content_type() or ""
+
+                if file_type == Gio.FileType.DIRECTORY:
+                    self.mpv.loadfile(path, "append-play")
+                    continue
+
+                valid_types = ("video/", "audio/", "image/")
+                if mime_type.startswith(valid_types):
+                    self.mpv.loadfile(path, "append-play")
+
+                GLib.idle_add(
+                    lambda *a: self.win._on_shuffle_toggled(
+                        self.win.playlist_shuffle_toggle_button
+                    )
+                )
+
+            elif isinstance(item, str):  # URL string
+                self.mpv.loadfile(item, "append-play")
 
         self._populate_list()
         self.spinner.set_visible(False)
