@@ -171,20 +171,20 @@ class Preferences(Adw.Dialog):
         for connection_id in self._setting_ids:
             settings.disconnect(connection_id)
 
-    def _on_sub_color_changed(self, settings, _key):
-        self.player["sub-color"] = settings.get_string("subtitle-color")
+    def _on_sub_color_changed(self, settings, key):
+        self.player["sub-color"] = settings.get_string(key)
 
-    def _on_sub_scale_changed(self, settings, _key):
-        self.player["sub-scale"] = settings.get_double("subtitle-scale")
+    def _on_sub_scale_changed(self, settings, key):
+        self.player["sub-scale"] = settings.get_double(key)
 
-    def _on_sub_font_changed(self, settings, _key):
-        self.player["sub-font"] = settings.get_string("subtitle-font")
+    def _on_sub_font_changed(self, settings, key):
+        self.player["sub-font"] = settings.get_string(key)
 
-    def _on_slang_changed(self, settings, _key):
-        self.player["slang"] = settings.get_string("subtitle-languages")
+    def _on_slang_changed(self, settings, key):
+        self.player["slang"] = settings.get_string(key)
 
-    def _on_alang_changed(self, settings, _key):
-        self.player["alang"] = settings.get_string("audio-languages")
+    def _on_alang_changed(self, settings, key):
+        self.player["alang"] = settings.get_string(key)
 
     def _on_thumb_preview_changed(self, settings, key):
         if not settings.get_boolean(key) and self.win.preview_player:
@@ -195,13 +195,11 @@ class Preferences(Adw.Dialog):
             self.win.setup_preview_player()
             self.win.thumb_preview.props.visible = True
 
-    def _on_save_pos_changed(self, settings, _key):
-        self.player["save-position-on-quit"] = settings.get_boolean(
-            "save-video-position"
-        )
+    def _on_save_pos_changed(self, settings, key):
+        self.player["save-position-on-quit"] = settings.get_boolean(key)
 
-    def _on_hwdec_changed(self, settings, _key):
-        hwdec_enabled = settings.get_boolean("hwdec")
+    def _on_hwdec_changed(self, settings, key):
+        hwdec_enabled = settings.get_boolean(key)
         if hwdec_enabled:
             self.player.command_async("vf", "remove", "@hflip")
             self.player.command_async("vf", "remove", "@vflip")
@@ -209,8 +207,8 @@ class Preferences(Adw.Dialog):
         else:
             self.player["hwdec"] = "no"
 
-    def _on_norm_volume_changed(self, settings, _key):
-        norm_enabled = settings.get_boolean("normalize-volume")
+    def _on_norm_volume_changed(self, settings, key):
+        norm_enabled = settings.get_boolean(key)
         if norm_enabled:
             self.player.command("af", "add", "@cine_loudnorm:lavfi=[loudnorm=I=-20]")
         else:
