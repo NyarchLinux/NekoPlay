@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.github.diegopvlk.Cine\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-05 10:02-0300\n"
-"PO-Revision-Date: 2026-03-12 12:20+0000\n"
+"PO-Revision-Date: 2026-03-12 12:52+0000\n"
 "Last-Translator: 心就在那里 <xjznlonly@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/cine/app/zh_Hans/>\n"
@@ -38,7 +38,7 @@ msgstr "音频;视频;电影;电视;影片;剪辑;播放器;Cine;mpv;"
 #: data/io.github.diegopvlk.Cine.desktop.in:18 src/shortcuts-dialog.blp:11
 #: src/window.blp:135
 msgid "New Window"
-msgstr "打开新窗口"
+msgstr "新建窗口"
 
 #: data/io.github.diegopvlk.Cine.metainfo.xml.in:25
 msgid ""
@@ -251,11 +251,11 @@ msgstr "下一帧"
 
 #: src/shortcuts.py:80
 msgid "Seek to the Previous Chapter"
-msgstr "跳转至上一章节"
+msgstr "上一章节"
 
 #: src/shortcuts.py:81
 msgid "Seek to the Next Chapter"
-msgstr "跳转至下一章节"
+msgstr "下一章节"
 
 #: src/shortcuts.py:85
 msgid "Take Screenshot With Subtitles"
@@ -310,7 +310,7 @@ msgstr "增加亮度"
 #: src/shortcuts.py:94 src/shortcuts.py:95 src/options.blp:448
 #: src/options.blp:471
 msgid "Gamma"
-msgstr "伽马值 / Gamma"
+msgstr "伽马值"
 
 #: src/shortcuts.py:94
 msgid "Decrease Gamma"
@@ -416,12 +416,12 @@ msgstr "媒体"
 
 #: src/window.py:720 src/playlist.blp:36 src/window.blp:109
 msgid "Add URL"
-msgstr "添加URL"
+msgstr "添加 URL"
 
 #: src/window.py:720 src/shortcuts-dialog.blp:26 src/window.blp:94
 #: src/window.blp:462
 msgid "Open URL"
-msgstr "打开URL"
+msgstr "打开 URL"
 
 #: src/window.py:733
 msgid "URL"
@@ -461,11 +461,11 @@ msgstr "重置全部"
 
 #: src/options.blp:44
 msgid "Reset Aspect Ratio"
-msgstr "重置纵横比"
+msgstr "重置宽高比"
 
 #: src/options.blp:54
 msgid "Aspect Ratio"
-msgstr "纵横比"
+msgstr "宽高比"
 
 #: src/options.blp:102
 msgid "Reset Crop"
@@ -509,7 +509,7 @@ msgstr "垂直翻转"
 
 #: src/options.blp:275
 msgid "Reset Zoom"
-msgstr "Reset Zoom"
+msgstr "重置缩放"
 
 #: src/options.blp:330
 msgid "Reset Contrast"
