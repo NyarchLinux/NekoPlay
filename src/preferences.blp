@@ -118,9 +118,38 @@ template $Preferences: Adw.Dialog {
 						title: _("Normalize Volume");
 					}
 
-					Adw.SwitchRow save_position_row {
+					Adw.ActionRow {
 						title: _("Save Video Position on Close");
 						subtitle: _("Also save options like brightness, subtitle delay, etc.");
+						activatable-widget: save_position_switch;
+
+						[suffix]
+						MenuButton {
+							icon-name: "info-outline-symbolic";
+							valign: center;
+
+							styles [
+								"flat",
+							]
+
+							popover: Popover {
+								Label {
+									max-width-chars: 35;
+									label: _("Requires flatpak permission to read the folder where the video is stored");
+									wrap: true;
+									justify: center;
+
+									styles [
+										"warning",
+									]
+								}
+							};
+						}
+
+						[suffix]
+						Switch save_position_switch {
+							valign: center;
+						}
 					}
 				}
 			}

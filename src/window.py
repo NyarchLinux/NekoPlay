@@ -197,7 +197,6 @@ class CineWindow(Adw.ApplicationWindow):
             keep_open=True,
             keep_open_pause=False,
             ytdl=True,
-            ignore_path_in_watch_later_config=True,
         )
 
         if self.mpv["window-maximized"]:
