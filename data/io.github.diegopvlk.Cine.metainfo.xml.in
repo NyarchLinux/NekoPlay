@@ -71,6 +71,14 @@
   </requires>
 
   <releases>
+    <release version="1.1.1" date="2026-03-14">
+      <description translate="no">
+        <ul>
+          <li>Added Chinese translation</li>
+          <li>Added support for window-maximized=yes</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.1.0" date="2026-03-05">
       <description translate="no">
         <ul>
