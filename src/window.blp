@@ -34,7 +34,7 @@ template $CineWindow: Adw.ApplicationWindow {
             valign: center;
 
             styles [
-              "icon-pause-play",
+              "icon-indicator",
             ]
           }
         }
@@ -91,6 +91,11 @@ template $CineWindow: Adw.ApplicationWindow {
                   }
 
                   item {
+                    label: _("Open URL");
+                    action: "win.open-url";
+                  }
+
+                  item {
                     label: _("Add Files");
                     action: "win.add-playlist-files";
                   }
@@ -98,6 +103,11 @@ template $CineWindow: Adw.ApplicationWindow {
                   item {
                     label: _("Add Folder");
                     action: "win.add-playlist-folder";
+                  }
+
+                  item {
+                    label: _("Add URL");
+                    action: "win.add-url";
                   }
 
                   item {
@@ -450,7 +460,18 @@ template $CineWindow: Adw.ApplicationWindow {
 
             Button {
               label: _("Open Folder");
+              halign: center;
               action-name: "win.open-folder";
+
+              styles [
+                "pill",
+              ]
+            }
+
+            Button {
+              label: _("Open URL");
+              halign: center;
+              action-name: "win.open-url";
 
               styles [
                 "pill",

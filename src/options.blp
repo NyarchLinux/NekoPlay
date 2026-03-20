@@ -134,6 +134,7 @@ template $OptionsMenuButton: MenuButton {
                 "4:3",
                 "1:1",
                 "16:10",
+                "2.00:1",
                 "2.21:1",
                 "2.35:1",
                 "2.39:1",
@@ -142,6 +143,64 @@ template $OptionsMenuButton: MenuButton {
             };
 
             notify::selected => $_on_aspect_changed();
+          }
+        }
+
+        Box {
+          Box {
+            halign: start;
+
+            Button {
+              icon-name: "edit-undo-symbolic";
+              tooltip-text: _("Reset Crop");
+
+              styles [
+                "flat",
+              ]
+
+              clicked => $_on_crop_reset();
+            }
+
+            Label {
+              label: _("Crop");
+              wrap: true;
+              natural-wrap-mode: none;
+              halign: start;
+              margin-start: 8;
+
+              styles [
+                "heading",
+              ]
+            }
+          }
+
+          Separator {
+            hexpand: true;
+            opacity: 0;
+            margin-end: 2;
+          }
+
+          Gtk.DropDown crop_dropdown {
+            halign: end;
+            width-request: 108;
+            focus-on-click: false;
+
+            model: Gtk.StringList crop_list {
+              strings [
+                _("Original"),
+                "16:9",
+                "4:3",
+                "1:1",
+                "16:10",
+                "2.00:1",
+                "2.21:1",
+                "2.35:1",
+                "2.39:1",
+                "5:4",
+              ]
+            };
+
+            notify::selected => $_on_crop_changed();
           }
         }
 

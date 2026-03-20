@@ -80,9 +80,9 @@
   border-radius: 2px;
 }
 
-.osd popover > contents,
+.osd popover:not(.chapter-popover) > contents,
 .osd popover > arrow {
-  border: 1px solid #202021;
+  border: 1px solid #212122;
   background: rgba(25, 25, 27, 0.95);
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.33);
 }
@@ -124,7 +124,7 @@ scale mark {
   min-height: 26px;
 }
 
-.icon-pause-play {
+.icon-indicator {
   -gtk-icon-size: 72px;
   -gtk-icon-shadow: 0px 1px 9px rgba(0, 0, 0, 0.66);
   color: white;
@@ -174,4 +174,57 @@ statuspage box {
 
 #options dropdown button * {
   background: none;
+}
+
+.chapter-popover label {
+  padding: 7px 11px;
+  margin-bottom: -7px;
+}
+.chapter-popover > contents {
+  background: transparent;
+}
+.chapter-popover > contents picture,
+.chapter-popover > contents label {
+  border: 1px solid #212122;
+  background: rgba(25, 25, 27, 0.95);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.33);
+  border-radius: 13px;
+}
+.chapter-popover > contents picture {
+  margin-bottom: 8px;
+  border: none;
+  box-shadow:
+    0px 0px 5px 1px rgba(20, 20, 20, 0.5),
+    0px 0px 0px 1px rgba(144, 144, 144, 0.2);
+}
+
+.options-menu-btn popover button,
+.options-menu-btn popover spinbutton {
+  min-height: 22px;
+}
+
+@media (prefers-contrast: more) {
+  .osd popover:not(.chapter-popover) > contents,
+  .osd popover > arrow,
+  .chapter-popover > contents label {
+    border: 1px solid var(--border-color);
+  }
+  .chapter-popover > contents picture {
+    border: 1px solid rgba(255, 255, 255, 0.9);
+  }
+  .header-and-controls {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.3) 5%,
+        rgba(0, 0, 0, 0) 17%
+      ),
+      linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.46) 10%,
+        rgba(0, 0, 0, 0) 35%
+      );
+  }
 }

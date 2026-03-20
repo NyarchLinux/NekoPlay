@@ -34,6 +34,10 @@ k              cycle pause; #{_("Play/Pause")}
 p              cycle pause; #{_("Play/Pause")}
 SPACE          cycle pause; #{_("Play/Pause")}
 c              no-osd cycle sub-visibility; no-osd set user-data/show-icon "yes" #{_("Show/Hide Subtitles")}
+z              cycle sub; show-text "{_("Subtitles")}: ${{sub}}" #{_("Switch to Next Subtitle Track")}
+Z              cycle sub down; show-text "{_("Subtitles")}: ${{sub}}" #{_("Switch to Previous Subtitle Track")}
+a              cycle audio; show-text "{_("Audio")}: ${{audio}}" #{_("Switch to Next Audio Track")}
+A              cycle audio down; show-text "{_("Audio")}: ${{audio}}" #{_("Switch to Previous Audio Track")}
 j              seek -10 exact; show-text "⯇⯇" #{_("Seek 10s Backward")}
 l              seek 10 exact; show-text "⯈⯈" #{_("Seek 10s Forward")}
 LEFT           seek -5 exact; show-text "⯇⯇" #{_("Seek 5s Backward")}

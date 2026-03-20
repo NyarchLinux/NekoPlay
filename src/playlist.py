@@ -25,8 +25,10 @@ gi.require_version("Gio", "2.0")
 gi.require_version("Gdk", "4.0")
 gi.require_version("GLib", "2.0")
 gi.require_version("Gtk", "4.0")
-from gi.repository import Adw, Gio, Gdk, GLib, Gtk
+gi.require_version("GObject", "2.0")
+from gi.repository import Adw, Gio, Gdk, GLib, Gtk, GObject
 from gettext import gettext as _
+from .utils import is_local_path
 
 
 @Gtk.Template(resource_path="/moe/nyarchlinux/nekoplay/playlist.ui")
@@ -49,6 +51,7 @@ class Playlist(Adw.Dialog):
         self._populate_list()
 
         drop_target = Gtk.DropTarget.new(Gdk.FileList, Gdk.DragAction.COPY)
+        drop_target.set_gtypes([Gdk.FileList, GObject.TYPE_STRING])
         drop_target.connect("enter", self._on_drop_enter)
         drop_target.connect("leave", self._on_drop_leave)
         drop_target.connect("drop", self._on_drop)
@@ -57,6 +60,10 @@ class Playlist(Adw.Dialog):
     def _on_drop_enter(self, target, _x, _y):
         GLib.timeout_add(10, self.drop_indicator_revealer.set_reveal_child, True)
         drop = target.get_current_drop()
+        formats = drop.get_formats()
+        target_type = (
+            Gdk.FileList if formats.contain_gtype(Gdk.FileList) else GObject.TYPE_STRING
+        )
 
         def on_read_done(source, result):
             try:
@@ -67,7 +74,7 @@ class Playlist(Adw.Dialog):
                 self.toast_overlay.add_toast(toast)
                 return
 
-        drop.read_value_async(Gdk.FileList, GLib.PRIORITY_DEFAULT, None, on_read_done)
+        drop.read_value_async(target_type, GLib.PRIORITY_DEFAULT, None, on_read_done)
 
         return True
 
@@ -75,31 +82,49 @@ class Playlist(Adw.Dialog):
         self.spinner.set_visible(False)
         GLib.timeout_add(10, self.drop_indicator_revealer.set_reveal_child, False)
 
-    def _on_drop(self, _target, list: Gdk.FileList, _x, _y):
-        for file in list.get_files():
-            info = file.query_info(
-                "standard::content-type,standard::type",
-                Gio.FileQueryInfoFlags.NONE,
-                None,
-            )
-
-            path = file.get_path() or file.get_uri()
-            file_type = info.get_file_type()
-            mime_type = info.get_content_type() or ""
-
-            if file_type == Gio.FileType.DIRECTORY:
-                self.mpv.loadfile(path, "append-play")
-                continue
-
-            valid_types = ("video/", "audio/", "image/")
-            if mime_type.startswith(valid_types):
-                self.mpv.loadfile(path, "append-play")
-
-        GLib.idle_add(
-            lambda *a: self.win._on_shuffle_toggled(
-                self.win.playlist_shuffle_toggle_button
-            )
+    def _on_drop(self, _target, value, _x, _y):
+        items: list[Gio.File] | list[str] = (
+            value.get_files()
+            if isinstance(value, Gdk.FileList)
+            else [value] if isinstance(value, str) else []
         )
+
+        for item in items:
+            if isinstance(item, Gio.File):
+                path = item.get_path() or item.get_uri()
+
+                # URL Thumbnail
+                is_url = not is_local_path(path)
+
+                if is_url:
+                    self.mpv.loadfile(path, "append-play")
+                    continue
+                else:
+                    info = item.query_info(
+                        "standard::content-type,standard::type",
+                        Gio.FileQueryInfoFlags.NONE,
+                        None,
+                    )
+
+                file_type = info.get_file_type()
+                mime_type = info.get_content_type() or ""
+
+                if file_type == Gio.FileType.DIRECTORY:
+                    self.mpv.loadfile(path, "append-play")
+                    continue
+
+                valid_types = ("video/", "audio/", "image/")
+                if mime_type.startswith(valid_types):
+                    self.mpv.loadfile(path, "append-play")
+
+                GLib.idle_add(
+                    lambda *a: self.win._on_shuffle_toggled(
+                        self.win.playlist_shuffle_toggle_button
+                    )
+                )
+
+            elif isinstance(item, str):  # URL string
+                self.mpv.loadfile(item, "append-play")
 
         self._populate_list()
         self.spinner.set_visible(False)
@@ -110,23 +135,33 @@ class Playlist(Adw.Dialog):
 
         for index, item in enumerate(playlist):
             path = item.get("filename", "")
-            path_with_ext = os.path.basename(path)
-            file_title = path_with_ext
+            name_with_ext = os.path.basename(path)
             parent_dir = os.path.basename(os.path.dirname(path))
             dir = parent_dir if parent_dir else path
+            dir = GLib.markup_escape_text(dir)
 
             row = Adw.ActionRow(title=dir)
             row.add_css_class("property")
-            row.set_activatable(True)
+            row.props.activatable = True
 
             icon_name = "cine-applications-multimedia-symbolic"
+            file_title = os.path.splitext(name_with_ext)[0]
 
-            info = Gio.File.new_for_path(path).query_info(
-                "standard::content-type", Gio.FileQueryInfoFlags.NONE, None
-            )
-            content_type = info.get_content_type()
+            if not is_local_path(path):
+                content_type = "mpv-url"
+                file_title = item.get("title") or file_title
+            else:
+                try:
+                    info = Gio.File.new_for_path(path).query_info(
+                        "standard::content-type", Gio.FileQueryInfoFlags.NONE, None
+                    )
+                    content_type = info.get_content_type()
+                except:
+                    content_type = "error"
+
             if content_type == "inode/directory":
                 icon_name = "cine-folder-symbolic"
+                file_title = name_with_ext
                 if not os.listdir(path):
                     row.set_sensitive(False)
             elif content_type:
@@ -138,8 +173,12 @@ class Playlist(Adw.Dialog):
                     icon_name = "cine-video-x-generic-symbolic"
                 elif "image" in content_type:
                     icon_name = "cine-image-x-generic-symbolic"
-                file_title = os.path.splitext(path_with_ext)[0]
+                elif content_type == "mpv-url":
+                    icon_name = "cine-globe-symbolic"
+                elif content_type == "error":
+                    icon_name = "cine-warning-symbolic"
 
+            file_title = GLib.markup_escape_text(file_title)
             row.set_subtitle(file_title)
             row.set_icon_name(icon_name)
             row.connect("activated", self._on_file_activated, index)

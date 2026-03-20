@@ -5,6 +5,7 @@ template $Playlist: Adw.Dialog {
 	title: _("Playlist");
 	content-width: 600;
 	presentation-mode: bottom_sheet;
+	name: "playlist";
 
 	styles [
 		"osd",
@@ -27,6 +28,12 @@ template $Playlist: Adw.Dialog {
 						icon-name: "folder-new-symbolic";
 						action-name: "win.add-playlist-folder";
 						tooltip-text: _("Add Folder");
+					}
+
+					Button {
+						icon-name: "insert-link-symbolic";
+						action-name: "win.add-url";
+						tooltip-text: _("Add URL");
 					}
 
 					[start]

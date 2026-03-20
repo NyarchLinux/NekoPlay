@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg1" width="16" height="16" gpa:state="0" gpa:version="1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:gpa="https://www.gtk.org/grappa" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata id="metadata1">
+  <rdf:RDF>
+   <cc:Work>
+    <cc:license rdf:resource="https://creativecommons.org/publicdomain/zero/1.0/"/>
+    <dc:subject>
+     <rdf:Bag>
+      <rdf:li>dialog wanrning explamation mark</rdf:li>
+     </rdf:Bag>
+    </dc:subject>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Jakub Steiner</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <path id="path0" class="transparent-fill foreground-stroke" d="m5.6529 2.4334-4.3058 8.1332c-0.49561 0.9362-0.46457 2.0635 0.0818 2.971 0.54637 0.9075 1.5282 1.4624 2.5875 1.4624h7.9672c1.0593 0 2.0411-0.5549 2.5875-1.4624s0.5774-2.0348 0.0818-2.971l-4.3058-8.1332c-0.46027-0.86939-1.3634-1.4131-2.3471-1.4131s-1.8868 0.54375-2.3471 1.4131z" fill="none" opacity=".5" stroke="url(#gpa:foreground) rgb(0,0,0)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" gpa:states="0" gpa:stroke="foreground"/>
+ <path id="path1" class="transparent-fill foreground-stroke" d="m8 5v4" fill="none" opacity=".5" stroke="url(#gpa:foreground) rgb(0,0,0)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" gpa:states="0" gpa:stroke="foreground"/>
+ <path id="path2" class="transparent-fill foreground-stroke" d="m7.9766 12h0.08203" fill="none" opacity=".5" stroke="url(#gpa:foreground) rgb(0,0,0)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" gpa:states="0" gpa:stroke="foreground"/>
+</svg>

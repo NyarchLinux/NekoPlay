@@ -27,6 +27,7 @@
     <file alias="cine-volume-mid-symbolic.svg">../data/icons/scalable/actions/cine-volume-mid-symbolic.svg</file>
     <file alias="cine-volume-low-symbolic.svg">../data/icons/scalable/actions/cine-volume-low-symbolic.svg</file>
     <file alias="cine-volume-overamp-symbolic.svg">../data/icons/scalable/actions/cine-volume-overamp-symbolic.svg</file>
+    <file alias="cine-warning-symbolic.svg">../data/icons/scalable/actions/cine-warning-symbolic.svg</file>
     <file alias="cine-subtitles-off-symbolic.svg">../data/icons/scalable/actions/cine-subtitles-off-symbolic.svg</file>
     <file alias="cine-subtitles-symbolic.svg">../data/icons/scalable/actions/cine-subtitles-symbolic.svg</file>
     <file alias="cine-video-symbolic.svg">../data/icons/scalable/actions/cine-video-symbolic.svg</file>
@@ -36,6 +37,7 @@
     <file alias="cine-applications-multimedia-symbolic.svg">../data/icons/scalable/actions/cine-applications-multimedia-symbolic.svg</file>
     <file alias="cine-audio-x-generic-symbolic.svg">../data/icons/scalable/actions/cine-audio-x-generic-symbolic.svg</file>
     <file alias="cine-folder-symbolic.svg">../data/icons/scalable/actions/cine-folder-symbolic.svg</file>
+    <file alias="cine-globe-symbolic.svg">../data/icons/scalable/actions/cine-globe-symbolic.svg</file>
     <file alias="cine-image-x-generic-symbolic.svg">../data/icons/scalable/actions/cine-image-x-generic-symbolic.svg</file>
     <file alias="cine-video-x-generic-symbolic.svg">../data/icons/scalable/actions/cine-video-x-generic-symbolic.svg</file>
     <file alias="cine-playlist-m3u-symbolic.svg">../data/icons/scalable/actions/cine-playlist-m3u-symbolic.svg</file>
@@ -43,6 +45,7 @@
     <!-- missing icons from runtime(?) -->
     <file alias="document-edit-symbolic.svg">../data/icons/scalable/actions/document-edit-symbolic.svg</file>
     <file alias="edit-undo-symbolic.svg">../data/icons/scalable/actions/edit-undo-symbolic.svg</file>
+    <file alias="insert-link-symbolic.svg">../data/icons/scalable/actions/insert-link-symbolic.svg</file>
     <file alias="object-flip-horizontal-symbolic.svg">../data/icons/scalable/actions/object-flip-horizontal-symbolic.svg</file>
     <file alias="object-flip-vertical-symbolic.svg">../data/icons/scalable/actions/object-flip-vertical-symbolic.svg</file>
     <file alias="object-rotate-left-symbolic.svg">../data/icons/scalable/actions/object-rotate-left-symbolic.svg</file>

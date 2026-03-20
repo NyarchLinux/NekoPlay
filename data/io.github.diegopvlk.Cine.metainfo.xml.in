@@ -38,19 +38,19 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/diegopvlk/Cine/f5b21fb60d862dc05bad6cf0089bbd7369fb396a/screenshots/video.png</image>
+      <image>https://raw.githubusercontent.com/diegopvlk/Cine/65cb73369e923eee2fea2878d9dc0e0d91c91160/screenshots/video.png</image>
       <caption>Video Playing</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/diegopvlk/Cine/f5b21fb60d862dc05bad6cf0089bbd7369fb396a/screenshots/preferences.png</image>
+      <image>https://raw.githubusercontent.com/diegopvlk/Cine/65cb73369e923eee2fea2878d9dc0e0d91c91160/screenshots/preferences.png</image>
       <caption>Preferences</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/diegopvlk/Cine/f5b21fb60d862dc05bad6cf0089bbd7369fb396a/screenshots/options.png</image>
+      <image>https://raw.githubusercontent.com/diegopvlk/Cine/65cb73369e923eee2fea2878d9dc0e0d91c91160/screenshots/options.png</image>
       <caption>Video Options</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/diegopvlk/Cine/f5b21fb60d862dc05bad6cf0089bbd7369fb396a/screenshots/window.png</image>
+      <image>https://raw.githubusercontent.com/diegopvlk/Cine/65cb73369e923eee2fea2878d9dc0e0d91c91160/screenshots/window.png</image>
       <caption>Main Window</caption>
     </screenshot>
   </screenshots>
@@ -71,6 +71,26 @@
   </requires>
 
   <releases>
+    <release version="1.1.1" date="2026-03-14">
+      <description translate="no">
+        <ul>
+          <li>Added Chinese translation</li>
+          <li>Added support for window-maximized=yes</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.1.0" date="2026-03-05">
+      <description translate="no">
+        <ul>
+          <li>New: Added support for URLs/streaming</li>
+          <li>New: Preference for progress bar thumbnail preview</li>
+          <li>New: Added crop to options menu</li>
+          <li>Improved UI for RTL languages</li>
+          <li>Improved high contrast support</li>
+          <li>Added shortcuts to change subtitle/audio</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.0.9" date="2026-02-20">
       <description translate="no">
         <ul>

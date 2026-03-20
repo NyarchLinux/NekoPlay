@@ -23,8 +23,11 @@ import mpv
 import ctypes
 from typing import cast
 from gettext import gettext as _
+from urllib.parse import urlparse
+from time import time
 
 from .utils import (
+    is_local_path,
     get_gpu_vendor,
     format_time,
     MBTN_MAP,
@@ -50,7 +53,8 @@ gi.require_version("GLib", "2.0")
 gi.require_version("Gtk", "4.0")
 gi.require_version("GdkWayland", "4.0")
 gi.require_version("GdkX11", "4.0")
-from gi.repository import Adw, Gio, Gdk, GLib, Gtk
+gi.require_version("GObject", "2.0")
+from gi.repository import Adw, Gio, Gdk, GLib, Gtk, GObject
 from gi.repository import (
     GdkWayland,  # pyright: ignore[reportAttributeAccessIssue]
     GdkX11,
@@ -149,6 +153,12 @@ class CineWindow(Adw.ApplicationWindow):
         self.click_holding = False
         self.prev_speed: float = 1.0
         self.hide_icon_indicator: bool = True
+        self.preview_player: mpv.MPV | None = None
+        self.update_preview_id: int = 0
+        self.local_path: bool = True
+        self.last_preview_update: float = 0
+        self.last_preview_seek: int = 0
+        self.error_count: int = 0
 
         self.mpv_ctx: mpv.MpvRenderContext
 
@@ -188,7 +198,11 @@ class CineWindow(Adw.ApplicationWindow):
             volume_max=150,
             keep_open=True,
             keep_open_pause=False,
+            ytdl=True,
         )
+
+        if self.mpv["window-maximized"]:
+            self.maximize()
 
         self.conf_hwdec = list(
             filter(lambda x: x != "no", cast(list, self.mpv["hwdec"]))
@@ -221,12 +235,17 @@ class CineWindow(Adw.ApplicationWindow):
         self._create_action("add-audio-tracks", self._on_add_audio_dialog)
         self._create_action("add-playlist-files", self._on_add_playlist_dialog)
         self._create_action("open-folder", self._on_open_folder_dialog)
+        self._create_action("open-url", self._on_open_url)
+        self._create_action("add-url", self._on_add_url)
         self._create_action("add-playlist-folder", self._on_open_folder_dialog)
         self._create_action("open-playlist-dialog", self._on_open_playlist)
         self._create_action("open-sub-menu", self._on_open_sub_menu)
         self._create_action("open-audio-menu", self._on_open_audio_menu)
+
         self._create_action("skip-90", self._on_skip_90_action)
         self.app.set_accels_for_action("win.open-folder", ["<primary>i"])
+        self.app.set_accels_for_action("win.open-url", ["<primary>u"])
+        self.app.set_accels_for_action("win.add-url", ["<shift><primary>u"])
         self.app.set_accels_for_action("win.add-playlist-folder", ["<shift><primary>i"])
         self.app.set_accels_for_action("win.open-playlist-dialog", ["<primary>p"])
         self.app.set_accels_for_action("win.clear-and-add", ["<primary>o"])
@@ -311,13 +330,27 @@ class CineWindow(Adw.ApplicationWindow):
         # video_progress_scale can be different heights because of marks, use a box instead
         self.chapter_popover.set_parent(self.vid_progress_scale_box)
         self.chapter_popover.set_autohide(False)
+        self.chapter_popover.set_has_arrow(False)
+        self.chapter_popover.add_css_class("chapter-popover")
+
+        self.popover_content_box = Gtk.Box()
+        self.popover_content_box.props.orientation = Gtk.Orientation.VERTICAL
+
+        self.thumb_preview = Gtk.Picture()
+        self.thumb_preview.set_valign(Gtk.Align.START)
+        self.thumb_preview.set_content_fit(Gtk.ContentFit.SCALE_DOWN)
+        self.thumb_preview.set_halign(Gtk.Align.CENTER)
+        self.popover_content_box.append(self.thumb_preview)
 
         self.chapter_popover_label = Gtk.Label()
         self.chapter_popover_label.set_use_markup(True)
         self.chapter_popover_label.set_justify(Gtk.Justification.CENTER)
         self.chapter_popover_label.set_xalign(0.5)
         self.chapter_popover_label.add_css_class("numeric")
-        self.chapter_popover.set_child(self.chapter_popover_label)
+        self.chapter_popover_label.set_halign(Gtk.Align.CENTER)
+
+        self.popover_content_box.append(self.chapter_popover_label)
+        self.chapter_popover.set_child(self.popover_content_box)
 
         self.gl_area.connect("realize", self._on_realize_area)
         self.gl_area.connect("render", self._on_render_area)
@@ -330,7 +363,7 @@ class CineWindow(Adw.ApplicationWindow):
 
         progress_hover = Gtk.EventControllerMotion()
         progress_hover.connect("motion", self._on_progress_motion)
-        progress_hover.connect("leave", lambda _ctrl: self.chapter_popover.popdown())
+        progress_hover.connect("leave", lambda *a: self.chapter_popover.popdown())
         self.video_progress_scale.add_controller(progress_hover)
 
         scroll_controller_progress = Gtk.EventControllerScroll.new(
@@ -339,8 +372,7 @@ class CineWindow(Adw.ApplicationWindow):
         scroll_controller_progress.connect("scroll", self._on_progress_scroll)
         self.video_progress_scale.add_controller(scroll_controller_progress)
 
-        click_gesture = Gtk.GestureClick()
-        click_gesture.set_button(0)
+        click_gesture = Gtk.GestureClick(button=0)
         click_gesture.connect("pressed", self._on_click_pressed)
         click_gesture.connect("released", self._on_click_released)
         click_gesture.connect("cancel", self._cancel_click_hold)
@@ -360,6 +392,7 @@ class CineWindow(Adw.ApplicationWindow):
         scroll_controller_vol.connect("scroll", self._on_mouse_scroll_volume)
 
         drop_target = Gtk.DropTarget.new(Gdk.FileList, Gdk.DragAction.COPY)
+        drop_target.set_gtypes([Gdk.FileList, GObject.TYPE_STRING])
         drop_target.connect("enter", self._on_drop_enter)
         drop_target.connect("leave", self._on_drop_leave)
         drop_target.connect("drop", self._on_drop)
@@ -688,9 +721,184 @@ class CineWindow(Adw.ApplicationWindow):
         self._show_ui()
         self.audio_tracks_menu_button.popup()
 
+    def _on_open_url(self, *args, add=False):
+        mode = "append-play" if add else "replace"
+        view = Adw.ToolbarView()
+        header_bar = Adw.HeaderBar()
+        h_title = _("Add URL") if add else _("Open URL")
+        header_bar.set_title_widget(Adw.WindowTitle(title=h_title))
+        view.add_top_bar(header_bar)
+
+        content_box = Gtk.Box(
+            orientation=Gtk.Orientation.VERTICAL,
+            spacing=18,
+            margin_bottom=18,
+            margin_start=18,
+            margin_end=18,
+        )
+
+        view.set_content(content_box)
+        entry_row = Adw.EntryRow(title=_("URL"), activates_default=True)
+        list_box = Gtk.ListBox(
+            selection_mode=Gtk.SelectionMode.NONE, css_classes=["boxed-list"]
+        )
+        list_box.append(entry_row)
+        content_box.append(list_box)
+
+        btn_open = Gtk.Button(
+            label=_("Add") if add else _("Open"),
+            css_classes=["pill", "suggested-action"],
+            halign=Gtk.Align.CENTER,
+            sensitive=False,
+        )
+
+        content_box.append(btn_open)
+        dialog = Adw.Dialog(content_width=450, child=view, default_widget=btn_open)
+        self.url = ""
+
+        def is_valid_input(text):
+            url = text.strip()
+            parsed = urlparse(url)
+            if parsed.scheme in cast(list, self.mpv.protocol_list):
+                self.url = url
+                return True
+            elif os.path.exists(url):
+                self.url = url
+                return True
+            elif url:
+                self.url = f"https://{url}"
+                return True
+            return False
+
+        def on_text_changed(*_):
+            is_valid = is_valid_input(entry_row.get_text())
+            btn_open.set_sensitive(is_valid)
+
+        entry_row.connect("notify::text", on_text_changed)
+
+        def open_url(*args):
+            self.mpv.loadfile(self.url, mode)
+            dialog.close()
+            if dialog_p := cast(Playlist, self.get_visible_dialog()):
+                if dialog_p.props.name == "playlist":
+                    dialog_p._populate_list()
+
+        btn_open.connect("clicked", open_url)
+        dialog.present(self)
+
+    def _on_add_url(self, *args):
+        self._on_open_url(add=True)
+
+    def setup_preview_player(self):
+        if not self.local_path:
+            self.thumb_preview.props.visible = False
+            return
+
+        try:
+            params = cast(dict, self.mpv.video_params)
+            v_width = params.get("w") or 1920
+            v_height = params.get("h") or 1080
+        except:
+            v_width, v_height = 1920, 1080
+
+        if v_width >= v_height:
+            # Horizontal or square
+            width = 200
+            height = int((v_height / v_width) * width)
+        else:
+            # Vertical
+            height = 200
+            width = int((v_width / v_height) * height)
+
+        if self.preview_player is None:
+            self.preview_player = mpv.MPV(
+                vo="null",
+                ao="null",
+                hwdec=self.mpv.hwdec,
+                ytdl=False,
+                config=False,
+                osc=False,
+                terminal=False,
+                load_scripts=False,
+                msg_level="all=no",
+                vd_lavc_threads=2,
+                vd_lavc_fast=True,
+                vd_lavc_skiploopfilter="all",
+                vd_lavc_software_fallback=1,
+                sws_scaler="fast-bilinear",
+                demuxer_readahead_secs=0,
+                demuxer_max_bytes="128KiB",
+                hr_seek=False,
+                gpu_dumb_mode=True,
+                pause=True,
+                ovc="rawvideo",
+                of="image2",
+                ofopts="update=1",
+            )
+
+            self.preview_player["load-osd-console"] = "no"
+            self.preview_player["load-stats-overlay"] = "no"
+            self.preview_player["load-auto-profiles"] = "no"
+            self.preview_player["really-quiet"] = "yes"
+
+            @self.preview_player.property_observer("time-pos")
+            def pos_observer(_name, pos):
+                if hasattr(self, "hover_time") and pos:
+
+                    def on_screenshot_ready(_, result):
+                        if result is None:
+                            self.thumb_preview.props.visible = False
+                            return
+
+                        self._apply_preview_texture(result)
+
+                    if self.preview_player:
+                        self.preview_player.command_async(
+                            "screenshot-raw",
+                            callback=on_screenshot_ready,
+                        )
+
+        self.preview_player.loadfile(self.mpv.path, "replace")
+        self.preview_player["vf"] = (
+            f"scale={width}:{height}:force_original_aspect_ratio=decrease,format=bgra"
+        )
+
+    def _update_video_preview(self):
+        if self.preview_player is None or not self.preview_player.path:
+            return
+
+        def seek():
+            if self.last_preview_seek == int(self.hover_time):
+                return
+            self.last_preview_seek = int(self.hover_time)
+
+            try:
+                if self.preview_player:
+                    self.preview_player.command_async(
+                        "seek", self.hover_time, "absolute+keyframes"
+                    )
+            except:
+                pass
+
+        GLib.idle_add(seek)
+
+    def _apply_preview_texture(self, res):
+        try:
+            self.thumb_preview.props.paintable = Gdk.MemoryTexture.new(
+                res["w"],
+                res["h"],
+                Gdk.MemoryFormat.B8G8R8A8,
+                GLib.Bytes.new(res["data"]),
+                res["stride"],
+            )
+        except Exception as e:
+            self.thumb_preview.props.visible = False
+            print(f"Preview texture error: {e}")
+
     def _on_progress_motion(self, _controller, x, y):
         if (x, y) == self.prev_prog_motion_xy:
             return
+
         self.prev_prog_motion_xy = (x, y)
 
         width = self.video_progress_scale.get_width()
@@ -699,20 +907,21 @@ class CineWindow(Adw.ApplicationWindow):
             return
 
         percentage = max(0, min(1, x / width))
-        hover_time = percentage * duration
+        self.hover_time = percentage * duration
+
         target_chapter = None
         if self.current_chapters:
             for chapter in self.current_chapters:
-                if chapter.get("time", 0) <= hover_time:
+                if chapter.get("time", 0) <= self.hover_time:
                     target_chapter = chapter
                 else:
                     break
 
-        time_str = format_time(hover_time)
+        time_str = format_time(self.hover_time)
         if target_chapter:
-            title = target_chapter.get("title") or "Chapter"
-            escaped_title = GLib.markup_escape_text(title)
-            markup = f"<b>{escaped_title}</b>\n{time_str}"
+            title = target_chapter.get("title") or _("Chapter")
+            title = GLib.markup_escape_text(title)
+            markup = f"<b>{title}</b>\n{time_str}"
         else:
             markup = f"{time_str}"
 
@@ -722,11 +931,30 @@ class CineWindow(Adw.ApplicationWindow):
 
         rect = Gdk.Rectangle()
         rect.x = clamped_x
-        rect.y = 2
+        rect.y = 0
         rect.width = 41
 
         self.chapter_popover.set_pointing_to(rect)
         self.chapter_popover.popup()
+
+        if not settings.get_boolean("thumbnail-preview") or not self.local_path:
+            return
+
+        if self.update_preview_id > 0:
+            GLib.source_remove(self.update_preview_id)
+            self.update_preview_id = 0
+
+        curr_time = time()
+
+        if curr_time - self.last_preview_update > 0.35:
+            self._update_video_preview()
+            self.last_preview_update = curr_time
+
+        def late_update_preview():
+            self.update_preview_id = 0
+            self._update_video_preview()
+
+        self.update_preview_id = GLib.timeout_add(70, late_update_preview)
 
     def _on_progress_scroll(self, controller, _dx, dy):
         event: Gdk.ScrollEvent = controller.get_current_event()
@@ -891,7 +1119,8 @@ class CineWindow(Adw.ApplicationWindow):
             self.mpv.command("playlist-unshuffle")
 
         if dialog := cast(Playlist, self.get_visible_dialog()):
-            dialog._populate_list()
+            if dialog.props.name == "playlist":
+                dialog._populate_list()
 
     def _on_loop_playlist_toggled(self, button):
         if button.props.active:
@@ -934,18 +1163,24 @@ class CineWindow(Adw.ApplicationWindow):
     def _on_drop_enter(self, target, _x, _y):
         GLib.timeout_add(10, self.revealer_drop_indicator.set_reveal_child, True)
         drop = target.get_current_drop()
+        formats = drop.get_formats()
+        target_type = (
+            Gdk.FileList if formats.contain_gtype(Gdk.FileList) else GObject.TYPE_STRING
+        )
 
         def on_read_done(source, result):
             try:
                 value = source.read_value_finish(result)
-                files = value.get_files()
-                f_name = files[0].get_basename().lower()
-                is_playing = not self.mpv.idle_active
 
-                if is_playing and any(f_name.endswith(ext) for ext in SUB_EXTS):
-                    self.drop_icon.props.icon_name = "cine-subtitles-symbolic"
-                    self.drop_label.props.label = _("Add Subtitle Track")
-                    return
+                if isinstance(value, Gdk.FileList):
+                    f_name = value.get_files()[0].get_basename() or ""
+                    f_name = f_name.lower()
+                    is_playing = not self.mpv.idle_active
+
+                    if is_playing and any(f_name.endswith(ext) for ext in SUB_EXTS):
+                        self.drop_icon.props.icon_name = "cine-subtitles-symbolic"
+                        self.drop_label.props.label = _("Add Subtitle Track")
+                        return
 
                 self.drop_icon.props.icon_name = "cine-playback-start-symbolic"
                 self.drop_label.props.label = _("Play")
@@ -957,8 +1192,7 @@ class CineWindow(Adw.ApplicationWindow):
                 self.spinner.set_visible(False)
                 return
 
-        drop.read_value_async(Gdk.FileList, GLib.PRIORITY_DEFAULT, None, on_read_done)
-
+        drop.read_value_async(target_type, GLib.PRIORITY_DEFAULT, None, on_read_done)
         return True
 
     def _on_drop_leave(self, _target):
@@ -966,37 +1200,56 @@ class CineWindow(Adw.ApplicationWindow):
         GLib.timeout_add(100, self.drop_icon.set_from_icon_name, "")
         GLib.timeout_add(100, self.drop_label.set_text, "")
 
-    def _on_drop(self, _target, list: Gdk.FileList, _x, _y):
+    def _on_drop(self, _target, value, _x, _y):
         first_file = True
 
-        for file in list.get_files():
-            info = file.query_info(
-                "standard::content-type,standard::type",
-                Gio.FileQueryInfoFlags.NONE,
-                None,
-            )
-            path = file.get_path() or file.get_uri()
-            file_type = info.get_file_type()
-            mime_type = info.get_content_type() or ""
+        items: list[Gio.File] | list[str] = (
+            value.get_files()
+            if isinstance(value, Gdk.FileList)
+            else [value] if isinstance(value, str) else []
+        )
 
+        for item in items:
             mode = "replace" if first_file else "append-play"
 
-            if file_type == Gio.FileType.DIRECTORY:
-                self.mpv.loadfile(path, mode)
+            if isinstance(item, Gio.File):
+                path = item.get_path() or item.get_uri()
+
+                # URL Thumbnail
+                is_url = not is_local_path(path)
+
+                if is_url:
+                    self.mpv.loadfile(path, mode)
+                    first_file = False
+                    continue
+                else:
+                    info = item.query_info(
+                        "standard::content-type,standard::type",
+                        Gio.FileQueryInfoFlags.NONE,
+                        None,
+                    )
+
+                file_type = info.get_file_type()
+                mime_type = info.get_content_type() or ""
+
+                if file_type == Gio.FileType.DIRECTORY:
+                    self.mpv.loadfile(path, mode)
+                    first_file = False
+                    continue
+
+                name = cast(str, item.get_basename()).lower()
+                if name.endswith(SUB_EXTS):
+                    if not self.mpv.idle_active:
+                        self.mpv.command("sub-add", path, "select")
+                    continue
+
+                if mime_type.startswith(("video/", "audio/", "image/")) or is_url:
+                    self.mpv.loadfile(path, mode)
+                    first_file = False
+
+            elif isinstance(item, str):  # URL string
+                self.mpv.loadfile(item, mode)
                 first_file = False
-                continue
-
-            name = cast(str, file.get_basename()).lower()
-            if name.endswith(SUB_EXTS):
-                if not self.mpv.idle_active:
-                    self.mpv.command("sub-add", path, "select")
-                continue
-
-            valid_types = ("video/", "audio/", "image/")
-            if mime_type.startswith(valid_types):
-                self.mpv.loadfile(path, mode)
-                first_file = False
-
         GLib.idle_add(
             lambda *a: self._on_shuffle_toggled(self.playlist_shuffle_toggle_button)
         )
@@ -1298,19 +1551,46 @@ class CineWindow(Adw.ApplicationWindow):
 
         @self.mpv.event_callback("file-loaded")
         def on_files_loaded(event):
-            GLib.idle_add(self.spinner.set_visible, False)
+            def set():
+                self.spinner.set_visible(False)
+                self.local_path = is_local_path(self.mpv.path)
+
+                if settings.get_boolean("thumbnail-preview"):
+                    self.thumb_preview.props.visible = True
+                    self.setup_preview_player()
+                else:
+                    self.thumb_preview.props.visible = False
+                    if self.preview_player:
+                        self.preview_player.terminate()
+                        self.preview_player = None
+
+            GLib.idle_add(set)
+            self.error_count = 0
 
         @self.mpv.event_callback("end-file")
         def on_end_file(event):
             GLib.idle_add(self.spinner.set_visible, False)
             info = event.as_dict()
             reason = info["reason"]
+
             if reason == b"error":
+                # Avoid stopping playback on last file/folder error
+                current_pos = self.mpv.playlist_pos
+                playlist_count = len(cast(list, self.mpv.playlist))
+                if current_pos == playlist_count - 1:
+                    self.mpv.playlist_pos = 0
+
                 print(f"File error path: {self.loaded_path}")
-                error = info["file_error"]
-                toast = Adw.Toast.new(_("File Error") + f": {error.decode('utf-8')}")
-                self.toast_overlay.add_toast(toast)
-                self.mpv.stop()
+                self.error_count += 1
+
+                if self.error_count in (1, 20):
+                    error = info["file_error"].decode("utf-8")
+                    toast = Adw.Toast.new(_("File Error") + f": {error}")
+                    self.toast_overlay.add_toast(toast)
+
+                if self.error_count == 20:
+                    self.mpv.stop()
+                    self.error_count = 0
 
         @self.mpv.property_observer("path")
         def on_path_change(_name, has_file):

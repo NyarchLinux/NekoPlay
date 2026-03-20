@@ -21,6 +21,7 @@ import gi
 import os
 import ctypes
 from gettext import gettext as _
+from urllib.parse import urlparse
 
 gi.require_version("GLib", "2.0")
 from gi.repository import GLib
@@ -32,6 +33,13 @@ base_config = GLib.get_user_config_dir()
 CONFIG_DIR = os.path.join(base_config, "cine")
 INPUT_CONF = os.path.join(CONFIG_DIR, "input.conf")
 os.makedirs(CONFIG_DIR, exist_ok=True)
+
+
+def is_local_path(path):
+    parsed = urlparse(str(path))
+    if not parsed.scheme or parsed.scheme == "file" or len(parsed.scheme) == 1:
+        return True
+    return False
 
 
 def get_gpu_vendor(display, libgl):

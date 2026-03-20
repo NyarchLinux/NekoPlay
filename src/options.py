@@ -28,6 +28,19 @@ from .anime4k import apply_anime4k_shaders, get_current_mode, MODE_INDEX_MAP, MO
 gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk
 
+RATIOS = [
+    None,
+    16 / 9,
+    4 / 3,
+    1 / 1,
+    16 / 10,
+    2.00,
+    2.21,
+    2.35,
+    2.39,
+    5 / 4,
+]
+
 
 @Gtk.Template(resource_path="/moe/nyarchlinux/nekoplay/options.ui")
 class OptionsMenuButton(Gtk.MenuButton):
@@ -36,6 +49,8 @@ class OptionsMenuButton(Gtk.MenuButton):
     flip_box: Gtk.Box = Gtk.Template.Child()
     aspect_dropdown: Gtk.DropDown = Gtk.Template.Child()
     aspect_list: Gtk.StringList = Gtk.Template.Child()
+    crop_dropdown: Gtk.DropDown = Gtk.Template.Child()
+    crop_list: Gtk.StringList = Gtk.Template.Child()
     upscale_dropdown: Gtk.DropDown = Gtk.Template.Child()
     zoom_spin: Gtk.SpinButton = Gtk.Template.Child()
     contrast_spin: Gtk.SpinButton = Gtk.Template.Child()
@@ -56,6 +71,8 @@ class OptionsMenuButton(Gtk.MenuButton):
         from .window import CineWindow
 
         self.win = cast(CineWindow, self.get_root())
+
+        self.add_css_class("options-menu-btn")
 
         for spin in [
             self.zoom_spin,
@@ -80,9 +97,11 @@ class OptionsMenuButton(Gtk.MenuButton):
             spin_up.props.width_request = 50
 
         # This is not pretty, but for some reason is not possible to close
-        # the OptionsMenuButton popover after opening aspect_dropdown
-        popover_drop = self.aspect_dropdown.get_first_child().get_next_sibling()  # type: ignore
-        popover_drop.set_autohide(False)  # type: ignore
+        # the OptionsMenuButton popover after opening dropdown
+        popover_aspect = self.aspect_dropdown.get_first_child().get_next_sibling()  # type: ignore
+        popover_aspect.set_autohide(False)  # type: ignore
+        popover_crop = self.crop_dropdown.get_first_child().get_next_sibling()  # type: ignore
+        popover_crop.set_autohide(False)  # type: ignore
 
     def _on_active(self, *arg):
         if not self.get_active():
@@ -130,7 +149,24 @@ class OptionsMenuButton(Gtk.MenuButton):
         set_open_val(self.audio_delay_spin, float(self.win.mpv["audio-delay"] or 0))
         set_open_val(self.speed_spin, float(self.win.mpv["speed"] or 1.0))
 
-        # Sync upscale dropdown with current shader state
+        try:
+            crop_str = cast(str, self.win.mpv["video-crop"])
+
+            if not crop_str:
+                self.crop_dropdown.set_selected(0)
+            else:
+                parts = crop_str.split("x")
+                w = int(parts[0])
+                h = int(parts[1].split("+")[0])
+                current_ratio = int(w) / int(h)
+
+                for i, r in enumerate(RATIOS):
+                    if i > 0 and abs(current_ratio - r) < 0.01:
+                        self.crop_dropdown.set_selected(i)
+                        break
+        except:
+            self.crop_dropdown.set_selected(0)
+
         current_mode = get_current_mode(self.win.mpv)
         upscale_idx = MODE_TO_INDEX.get(current_mode, 0)
         if self.upscale_dropdown.get_selected() != upscale_idx:
@@ -139,6 +175,7 @@ class OptionsMenuButton(Gtk.MenuButton):
     @Gtk.Template.Callback()
     def _on_reset_all_options(self, _btn):
         self.aspect_dropdown.set_selected(0)
+        self.crop_dropdown.set_selected(0)
         self._on_rotate_reset(None)
         self._on_flip_reset(None)
         self.upscale_dropdown.set_selected(0)
@@ -152,6 +189,7 @@ class OptionsMenuButton(Gtk.MenuButton):
         self.audio_delay_spin.set_value(0)
         self.speed_spin.set_value(1.0)
 
+    # --- ASPECT ---
     @Gtk.Template.Callback()
     def _on_aspect_changed(self, dropdown, *arg):
         idx = dropdown.get_selected()
@@ -163,6 +201,35 @@ class OptionsMenuButton(Gtk.MenuButton):
     @Gtk.Template.Callback()
     def _on_aspect_reset(self, _btn):
         self.aspect_dropdown.set_selected(0)
+
+    # --- CROP ---
+    @Gtk.Template.Callback()
+    def _on_crop_reset(self, button):
+        self.crop_dropdown.set_selected(0)
+
+    @Gtk.Template.Callback()
+    def _on_crop_changed(self, dropdown, *args):
+        selected_idx = dropdown.get_selected()
+        if selected_idx == 0:
+            self.win.mpv.command_async("set", "video-crop", "")
+            return
+
+        w = cast(int, self.win.mpv._get_property("video-params/w"))
+        h = cast(int, self.win.mpv._get_property("video-params/h"))
+
+        target_ratio = RATIOS[selected_idx]
+        current_ratio = w / h
+
+        if current_ratio > target_ratio:
+            # wider: crop the sides
+            new_w = int(h * target_ratio)
+            new_h = h
+        else:
+            # taller: crop the top/bottom
+            new_w = w
+            new_h = int(w / target_ratio)
+
+        self.win.mpv.command_async("set", "video-crop", f"{new_w}x{new_h}")
 
     # --- ROTATE ---
     @Gtk.Template.Callback()
