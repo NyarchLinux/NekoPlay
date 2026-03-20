@@ -25,7 +25,7 @@ gi.require_version("Gtk", "4.0")
 from gi.repository import Gio, GLib, Gtk
 from gettext import gettext as _
 
-APP_ID = "io.github.diegopvlk.Cine"
+APP_ID = "moe.nyarchlinux.nekoplay"
 
 # This is a mess, but it (kinda) works :D
 # Keep PlaybackStatus, Metadata and CanSeek commented, it causes stutters
@@ -143,7 +143,7 @@ class MPRIS:
         self.emit_properties_changed(
             "org.mpris.MediaPlayer2",
             {
-                "Identity": GLib.Variant("s", _("Cine")),
+                "Identity": GLib.Variant("s", _("Nekoplay")),
                 "DesktopEntry": GLib.Variant("s", APP_ID),
             },
         )
@@ -361,7 +361,7 @@ class MPRIS:
 
         if interface == "org.mpris.MediaPlayer2":
             if prop == "Identity":
-                return GLib.Variant("s", _("Cine"))
+                return GLib.Variant("s", _("Nekoplay"))
             if prop == "DesktopEntry":
                 return GLib.Variant("s", APP_ID)
             if prop in ["CanQuit", "CanRaise"]:

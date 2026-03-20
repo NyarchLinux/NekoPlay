@@ -29,7 +29,7 @@ gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk
 
 
-@Gtk.Template(resource_path="/io/github/diegopvlk/Cine/options.ui")
+@Gtk.Template(resource_path="/moe/nyarchlinux/nekoplay/options.ui")
 class OptionsMenuButton(Gtk.MenuButton):
     __gtype_name__ = "OptionsMenuButton"
 

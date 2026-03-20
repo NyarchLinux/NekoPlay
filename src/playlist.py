@@ -29,7 +29,7 @@ from gi.repository import Adw, Gio, Gdk, GLib, Gtk
 from gettext import gettext as _
 
 
-@Gtk.Template(resource_path="/io/github/diegopvlk/Cine/playlist.ui")
+@Gtk.Template(resource_path="/moe/nyarchlinux/nekoplay/playlist.ui")
 class Playlist(Adw.Dialog):
     __gtype_name__ = "Playlist"
 

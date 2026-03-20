@@ -70,7 +70,7 @@ gtk = ctypes.CDLL("libgtk-4.so.1")
 display = Gdk.Display.get_default()
 
 
-@Gtk.Template(resource_path="/io/github/diegopvlk/Cine/window.ui")
+@Gtk.Template(resource_path="/moe/nyarchlinux/nekoplay/window.ui")
 class CineWindow(Adw.ApplicationWindow):
     __gtype_name__ = "CineWindow"
 
@@ -156,9 +156,9 @@ class CineWindow(Adw.ApplicationWindow):
             # terminal=True,
             # log_handler=print,
             loglevel="info",
-            audio_client_name=_("Cine"),
+            audio_client_name=_("Nekoplay"),
             screenshot_directory=SCREENSHOT_DIR,
-            screenshot_template="cine_%n",
+            screenshot_template="nekoplay_%n",
             config=True,
             config_dir=CONFIG_DIR,
             input_default_bindings=False,
@@ -244,7 +244,7 @@ class CineWindow(Adw.ApplicationWindow):
 
     def _present_shortcuts(self, *a):
         builder = Gtk.Builder.new_from_resource(
-            "/io/github/diegopvlk/Cine/shortcuts-dialog.ui"
+            "/moe/nyarchlinux/nekoplay/shortcuts-dialog.ui"
         )
         self.shortcuts_dialog = cast(
             Adw.ShortcutsDialog,  # pyright: ignore[reportAttributeAccessIssue]
@@ -257,7 +257,7 @@ class CineWindow(Adw.ApplicationWindow):
 
     def _setup_elements(self):
         self.set_default_size(DEFAULT_WIDTH, DEFAULT_HEIGHT)
-        self.set_title(_("Cine"))
+        self.set_title(_("Nekoplay"))
 
         for widget in [
             self.controls_wrap_box,
@@ -1460,7 +1460,7 @@ class CineWindow(Adw.ApplicationWindow):
 
                 if is_idle:
                     self.revealer_ui.set_reveal_child(True)
-                    self.set_title(_("Cine"))
+                    self.set_title(_("Nekoplay"))
                     self.hide_icon_indicator = True
 
                 self._sync_inhibit()

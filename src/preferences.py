@@ -27,7 +27,7 @@ from gi.repository import Adw, Gdk, Gio, Gtk
 
 from .anime4k import apply_anime4k_shaders, MODE_INDEX_MAP, MODE_TO_INDEX
 
-settings = Gio.Settings.new("io.github.diegopvlk.Cine")
+settings = Gio.Settings.new("moe.nyarchlinux.nekoplay")
 
 
 def sync_mpv_with_settings(window):
@@ -59,7 +59,7 @@ def sync_mpv_with_settings(window):
         apply_anime4k_shaders(player, anime4k_mode)
 
 
-@Gtk.Template(resource_path="/io/github/diegopvlk/Cine/preferences.ui")
+@Gtk.Template(resource_path="/moe/nyarchlinux/nekoplay/preferences.ui")
 class Preferences(Adw.Dialog):
     __gtype_name__ = "Preferences"
 

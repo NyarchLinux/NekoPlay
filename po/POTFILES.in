@@ -1,7 +1,7 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
-data/io.github.diegopvlk.Cine.desktop.in
-data/io.github.diegopvlk.Cine.metainfo.xml.in
+data/moe.nyarchlinux.nekoplay.desktop.in
+data/moe.nyarchlinux.nekoplay.metainfo.xml.in
 src/anime4k.py
 src/main.py
 src/mpris.py

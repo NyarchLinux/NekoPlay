@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the io.github.diegopvlk.Cine package.
+# This file is distributed under the same license as the moe.nyarchlinux.nekoplay package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: io.github.diegopvlk.Cine\n"
+"Project-Id-Version: moe.nyarchlinux.nekoplay\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-23 17:21-0300\n"
 "PO-Revision-Date: 2026-02-17 14:50-0300\n"
@@ -18,28 +18,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.8\n"
 
-#: data/io.github.diegopvlk.Cine.desktop.in:2 src/main.py:210 src/mpris.py:146
+#: data/moe.nyarchlinux.nekoplay.desktop.in:2 src/main.py:210 src/mpris.py:146
 #: src/mpris.py:364 src/window.py:154 src/window.py:253 src/window.py:1416
 #: src/window.blp:6
 msgid "Cine"
 msgstr "Cine"
 
-#: data/io.github.diegopvlk.Cine.desktop.in:3
-#: data/io.github.diegopvlk.Cine.metainfo.xml.in:23
+#: data/moe.nyarchlinux.nekoplay.desktop.in:3
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:23
 msgid "Play your videos"
 msgstr "Bekijk video's"
 
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/io.github.diegopvlk.Cine.desktop.in:10
+#: data/moe.nyarchlinux.nekoplay.desktop.in:10
 msgid "Audio;Video;Movie;TV;Film;Clip;Player;Cine;mpv;"
 msgstr "Audio;Video;Film;TV;Clip;Player;Speler;Cine;mpv;"
 
-#: data/io.github.diegopvlk.Cine.desktop.in:18 src/shortcuts-dialog.blp:11
+#: data/moe.nyarchlinux.nekoplay.desktop.in:18 src/shortcuts-dialog.blp:11
 #: src/window.blp:125
 msgid "New Window"
 msgstr "Nieuw venster"
 
-#: data/io.github.diegopvlk.Cine.metainfo.xml.in:25
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:25
 msgid ""
 "Cine combines a clean interface with a high-performance engine to deliver a "
 "seamless viewing experience."
@@ -47,11 +47,11 @@ msgstr ""
 "Cine brengt twee concepten samen: goede prestaties en een overzichtelijke "
 "vormgeving."
 
-#: data/io.github.diegopvlk.Cine.metainfo.xml.in:27
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:27
 msgid "Simple Design: A refined, distraction-free interface"
 msgstr "Eenvoudig ontwerp: geraffineerd en afleidingsvrij"
 
-#: data/io.github.diegopvlk.Cine.metainfo.xml.in:28
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:28
 msgid ""
 "MPV-Based: Leverages the robust power of MPV for great playback and format "
 "support"
@@ -59,34 +59,34 @@ msgstr ""
 "Gebaseerd op MPV: alle functies van MPV, voor de beste afspeelervaring en "
 "ondersteuning van formaten"
 
-#: data/io.github.diegopvlk.Cine.metainfo.xml.in:29
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:29
 msgid ""
 "Audio and Subtitles: Control track selection and synchronization for both"
 msgstr ""
 "Audio en ondertiteling: kies audio- en ondertitelsporen, en stem ze op "
 "elkaar af"
 
-#: data/io.github.diegopvlk.Cine.metainfo.xml.in:30
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:30
 msgid ""
 "Video Controls: Easily adjust brightness, contrast, zoom, aspect ratio, etc."
 msgstr ""
 "Videoregeling: pas de helderheid, het contrast, zoomniveau, de "
 "beeldverhouding, etc. aan."
 
-#: data/io.github.diegopvlk.Cine.metainfo.xml.in:42
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:42
 msgid "Video Playing"
 msgstr "Afspelen"
 
-#: data/io.github.diegopvlk.Cine.metainfo.xml.in:46 src/preferences.blp:5
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:46 src/preferences.blp:5
 #: src/window.blp:130
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: data/io.github.diegopvlk.Cine.metainfo.xml.in:50
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:50
 msgid "Video Options"
 msgstr "Video-opties"
 
-#: data/io.github.diegopvlk.Cine.metainfo.xml.in:54
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:54
 msgid "Main Window"
 msgstr "Hoofdvenster"
 
