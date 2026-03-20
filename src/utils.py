@@ -27,7 +27,7 @@ gi.require_version("GLib", "2.0")
 from gi.repository import GLib
 
 xdg_pictures = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
-SCREENSHOT_DIR = os.path.join(xdg_pictures, "Cine Screenshots") if xdg_pictures else ""
+SCREENSHOT_DIR = os.path.join(xdg_pictures, "Nekoplay Screenshots") if xdg_pictures else ""
 
 base_config = GLib.get_user_config_dir()
 CONFIG_DIR = os.path.join(base_config, "cine")

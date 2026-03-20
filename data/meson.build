@@ -1,6 +1,6 @@
 desktop_file = i18n.merge_file(
-        input: 'io.github.diegopvlk.Cine.desktop.in',
-       output: 'io.github.diegopvlk.Cine.desktop',
+        input: 'moe.nyarchlinux.nekoplay.desktop.in',
+       output: 'moe.nyarchlinux.nekoplay.desktop',
          type: 'desktop',
        po_dir: '../po',
       install: true,
@@ -13,8 +13,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-        input: 'io.github.diegopvlk.Cine.metainfo.xml.in',
-       output: 'io.github.diegopvlk.Cine.metainfo.xml',
+  input: 'moe.nyarchlinux.nekoplay.metainfo.xml.in',
+       output: 'moe.nyarchlinux.nekoplay.metainfo.xml',
        po_dir: '../po',
       install: true,
   install_dir: get_option('datadir') / 'metainfo'
@@ -24,7 +24,7 @@ appstreamcli = find_program('appstreamcli', required: false, disabler: true)
 test('Validate appstream file', appstreamcli,
      args: ['validate', '--no-net', '--explain', appstream_file])
 
-install_data('io.github.diegopvlk.Cine.gschema.xml',
+install_data('moe.nyarchlinux.nekoplay.gschema.xml',
   install_dir: get_option('datadir') / 'glib-2.0' / 'schemas'
 )
 
@@ -37,8 +37,8 @@ test('Validate schema file',
 service_conf = configuration_data()
 service_conf.set('bindir', get_option('prefix') / get_option('bindir'))
 configure_file(
-  input: 'io.github.diegopvlk.Cine.service.in',
-  output: 'io.github.diegopvlk.Cine.service',
+  input: 'moe.nyarchlinux.nekoplay.service.in',
+  output: 'moe.nyarchlinux.nekoplay.service',
   configuration: service_conf,
   install_dir: get_option('datadir') / 'dbus-1' / 'services'
 )

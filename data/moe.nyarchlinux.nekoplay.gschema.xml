@@ -34,9 +34,6 @@
 		<key name="show-remaining" type="b">
 			<default>false</default>
 		</key>
-		<key name="thumbnail-preview" type="b">
-			<default>false</default>
-		</key>
 		<key name="anime4k-mode" type="s">
 			<default>"off"</default>
 		</key>

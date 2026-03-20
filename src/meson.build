@@ -41,6 +41,7 @@ configure_file(
 
 cine_sources = [
   '__init__.py',
+  'anime4k.py',
   'main.py',
   'mpris.py',
   'options.py',

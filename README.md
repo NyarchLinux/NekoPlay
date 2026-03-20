@@ -1,16 +1,16 @@
-<img style="vertical-align: middle;" src="data/icons/hicolor/scalable/apps/io.github.diegopvlk.Cine.svg" width="112" height="112" align="left">
+<img style="vertical-align: middle;" src="data/icons/hicolor/scalable/apps/moe.nyarchlinux.nekoplay.svg" width="112" height="112" align="left">
 
-### Cine
+### Nekoplay
 
 Play your videos
 
 <br>
 
-<a href='https://flathub.org/apps/io.github.diegopvlk.Cine'><img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?svg&locale=en'/></a>
+<a href='https://flathub.org/apps/moe.nyarchlinux.nekoplay'><img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?svg&locale=en'/></a>
 
 ### Description
 
-Cine combines a clean interface with a high-performance engine to deliver a seamless viewing experience.
+Nekoplay combines a clean interface with a high-performance engine to deliver a seamless viewing experience.
 
 ### Features
 

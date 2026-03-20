@@ -34,6 +34,59 @@ template $OptionsMenuButton: MenuButton {
           }
         }
 
+        // --- UPSCALE (ANIME4K) ---
+        Box {
+          Box {
+            halign: start;
+
+            Button {
+              icon-name: "edit-undo-symbolic";
+              tooltip-text: _("Reset Upscale");
+
+              styles [
+                "flat",
+              ]
+
+              clicked => $_on_upscale_reset();
+            }
+
+            Label {
+              label: _("Upscale (Anime4K)");
+              wrap: true;
+              natural-wrap-mode: none;
+              halign: start;
+              margin-start: 8;
+
+              styles [
+                "heading",
+              ]
+            }
+          }
+
+          Separator {
+            hexpand: true;
+            opacity: 0;
+            margin-end: 2;
+          }
+
+          Gtk.DropDown upscale_dropdown {
+            halign: end;
+            width-request: 108;
+            focus-on-click: false;
+
+            model: Gtk.StringList upscale_list {
+              strings [
+                _("Off"),
+                _("1080p Anime"),
+                _("720p Anime"),
+                _("480p Anime"),
+              ]
+            };
+
+            notify::selected => $_on_upscale_changed();
+          }
+        }
+
         // --- ASPECT RATIO ---
         Box {
           Box {
