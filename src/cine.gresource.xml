@@ -22,6 +22,7 @@
     <file alias="cine-repeat-file-symbolic.svg">../data/icons/scalable/actions/cine-repeat-file-symbolic.svg</file>
     <file alias="cine-skip-backward-symbolic.svg">../data/icons/scalable/actions/cine-skip-backward-symbolic.svg</file>
     <file alias="cine-skip-forward-symbolic.svg">../data/icons/scalable/actions/cine-skip-forward-symbolic.svg</file>
+    <file alias="cine-opening-skip-symbolic.svg">../data/icons/scalable/actions/cine-opening-skip-symbolic.svg</file>
     <file alias="cine-volume-mute-symbolic.svg">../data/icons/scalable/actions/cine-volume-mute-symbolic.svg</file>
     <file alias="cine-volume-max-symbolic.svg">../data/icons/scalable/actions/cine-volume-max-symbolic.svg</file>
     <file alias="cine-volume-mid-symbolic.svg">../data/icons/scalable/actions/cine-volume-mid-symbolic.svg</file>

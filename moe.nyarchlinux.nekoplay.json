@@ -243,13 +243,13 @@
       ]
     },
     {
-      "name": "cine",
+      "name": "nekoplay",
       "builddir": true,
       "buildsystem": "meson",
       "sources": [
         {
           "type": "dir",
-          "path": ".."
+          "path": "."
         }
       ]
     }
