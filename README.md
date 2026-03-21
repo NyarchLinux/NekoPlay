@@ -6,8 +6,6 @@ Play your 4K animes.
 
 <br>
 
-<a href='https://flathub.org/apps/moe.nyarchlinux.nekoplay'><img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?svg&locale=en'/></a>
-
 ### Description
 
 Nekoplay is a fork of [Cine](https://github.com/diegopvlk/Cine) but with a few extra features specifically for anime watching.
