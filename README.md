@@ -2,7 +2,7 @@
 
 ### Nekoplay
 
-Play your videos
+Play your 4K animes.
 
 <br>
 
@@ -10,7 +10,7 @@ Play your videos
 
 ### Description
 
-Nekoplay combines a clean interface with a high-performance engine to deliver a seamless viewing experience.
+Nekoplay is a fork of [Cine](https://github.com/diegopvlk/Cine) but with a few extra features specifically for anime watching.
 
 ### Features
 
@@ -18,6 +18,11 @@ Nekoplay combines a clean interface with a high-performance engine to deliver a 
 - **MPV-Based** — Leverages the robust power of MPV for great playback and format support
 - **Audio and Subtitles** — Control track selection and synchronization for both
 - **Video Controls** — Easily adjust brightness, contrast, zoom, aspect ratio, etc.
+
+**Nekoplay specific features**
+
+- **4K Anime upscaling** — Watch in 4K your anime legally downloaded in 720p
+- **90s Skip** — Skip openings directly with one button (*most* anime openings are 90s duration)
 
 ### Screenshot
 
@@ -34,22 +39,19 @@ Nekoplay combines a clean interface with a high-performance engine to deliver a 
 
 ### Donate
 
-If you want to help with a donation (thank you!), you can use:
+This is a soft fork, most of the hard work has been done by Cine developers, so support them instead.
 
 - [PayPal](https://www.paypal.com/donate?hosted_button_id=DVL7H35GA66X6)
 - [Ko-fi](https://ko-fi.com/diegopvlk)
 - Pix: diego.pvlk@gmail.com
 
-### Translations
+In case you want to support Nyarch, here is the Nyarch Linux donation button
+- [Nyarch Linux Ko-fi](https://ko-fi.com/nyarchlinux)
 
-You can help translate using [Weblate](https://hosted.weblate.org/projects/cine/app/)
+### Install
 
-[![Translation status](https://hosted.weblate.org/widget/cine/app/multi-auto.svg)](https://hosted.weblate.org/engage/cine/)
+You can install from the .flatpak file from latest release on any distribution:
 
-
-### Code of Conduct
-
-This project follows the [GNOME Code of Conduct](https://conduct.gnome.org).
 
 ### Build from source
 
