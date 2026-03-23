@@ -31,8 +31,8 @@ conf.set('localedir', get_option('prefix') / get_option('localedir'))
 conf.set('pkgdatadir', pkgdatadir)
 
 configure_file(
-  input: 'cine.in',
-  output: 'cine',
+  input: 'nekoplay.in',
+  output: 'nekoplay',
   configuration: conf,
   install: true,
   install_dir: get_option('bindir'),
