@@ -176,7 +176,7 @@ class CineWindow(Adw.ApplicationWindow):
         self._playing_on_press: bool = False
         self.thumb_area: ThumbPreviewGLArea | None = None
         self._thumb_w: int = 1280
-        self._is_local_path: bool = True
+        self.is_local_path: bool = True
         self._prog_fine_tune: bool = False
         self._error_count: int = 0
         self._pressed_combos: set[str] = set()
@@ -1761,12 +1761,12 @@ class CineWindow(Adw.ApplicationWindow):
         def on_f_loaded():
             try:
                 self.spinner.set_visible(False)
-                self._is_local_path = is_local_path(self.mpv.path)
+                self.is_local_path = is_local_path(self.mpv.path)
                 self.start_page.set_sensitive(True)
                 self.hide_ui_timeout()
                 self._on_ab_loop_btn_toggled(None)
 
-                if settings.get_boolean("thumbnail-preview") and self._is_local_path:
+                if settings.get_boolean("thumbnail-preview") and self.is_local_path:
                     self.setup_thumb_preview()
                 elif self.thumb_area:
                     self.thumb_area.unrealize()

@@ -221,7 +221,7 @@ class Preferences(Adw.Dialog):
     def _on_thumb_preview_changed(self, settings, key):
         if settings.get_boolean(key):
             for w in self._win.app.get_windows():
-                if not w.mpv.idle_active:
+                if not w.mpv.idle_active and w.is_local_path:
                     w.setup_thumb_preview()
             return
 
