@@ -967,7 +967,6 @@ class CineWindow(Adw.ApplicationWindow):
         self.thumb_area.set_size_request(width, height)
         a = self.thumb_area
         a.stop() if self._is_audio else a.load_file(self._video_path)
-        self._set_time_tooltip()
 
     def _hide_time_tooltip(self, *args):
         self.prev_reveal = False
@@ -1772,6 +1771,8 @@ class CineWindow(Adw.ApplicationWindow):
                     self.thumb_area.unrealize()
                     self.thumb_area.unmap()
                     self.thumb_area = None
+
+                self._set_time_tooltip()
 
                 self._mpris.update_metadata()
             except mpv.ShutdownError:
