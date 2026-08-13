@@ -229,8 +229,8 @@ class CineWindow(Adw.ApplicationWindow):
             watch_history_path=WATCH_HISTORY_JSONL,
         )
 
-        self.video_area = VideoGLArea(self.mpv)
-        self.offload: Gtk.GraphicsOffload = Gtk.GraphicsOffload(child=self.video_area)
+        self._video_area = VideoGLArea(self.mpv)
+        self.offload: Gtk.GraphicsOffload = Gtk.GraphicsOffload(child=self._video_area)
         self.offload.set_black_background(True)
         self.video_overlay.set_child(self.offload)
 
@@ -264,10 +264,10 @@ class CineWindow(Adw.ApplicationWindow):
         except Exception:
             logger.exception("load-input-conf failed")
 
-        self.bindings = cast(dict, self.mpv.input_bindings)
-        self.mouse_bindings: dict = get_mouse_bindings(self.bindings)
-        self.nonrepeat_keys, self.has_enter_binding, self.has_kp_enter_binding = (
-            parse_bindings(self.bindings)
+        self._input_bindings = cast(dict, self.mpv.input_bindings)
+        self._mouse_binds: dict = get_mouse_bindings(self._input_bindings)
+        self._nonrepeat_keys, self._has_enter_binding, self._has_kp_enter_binding = (
+            parse_bindings(self._input_bindings)
         )
 
         sync_mpv_with_settings(self)
@@ -331,7 +331,7 @@ class CineWindow(Adw.ApplicationWindow):
             Adw.ShortcutsDialog,  # pyright: ignore[reportAttributeAccessIssue]
             builder.get_object("shortcuts_dialog"),
         )
-        populate_shortcuts_dialog_mpv(self.shortcuts_dialog, self.bindings)
+        populate_shortcuts_dialog_mpv(self.shortcuts_dialog, self._input_bindings)
         self.shortcuts_dialog.present(self)
 
     def _present_history(self, *args):
@@ -1433,8 +1433,8 @@ class CineWindow(Adw.ApplicationWindow):
         if self._space_holding and event_type == "keyup":
             self._set_space_holding(False)
 
-        enter = key_name == "Return" and not self.has_enter_binding
-        kp_enter = key_name == "KP_Enter" and not self.has_kp_enter_binding
+        enter = key_name == "Return" and not self._has_enter_binding
+        kp_enter = key_name == "KP_Enter" and not self._has_kp_enter_binding
 
         if key_name in ("Tab", "ISO_Left_Tab") or (enter or kp_enter):
             self.revealer_ui.set_reveal_child(True)
@@ -1458,7 +1458,7 @@ class CineWindow(Adw.ApplicationWindow):
         combo = "+".join(mods + [mpv_key])
 
         if event_type == "keypress":
-            if combo in self.nonrepeat_keys and combo in self._pressed_combos:
+            if combo in self._nonrepeat_keys and combo in self._pressed_combos:
                 return True
             self._pressed_combos.add(combo)
         elif event_type == "keyup":
@@ -1574,13 +1574,13 @@ class CineWindow(Adw.ApplicationWindow):
 
                 self._click_delay_id = timeout_add_once(self._click_time, click)
                 return
-        elif n_press == 2 and (cmd_str_dbl := self.mouse_bindings.get(f"{button}_DBL")):
+        elif n_press == 2 and (cmd_str_dbl := self._mouse_binds.get(f"{button}_DBL")):
             self._run_command(cmd_str_dbl)
             return
 
         if is_secondary_pause:
             self._cycle_pause()
-        elif cmd_str := self.mouse_bindings.get(button):
+        elif cmd_str := self._mouse_binds.get(button):
             self._run_command(cmd_str)
 
     def _cancel_click_hold(self, *args):
@@ -2040,7 +2040,7 @@ class CineWindow(Adw.ApplicationWindow):
             self.title_widget.set_visible(not is_idle)
             self.start_page.set_visible(is_idle)
             self.controls_box.set_visible(not is_idle)
-            self.video_area.set_visible(not is_idle)
+            self._video_area.set_visible(not is_idle)
 
             self.drop_label.props.label = (
                 _("Play") if is_idle else _("Play or Add Subtitles")
@@ -2138,7 +2138,7 @@ class CineWindow(Adw.ApplicationWindow):
             idle_add_once(self.audio_only_icon.set_visible, not bool(value))
             if not value:
                 # clear the last frame, which sometimes can still be present
-                idle_add_once(self.video_area.queue_render)
+                idle_add_once(self._video_area.queue_render)
 
         @self.mpv.property_observer("video-zoom")
         def on_zoom_change(_name, value):
