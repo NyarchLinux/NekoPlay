@@ -1260,8 +1260,6 @@ class CineWindow(Adw.ApplicationWindow):
         if not button or not button.get_active():
             self.mpv.ab_loop_a = False
             self.mpv.ab_loop_b = False
-            self.video_progress_scale.clear_marks()
-            self.ab_loop_btn.remove_css_class("a-loop")
         else:
             self.mpv.command_async("ab-loop")
 
@@ -1869,7 +1867,7 @@ class CineWindow(Adw.ApplicationWindow):
                 scale.add_mark(b_time, Gtk.PositionType.BOTTOM, None)
                 btn.remove_css_class("a-loop")
 
-            if ab_off and name == "ab-loop-b":
+            if ab_off and name == "ab-loop-a":
                 btn.remove_css_class("a-loop")
                 scale.clear_marks()
                 for chapter in self._chapters:
