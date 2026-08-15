@@ -56,12 +56,11 @@ def sync_mpv_with_settings(window):
     )
     mpv["sub-border-color"] = mpv["sub-back-color"]
 
-    if hwdec_enabled:
-        mpv.command_async("vf", "remove", "@hflip")
-        mpv.command_async("vf", "remove", "@vflip")
-        mpv["hwdec"] = window.conf_hwdec + ["auto"]
-    else:
-        mpv["hwdec"] = "no"
+    # for older versions
+    mpv.command_async("vf", "remove", "@hflip")
+    mpv.command_async("vf", "remove", "@vflip")
+
+    mpv["hwdec"] = window.conf_hwdec + ["auto"] if hwdec_enabled else "no"
 
     if norm_enabled:
         mpv.command("af", "add", "@cine_loudnorm:lavfi=[loudnorm=I=-20]")

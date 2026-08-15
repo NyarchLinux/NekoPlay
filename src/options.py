@@ -19,14 +19,13 @@
 
 
 import logging
+import os
 from typing import cast
 
 import gi
 
 gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk
-
-from .preferences import settings
 
 logger = logging.getLogger(__name__)
 
@@ -42,6 +41,10 @@ RATIOS = [
     2.39,
     5 / 4,
 ]
+
+DIR = os.path.dirname(__file__)
+FLIP_H = os.path.join(DIR, "flip-h.glsl")
+FLIP_V = os.path.join(DIR, "flip-v.glsl")
 
 
 @Gtk.Template(resource_path="/io/github/diegopvlk/Cine/options.ui")
@@ -63,7 +66,6 @@ class OptionsMenuButton(Gtk.MenuButton):
     audio_delay_reset_btn: Gtk.Button = Gtk.Template.Child()
     speed_reset_btn: Gtk.Button = Gtk.Template.Child()
 
-    flip_box: Gtk.Box = Gtk.Template.Child()
     aspect_dropdown: Gtk.DropDown = Gtk.Template.Child()
     aspect_list: Gtk.StringList = Gtk.Template.Child()
     crop_dropdown: Gtk.DropDown = Gtk.Template.Child()
@@ -129,10 +131,6 @@ class OptionsMenuButton(Gtk.MenuButton):
         if not self.get_active():
             return
 
-        hwdec_on = settings.get_boolean("hwdec")
-        hwdec = str(self._win.mpv.hwdec_current)
-        self.flip_box.props.visible = not (hwdec_on and "-copy" not in hwdec)
-
         aspect_overr = cast(float, self._win.mpv["video-aspect-override"])
         target_val = aspect_overr if aspect_overr > 0 else -1
         self.aspect_reset_btn.set_sensitive(target_val != -1)
@@ -183,9 +181,7 @@ class OptionsMenuButton(Gtk.MenuButton):
         rotate_val = int(self._win.mpv["video-rotate"] or 0)
         self.rotate_reset_btn.set_sensitive(rotate_val != 0)
 
-        vf_list = cast(list, self._win.mpv["vf"])
-        has_flip = any(f.get("name") in ("hflip", "vflip") for f in vf_list)
-        self.flip_reset_btn.set_sensitive(has_flip)
+        self.flip_reset_btn.set_sensitive(self._has_flip())
 
         try:
             crop_str = cast(str, self._win.mpv["video-crop"])
@@ -296,25 +292,28 @@ class OptionsMenuButton(Gtk.MenuButton):
         self._win.mpv.command_async("set", "video-rotate", 0)
         self.rotate_reset_btn.set_sensitive(False)
 
+    def _has_flip(self):
+        shaders = cast(list, self._win.mpv.glsl_shaders)
+        return any(s == FLIP_H or s == FLIP_V for s in shaders)
+
     # --- FLIP ---
     @Gtk.Template.Callback()
     def _on_flip_horiz(self, _btn):
-        self._win.mpv.command("vf", "toggle", "@hflip:hflip")
-        vf_list = cast(list, self._win.mpv["vf"])
-        has_flip = any(f.get("name") in ("hflip", "vflip") for f in vf_list)
-        self.flip_reset_btn.set_sensitive(has_flip)
+        mpv = self._win.mpv
+        mpv.command("change-list", "glsl-shaders", "toggle", FLIP_H)
+        self.flip_reset_btn.set_sensitive(self._has_flip())
 
     @Gtk.Template.Callback()
     def _on_flip_vert(self, _btn):
-        self._win.mpv.command("vf", "toggle", "@vflip:vflip")
-        vf_list = cast(list, self._win.mpv["vf"])
-        has_flip = any(f.get("name") in ("hflip", "vflip") for f in vf_list)
-        self.flip_reset_btn.set_sensitive(has_flip)
+        mpv = self._win.mpv
+        mpv.command("change-list", "glsl-shaders", "toggle", FLIP_V)
+        self.flip_reset_btn.set_sensitive(self._has_flip())
 
     @Gtk.Template.Callback()
     def _on_flip_reset(self, _btn):
-        self._win.mpv.command_async("vf", "remove", "@hflip")
-        self._win.mpv.command_async("vf", "remove", "@vflip")
+        mpv = self._win.mpv
+        mpv.command_async("change-list", "glsl-shaders", "remove", FLIP_H)
+        mpv.command_async("change-list", "glsl-shaders", "remove", FLIP_V)
         self.flip_reset_btn.set_sensitive(False)
 
     # --- ZOOM ---
