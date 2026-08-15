@@ -376,47 +376,37 @@ class MPRIS:
     def _on_set_property(self, _con, _sender, _path, interface, prop, value):
         try:
             p = self._mpv
-            if not p:
+            if not p or interface != MEDIAPLAYER2_PLAYER:
                 return False
 
-            if interface == MEDIAPLAYER2_PLAYER:
-                if prop == "Volume":
-                    new_vol = value.get_double()
-                    p.volume = new_vol * 100.0
-                    self._emit_props_changed(
-                        {"Volume": GLib.Variant("d", float(new_vol))}
-                    )
-                    return True
+            if prop == "Volume":
+                new_vol = value.get_double()
+                p.volume = new_vol * 100.0
+                self._emit_props_changed({"Volume": GLib.Variant("d", float(new_vol))})
+                return True
 
-                if prop == "LoopStatus":
-                    new_loop = value.get_string()
+            if prop == "LoopStatus":
+                new_loop = value.get_string()
+                if new_loop == "None":
+                    p.loop_playlist = "no"
+                    p.loop_file = "no"
+                elif new_loop == "Track":
+                    p.loop_file = "inf"
+                    p.loop_playlist = "no"
+                elif new_loop == "Playlist":
+                    p.loop_file = "no"
+                    p.loop_playlist = "inf"
+                self._emit_props_changed({"LoopStatus": GLib.Variant("s", new_loop)})
+                return True
 
-                    if new_loop == "None":
-                        p.loop_playlist = "no"
-                        p.loop_file = "no"
-                    elif new_loop == "Track":
-                        p.loop_file = "inf"
-                        p.loop_playlist = "no"
-                    elif new_loop == "Playlist":
-                        p.loop_file = "no"
-                        p.loop_playlist = "inf"
-
-                    self._emit_props_changed(
-                        {"LoopStatus": GLib.Variant("s", new_loop)}
-                    )
-                    return True
-
-                if prop == "Shuffle":
-                    new_shuffle = value.get_boolean()
-                    p._shuffle = new_shuffle
-                    win = self._app.props.active_window
-                    if win:
-                        btn = win.shuffle_toggle_btn  # type: ignore
-                        btn.props.active = new_shuffle
-                    self._emit_props_changed(
-                        {"Shuffle": GLib.Variant("b", new_shuffle)}
-                    )
-                    return True
+            if prop == "Shuffle":
+                new_shuffle = value.get_boolean()
+                p._shuffle = new_shuffle
+                if win := self._app.props.active_window:
+                    btn = win.shuffle_toggle_btn  # type: ignore
+                    btn.props.active = new_shuffle
+                self._emit_props_changed({"Shuffle": GLib.Variant("b", new_shuffle)})
+                return True
         except mpv.ShutdownError:
             pass
 

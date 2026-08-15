@@ -847,12 +847,16 @@ class CineWindow(Adw.ApplicationWindow):
         self.chapters_menu_btn.popup()
 
     def _on_save_session(self, *args, close=False):
-        settings.set_boolean("save-session", True)
-        save_last_playlist_file(self.mpv)
-        if close:
-            self.close()
-        else:
+        try:
+            settings.set_boolean("save-session", True)
+            save_last_playlist_file(self.mpv)
+            if close:
+                self.close()
+                return
+            self.mpv.write_watch_later_config()
             idle_add_once(self.show_toast, _("Session Saved"))
+        except Exception:
+            logger.exception("_on_save_session failed")
 
     def _on_open_url(self, *args, add=False):
         mode = "append-play" if add else "replace"
@@ -952,14 +956,12 @@ class CineWindow(Adw.ApplicationWindow):
         except Exception:
             logger.exception("Failed to get video w/h")
 
-        if v_width >= v_height:
-            # Horizontal or square
+        if v_width >= v_height:  # Horizontal or square
             width = 200
             height = int((v_height / v_width) * width)
             if height == width:
                 width, height = 168, 168
-        else:
-            # Vertical
+        else:  # Vertical
             height = 168
             width = int((v_width / v_height) * height)
 
