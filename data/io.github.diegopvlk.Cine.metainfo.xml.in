@@ -72,6 +72,16 @@
   </requires>
 
   <releases>
+    <release version="1.8.3" date="2026-08-15">
+      <description translate="no">
+        <ul>
+          <li>The loop state is now persistent</li>
+          <li>Video flip now works with hardware decoding enabled</li>
+          <li>Fixed thumbnail wrongly showing for online videos</li>
+          <li>Fixed seek bar chapter marks not showing sometimes</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.2" date="2026-08-03">
       <description translate="no">
         <ul>
