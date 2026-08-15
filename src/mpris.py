@@ -270,9 +270,11 @@ class MPRIS:
 
     def _handle_method(self, method, params):
         try:
+            win = self._app.props.active_window
             p = self._mpv
-            if not p:
-                return
+            assert p and win
+
+            win.skip_pause_obs_count = 0  # type: ignore
 
             if method == "PlayPause":
                 p.pause = not p.pause
@@ -281,12 +283,10 @@ class MPRIS:
             elif method == "Play":
                 p.pause = False
             elif method == "Previous":
-                win = self._app.props.active_window
-                if win and win.can_go_prev:  # type: ignore
+                if win.can_go_prev:  # type: ignore
                     win.on_previous_clicked()  # type: ignore
             elif method == "Next":
-                win = self._app.props.active_window
-                if win and win.can_go_next:  # type: ignore
+                if win.can_go_next:  # type: ignore
                     win.on_next_clicked()  # type: ignore
             elif method == "Stop":
                 p.stop()
@@ -301,13 +301,13 @@ class MPRIS:
                 p.time_pos = pos_usec / 1_000_000.0
                 self.emit_seeked()
             elif method == "Raise":
-                win = self._app.props.active_window
-                if win:
-                    win.present()
+                win.present()
             elif method == "Quit":
                 self._app.quit()
         except mpv.ShutdownError:
             pass
+        except Exception:
+            logger.exception("_handle_method failed")
 
     def emit_seeked(self):
         try:
