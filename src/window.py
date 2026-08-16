@@ -223,7 +223,6 @@ class CineWindow(Adw.ApplicationWindow):
             ytdl=True,
             ytdl_raw_options="yes-playlist=",
             cursor_autohide_fs_only=True,
-            directory_filter_types="video,audio",
             autocreate_playlist="filter",
             save_watch_history=True,
             watch_history_path=WATCH_HISTORY_JSONL,
