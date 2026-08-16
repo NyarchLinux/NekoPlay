@@ -72,9 +72,10 @@
   </requires>
 
   <releases>
-    <release version="1.8.3" date="2026-08-15">
+    <release version="1.8.4" date="2026-08-16">
       <description translate="no">
         <ul>
+          <li>Changed directory filter types to load images in playlist as well</li>
           <li>The loop state is now persistent</li>
           <li>Video flip now works with hardware decoding enabled</li>
           <li>Fixed thumbnail wrongly showing for online videos</li>
