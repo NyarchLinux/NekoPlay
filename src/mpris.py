@@ -32,7 +32,7 @@ from .utils import idle_add_once
 
 logger = logging.getLogger(__name__)
 
-APP_ID = "io.github.diegopvlk.Cine"
+APP_ID = "moe.nyarchlinux.nekoplay"
 MEDIAPLAYER2_PLAYER = "org.mpris.MediaPlayer2.Player"
 
 # some gnome extensions can spam properties which can cause frame drops
@@ -141,7 +141,7 @@ class MPRIS:
 
         self._emit_props_changed(
             {
-                "Identity": GLib.Variant("s", _("Cine")),
+                "Identity": GLib.Variant("s", _("NekoPlay")),
                 "DesktopEntry": GLib.Variant("s", APP_ID),
             },
         )
@@ -359,7 +359,7 @@ class MPRIS:
 
             elif interface == "org.mpris.MediaPlayer2":
                 if prop == "Identity":
-                    return GLib.Variant("s", _("Cine"))
+                    return GLib.Variant("s", _("NekoPlay"))
                 elif prop == "DesktopEntry":
                     return GLib.Variant("s", APP_ID)
                 elif prop in ["CanQuit", "CanRaise"]:

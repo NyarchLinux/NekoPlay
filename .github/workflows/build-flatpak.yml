@@ -21,6 +21,6 @@ jobs:
           submodules: recursive
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
-          bundle: Cine.flatpak
-          manifest-path: build-aux/flatpak/io.github.diegopvlk.Cine.json
+          bundle: NekoPlay.flatpak
+          manifest-path: moe.nyarchlinux.nekoplay.json
           cache-key: flatpak-builder-${{ github.sha }}

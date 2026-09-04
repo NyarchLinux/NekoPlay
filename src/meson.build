@@ -32,8 +32,8 @@ conf.set('localedir', get_option('prefix') / get_option('localedir'))
 conf.set('pkgdatadir', pkgdatadir)
 
 configure_file(
-  input: 'cine.in',
-  output: 'cine',
+  input: 'nekoplay.in',
+  output: 'nekoplay',
   configuration: conf,
   install: true,
   install_dir: get_option('bindir'),
@@ -44,6 +44,7 @@ cine_sources = [
   'shaders/flip-h.glsl',
   'shaders/flip-v.glsl',
   '__init__.py',
+  'anime4k.py',
   'history.py',
   'main.py',
   'mpv_gl_area.py',

@@ -2,8 +2,8 @@ using Gtk 4.0;
 using Adw 1;
 
 template $CineWindow: Adw.ApplicationWindow {
-  name: "io-github-diegopvlk-Cine";
-  title: _("Cine");
+  name: "moe-nyarchlinux-nekoplay";
+  title: _("NekoPlay");
   default-width: 800;
   default-height: 600;
   width-request: 332;
@@ -78,7 +78,7 @@ template $CineWindow: Adw.ApplicationWindow {
               valign: start;
 
               title-widget: Adw.WindowTitle title_widget {
-                title: _("Cine");
+                title: _("NekoPlay");
                 visible: false;
               };
 
@@ -122,7 +122,7 @@ template $CineWindow: Adw.ApplicationWindow {
                     item (_("New Window"), "app.new-window")
                     item (_("Preferences"), "app.preferences")
                     item (_("Keyboard Shortcuts"), "win.custom-shortcuts")
-                    item (_("About Cine"), "app.about")
+                    item (_("About NekoPlay"), "app.about")
                   }
 
                   section {
@@ -192,6 +192,17 @@ template $CineWindow: Adw.ApplicationWindow {
                   tooltip-text: _("Next");
                   halign: center;
                   clicked => $on_next_clicked();
+                }
+
+                Button skip_90_btn {
+                  styles [
+                    "circular",
+                    "flat",
+                  ]
+
+                  icon-name: "cine-opening-skip-symbolic";
+                  tooltip-text: _("Skip 90 Seconds");
+                  clicked => $on_skip_90_clicked();
                 }
 
                 MenuButton volume_menu_btn {
@@ -432,8 +443,8 @@ template $CineWindow: Adw.ApplicationWindow {
         [overlay]
         Adw.StatusPage start_page {
           margin-top: 48;
-          icon-name: "io.github.diegopvlk.Cine";
-          title: _("Cine");
+          icon-name: "moe.nyarchlinux.nekoplay";
+          title: _("NekoPlay");
           description: _("Drag and drop files here");
 
           styles [

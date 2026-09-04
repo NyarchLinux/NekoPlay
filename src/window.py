@@ -36,6 +36,7 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("GObject", "2.0")
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
+from .anime4k import apply_anime4k_shaders
 from .history import HistoryDialog
 from .mpris import MPRIS
 from .mpv_gl_area import ThumbPreviewGLArea, VideoGLArea
@@ -77,7 +78,7 @@ gtk_setts: Gtk.Settings | None = Gtk.Settings.get_default()
 DEFAULT_WIDTH, DEFAULT_HEIGHT = 1120, 630
 
 
-@Gtk.Template(resource_path="/io/github/diegopvlk/Cine/window.ui")
+@Gtk.Template(resource_path="/moe/nyarchlinux/nekoplay/window.ui")
 class CineWindow(Adw.ApplicationWindow):
     __gtype_name__ = "CineWindow"
 
@@ -105,6 +106,7 @@ class CineWindow(Adw.ApplicationWindow):
     previous_btn: Gtk.Button = Gtk.Template.Child()
     play_pause_btn: Gtk.Button = Gtk.Template.Child()
     next_btn: Gtk.Button = Gtk.Template.Child()
+    skip_90_btn: Gtk.Button = Gtk.Template.Child()
     volume_menu_btn: Gtk.MenuButton = Gtk.Template.Child()
     mute_toggle_btn: Gtk.ToggleButton = Gtk.Template.Child()
     volume_box: Gtk.Box = Gtk.Template.Child()
@@ -189,9 +191,9 @@ class CineWindow(Adw.ApplicationWindow):
             # terminal=True,
             # log_handler=print,
             loglevel="info",
-            audio_client_name=_("Cine"),
+            audio_client_name=_("NekoPlay"),
             screenshot_directory=SCREENSHOT_DIR,
-            screenshot_template="cine_%n",
+            screenshot_template="nekoplay_%n",
             config=True,
             config_dir=CONFIG_DIR,
             input_builtin_bindings=False,
@@ -297,6 +299,7 @@ class CineWindow(Adw.ApplicationWindow):
             "save-session-close", lambda *a: self._on_save_session(close=True)
         )
 
+        self._create_action("skip-90", self.on_skip_90_clicked)
         self.app.set_accels_for_action("win.open-folder", ["<primary>i"])
         self.app.set_accels_for_action("win.open-url", ["<primary>u"])
         self.app.set_accels_for_action("win.add-url", ["<shift><primary>u"])
@@ -310,6 +313,7 @@ class CineWindow(Adw.ApplicationWindow):
         self.app.set_accels_for_action("win.open-chapters-menu", ["<primary>c"])
         self.app.set_accels_for_action("win.save-session", ["<shift><primary>s"])
         self.app.set_accels_for_action("win.save-session-close", ["<shift>q"])
+        self.app.set_accels_for_action("win.skip-90", ["<alt>Right"])
 
         self._create_action("quit", lambda *a: self.close())
         self.app.set_accels_for_action("win.quit", ["q", "<primary>w"])
@@ -324,7 +328,7 @@ class CineWindow(Adw.ApplicationWindow):
 
     def _present_shortcuts(self, *args):
         builder = Gtk.Builder.new_from_resource(
-            "/io/github/diegopvlk/Cine/shortcuts-dialog.ui"
+            "/moe/nyarchlinux/nekoplay/shortcuts-dialog.ui"
         )
         self.shortcuts_dialog = cast(
             Adw.ShortcutsDialog,  # pyright: ignore[reportAttributeAccessIssue]
@@ -1151,6 +1155,10 @@ class CineWindow(Adw.ApplicationWindow):
     def on_next_clicked(self, *args):
         self._navigate_playlist(+1)
 
+    @Gtk.Template.Callback()
+    def on_skip_90_clicked(self, *args):
+        self.mpv.seek(90, reference="relative")
+
     def _on_subtitle_selected(self, action, parameter):
         self.mpv.command_async("set", "sub-visibility", "yes")
         track_id = parameter.get_int32()
@@ -1441,6 +1449,20 @@ class CineWindow(Adw.ApplicationWindow):
             self.hide_ui_timeout(s=3)
             self._set_space_holding(False)
             return
+
+        if event_type == "keypress" and state & Gdk.ModifierType.CONTROL_MASK:
+            anime4k_mode = {"0": "off", "1": "a", "2": "b", "3": "c"}.get(key_name)
+            if anime4k_mode is not None:
+                settings.set_string("anime4k-mode", anime4k_mode)
+                apply_anime4k_shaders(self.mpv, anime4k_mode)
+                mode_labels = {
+                    "off": _("Upscale: Off"),
+                    "a": _("Upscale: 1080p Anime"),
+                    "b": _("Upscale: 720p Anime"),
+                    "c": _("Upscale: 480p Anime"),
+                }
+                self.mpv.show_text(mode_labels[anime4k_mode])
+                return True
 
         clean_state = state & Gtk.accelerator_get_default_mod_mask()
         accel = Gtk.accelerator_name(keyval, clean_state)
@@ -2057,7 +2079,7 @@ class CineWindow(Adw.ApplicationWindow):
             if is_idle:
                 self._error_count = 0
                 self.revealer_ui.set_reveal_child(True)
-                self.set_title(_("Cine"))
+                self.set_title(_("NekoPlay"))
                 self._hide_icon_indicator = True
                 if isinstance(self._visible_dialog, Playlist):
                     self._visible_dialog.close()

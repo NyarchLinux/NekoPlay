@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Create a report to help improve Cine
+about: Create a report to help improve NekoPlay
 title: ''
 labels: ''
 assignees: ''
@@ -21,7 +21,7 @@ Steps to reproduce the behavior:
 A clear and concise description of what you expected to happen.
 
 **Terminal output**
-Run `flatpak run io.github.diegopvlk.Cine` in your terminal and share the output or error messages here when the issue occurs.
+Run `flatpak run moe.nyarchlinux.nekoplay` in your terminal and share the output or error messages here when the issue occurs.
 
 **Desktop (please complete the following information):**
 - OS:

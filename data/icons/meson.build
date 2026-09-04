@@ -1,4 +1,4 @@
-application_id = 'io.github.diegopvlk.Cine'
+application_id = 'moe.nyarchlinux.nekoplay'
 
 scalable_dir = 'hicolor' / 'scalable' / 'apps'
 install_data(

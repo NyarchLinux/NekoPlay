@@ -24,6 +24,13 @@ from typing import cast
 
 import gi
 
+from .anime4k import (
+    MODE_INDEX_MAP,
+    MODE_TO_INDEX,
+    apply_anime4k_shaders,
+    get_current_mode,
+)
+
 gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk
 
@@ -47,7 +54,7 @@ FLIP_H = os.path.join(DIR, "flip-h.glsl")
 FLIP_V = os.path.join(DIR, "flip-v.glsl")
 
 
-@Gtk.Template(resource_path="/io/github/diegopvlk/Cine/options.ui")
+@Gtk.Template(resource_path="/moe/nyarchlinux/nekoplay/options.ui")
 class OptionsMenuButton(Gtk.MenuButton):
     __gtype_name__ = "OptionsMenuButton"
 
@@ -70,6 +77,7 @@ class OptionsMenuButton(Gtk.MenuButton):
     aspect_list: Gtk.StringList = Gtk.Template.Child()
     crop_dropdown: Gtk.DropDown = Gtk.Template.Child()
     crop_list: Gtk.StringList = Gtk.Template.Child()
+    upscale_dropdown: Gtk.DropDown = Gtk.Template.Child()
     zoom_spin: Gtk.SpinButton = Gtk.Template.Child()
     contrast_spin: Gtk.SpinButton = Gtk.Template.Child()
     brightness_spin: Gtk.SpinButton = Gtk.Template.Child()
@@ -189,25 +197,29 @@ class OptionsMenuButton(Gtk.MenuButton):
             if not crop_str:
                 self.crop_dropdown.set_selected(0)
                 self.crop_reset_btn.set_sensitive(False)
-                return
+            else:
+                self.crop_reset_btn.set_sensitive(True)
 
-            self.crop_reset_btn.set_sensitive(True)
+                # Crop from cine: 1900x958
+                # from autocrop: 1900x958+0+60
+                parts = crop_str.split("x")
+                w = int(parts[0])
+                h = int(parts[1].split("+")[0])
+                current_ratio = int(w) / int(h)
 
-            # Crop from cine: 1900x958
-            # from autocrop: 1900x958+0+60
-            parts = crop_str.split("x")
-            w = int(parts[0])
-            h = int(parts[1].split("+")[0])
-            current_ratio = int(w) / int(h)
-
-            for i, r in enumerate(RATIOS):
-                if i > 0 and abs(current_ratio - r) < 0.01:
-                    self.crop_dropdown.set_selected(i)
-                    break
+                for i, r in enumerate(RATIOS):
+                    if i > 0 and abs(current_ratio - r) < 0.01:
+                        self.crop_dropdown.set_selected(i)
+                        break
         except Exception:
             logger.exception("Failed to get crop")
             self.crop_dropdown.set_selected(0)
             self.crop_reset_btn.set_sensitive(False)
+
+        current_mode = get_current_mode(self._win.mpv)
+        upscale_idx = MODE_TO_INDEX.get(current_mode, 0)
+        if self.upscale_dropdown.get_selected() != upscale_idx:
+            self.upscale_dropdown.set_selected(upscale_idx)
 
     @Gtk.Template.Callback()
     def _on_reset_all_options(self, _btn):
@@ -215,6 +227,7 @@ class OptionsMenuButton(Gtk.MenuButton):
         self.crop_dropdown.set_selected(0)
         self._on_rotate_reset(None)
         self._on_flip_reset(None)
+        self.upscale_dropdown.set_selected(0)
         self.zoom_spin.set_value(0)
         self.contrast_spin.set_value(0)
         self.brightness_spin.set_value(0)
@@ -423,3 +436,14 @@ class OptionsMenuButton(Gtk.MenuButton):
     def _on_speed_reset(self, _btn):
         self.speed_spin.set_value(1.0)
         self.speed_reset_btn.set_sensitive(False)
+
+    # --- UPSCALE (ANIME4K) ---
+    @Gtk.Template.Callback()
+    def _on_upscale_changed(self, dropdown, *arg):
+        idx = dropdown.get_selected()
+        mode = MODE_INDEX_MAP[idx] if idx < len(MODE_INDEX_MAP) else "off"
+        apply_anime4k_shaders(self._win.mpv, mode)
+
+    @Gtk.Template.Callback()
+    def _on_upscale_reset(self, _btn):
+        self.upscale_dropdown.set_selected(0)

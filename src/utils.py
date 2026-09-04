@@ -45,7 +45,7 @@ try:
     join = os.path.join
 
     XDG_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
-    SCREENSHOT_DIR = join(XDG_PICTURES, "Cine Screenshots") if XDG_PICTURES else ""
+    SCREENSHOT_DIR = join(XDG_PICTURES, "NekoPlay Screenshots") if XDG_PICTURES else ""
 
     BASE_CONFIG = GLib.get_user_config_dir()
 

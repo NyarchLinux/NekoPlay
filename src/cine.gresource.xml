@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/io/github/diegopvlk/Cine">
+  <gresource prefix="/moe/nyarchlinux/nekoplay">
     <file alias="style.css">style.css</file>
     <file preprocess="xml-stripblanks">history.ui</file>
     <file preprocess="xml-stripblanks">playlist.ui</file>
@@ -9,7 +9,7 @@
     <file preprocess="xml-stripblanks">window.ui</file>
     <file preprocess="xml-stripblanks">shortcuts-dialog.ui</file>
   </gresource>
-  <gresource prefix="/io/github/diegopvlk/Cine/icons/scalable/actions">
+  <gresource prefix="/moe/nyarchlinux/nekoplay/icons/scalable/actions">
     <file alias="cine-ab-loop-symbolic.svg">../data/icons/scalable/actions/cine-ab-loop-symbolic.svg</file>
     <file alias="cine-audio-off-symbolic.svg">../data/icons/scalable/actions/cine-audio-off-symbolic.svg</file>
     <file alias="cine-audio-symbolic.svg">../data/icons/scalable/actions/cine-audio-symbolic.svg</file>
@@ -25,6 +25,7 @@
     <file alias="cine-repeat-file-symbolic.svg">../data/icons/scalable/actions/cine-repeat-file-symbolic.svg</file>
     <file alias="cine-skip-backward-symbolic.svg">../data/icons/scalable/actions/cine-skip-backward-symbolic.svg</file>
     <file alias="cine-skip-forward-symbolic.svg">../data/icons/scalable/actions/cine-skip-forward-symbolic.svg</file>
+    <file alias="cine-opening-skip-symbolic.svg">../data/icons/scalable/actions/cine-opening-skip-symbolic.svg</file>
     <file alias="cine-volume-mute-symbolic.svg">../data/icons/scalable/actions/cine-volume-mute-symbolic.svg</file>
     <file alias="cine-volume-max-symbolic.svg">../data/icons/scalable/actions/cine-volume-max-symbolic.svg</file>
     <file alias="cine-volume-mid-symbolic.svg">../data/icons/scalable/actions/cine-volume-mid-symbolic.svg</file>
@@ -54,7 +55,7 @@
     <file alias="object-rotate-left-symbolic.svg">../data/icons/scalable/actions/object-rotate-left-symbolic.svg</file>
     <file alias="object-rotate-right-symbolic.svg">../data/icons/scalable/actions/object-rotate-right-symbolic.svg</file>
   </gresource>
-  <gresource prefix="/io/github/diegopvlk/Cine/icons/scalable/apps">
+  <gresource prefix="/moe/nyarchlinux/nekoplay/icons/scalable/apps">
     <file alias="io.github.diegopvlk.Dosage.svg">../data/icons/scalable/apps/io.github.diegopvlk.Dosage.svg</file>
     <file alias="io.github.diegopvlk.Tomatillo.svg">../data/icons/scalable/apps/io.github.diegopvlk.Tomatillo.svg</file>
   </gresource>

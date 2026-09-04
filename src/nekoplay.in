@@ -1,6 +1,6 @@
 #!@PYTHON@
 
-# cine.in
+# nekoplay.in
 #
 # Copyright 2026 Diego
 #
@@ -48,10 +48,10 @@ if __name__ == '__main__':
     from gettext import gettext as _
     from gi.repository import GLib
 
-    # This should set the icon/name in sound settings to Cine,
+    # This should set the icon/name in sound settings to NekoPlay,
     # but it doesn't work with mpv ao=pipewire
-    GLib.set_prgname('cine')
-    GLib.set_application_name(_('Cine'))
+    GLib.set_prgname('nekoplay')
+    GLib.set_application_name(_('NekoPlay'))
 
     from gi.repository import Gio
     resource = Gio.Resource.load(os.path.join(pkgdatadir, 'cine.gresource'))

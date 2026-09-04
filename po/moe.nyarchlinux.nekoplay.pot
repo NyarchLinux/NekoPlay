@@ -1,22 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the io.github.diegopvlk.Cine package.
+# This file is distributed under the same license as the moe.nyarchlinux.nekoplay package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: io.github.diegopvlk.Cine\n"
+"Project-Id-Version: moe.nyarchlinux.nekoplay\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-05 00:17+0200\n"
-"PO-Revision-Date: 2026-05-27 12:05+0000\n"
-"Last-Translator: Tech Lasiya <lasindurodrogo@gmail.com>\n"
-"Language-Team: Sinhala <https://hosted.weblate.org/projects/cine/app/si/>\n"
-"Language: si\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2026.6.dev0\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: data/moe.nyarchlinux.nekoplay.desktop.in:2
 #: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:22 src/main.py:234
@@ -28,43 +28,33 @@ msgstr ""
 #: data/moe.nyarchlinux.nekoplay.desktop.in:3
 #: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:23
 msgid "Play your videos"
-msgstr "ඔබේ වීඩියෝ බලන්න"
+msgstr ""
 
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/moe.nyarchlinux.nekoplay.desktop.in:10
-#, fuzzy
-#| msgid "Audio;Video;Movie;TV;Film;Clip;Player;Cine;mpv;"
 msgid "Audio;Video;Movie;TV;Film;Clip;Player;NekoPlay;mpv;"
-msgstr "Audio;Video;Movie;TV;Film;Clip;Player;Cine;mpv;"
+msgstr ""
 
 #: data/moe.nyarchlinux.nekoplay.desktop.in:18 src/shortcuts-dialog.blp:11
 #: src/window.blp:122
 msgid "New Window"
-msgstr "අලුත් වින්ඩෝවක්"
+msgstr ""
 
 #: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:25
-#, fuzzy
-#| msgid ""
-#| "Cine combines a clean interface with a high-performance engine to deliver "
-#| "a seamless viewing experience."
 msgid ""
 "NekoPlay combines a clean interface with a high-performance engine to "
 "deliver a seamless viewing experience."
 msgstr ""
-"Cine එකේ තියෙන්නෙ හරිම සරල, ලස්සන interface එකක්. සුපිරි speed engine එකක් තියෙන නිසා "
-"කිසිම හිරවීමක් නැතුව ආසාවෙන් ෆිල්ම් එකක් බලන්න පුළුවන්."
 
 #: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:27
 msgid "Simple Design: A refined, distraction-free interface"
-msgstr "සරල නිමාව: කිසිම බාධාවක් නැතුව ලස්සනට බලන්න පුළුවන් interface එකක්"
+msgstr ""
 
 #: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:28
 msgid ""
 "MPV-Based: Leverages the robust power of MPV for great playback and format "
 "support"
 msgstr ""
-"MPV-Based: ෆිල්ම්ස් සුපිරියටම ප්ලේ වෙන්න සහ ඕනෑම format එකකට සපෝට් කරන්න MPV වල තියෙන "
-"බලවත් ශක්තිය පාවිච්චි කරලා තියෙනවා"
 
 #: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:29
 msgid ""

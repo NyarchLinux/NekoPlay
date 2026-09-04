@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>io.github.diegopvlk.Cine</id>
+  <id>moe.nyarchlinux.nekoplay</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
 
   <translation type="gettext">cine</translation>
-  <launchable type="desktop-id">io.github.diegopvlk.Cine.desktop</launchable>
+  <launchable type="desktop-id">moe.nyarchlinux.nekoplay.desktop</launchable>
   <content_rating type="oars-1.1" />
 
-  <url type="homepage">https://github.com/diegopvlk/Cine</url>
-  <url type="bugtracker">https://github.com/diegopvlk/Cine/issues</url>
-  <url type="vcs-browser">https://github.com/diegopvlk/Cine</url>
+  <url type="homepage">https://github.com/NyarchLinux/NekoPlay</url>
+  <url type="bugtracker">https://github.com/NyarchLinux/NekoPlay/issues</url>
+  <url type="vcs-browser">https://github.com/NyarchLinux/NekoPlay</url>
   <url type="donation">https://www.paypal.com/donate?hosted_button_id=DVL7H35GA66X6</url>
   <url type="translate">https://hosted.weblate.org/projects/cine/app/</url>
   <update_contact>diego.pvlk@gmail.com</update_contact>
@@ -19,10 +19,10 @@
     <name translate="no">Diego Povliuk</name>
   </developer>
 
-  <name translate="no">Cine</name>
+  <name translate="no">NekoPlay</name>
   <summary>Play your videos</summary>
   <description>
-    <p>Cine combines a clean interface with a high-performance engine to deliver a seamless viewing experience.</p>
+    <p>NekoPlay combines a clean interface with a high-performance engine to deliver a seamless viewing experience.</p>
 		<ul>
 			<li>Simple Design: A refined, distraction-free interface</li>
       <li>MPV-Based: Leverages the robust power of MPV for great playback and format support</li>

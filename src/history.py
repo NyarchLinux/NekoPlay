@@ -37,7 +37,7 @@ from .utils import idle_add_once, is_local_path
 logger = logging.getLogger(__name__)
 
 
-@Gtk.Template(resource_path="/io/github/diegopvlk/Cine/history.ui")
+@Gtk.Template(resource_path="/moe/nyarchlinux/nekoplay/history.ui")
 class HistoryDialog(Adw.Dialog):
     __gtype_name__ = "HistoryDialog"
 

@@ -1,6 +1,6 @@
 #!/bin/bash
-OUTPUT="po/io.github.diegopvlk.Cine.pot"
-PACKAGE_NAME="io.github.diegopvlk.Cine"
+OUTPUT="po/moe.nyarchlinux.nekoplay.pot"
+PACKAGE_NAME="moe.nyarchlinux.nekoplay"
 ENCODING="UTF-8"
 LANGUAGE_BLP="--language=JavaScript"
 LINGUAS_FILE="po/LINGUAS"

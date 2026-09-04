@@ -42,7 +42,7 @@ logger = logging.getLogger(__name__)
 os.environ["GSK_RENDERER"] = "gl"
 
 # Set the icon shown in gnome sound settings
-os.environ["PIPEWIRE_PROPS"] = '{application.icon-name="io.github.diegopvlk.Cine"}'
+os.environ["PIPEWIRE_PROPS"] = '{application.icon-name="moe.nyarchlinux.nekoplay"}'
 
 
 class CineApplication(Adw.Application):
@@ -50,9 +50,9 @@ class CineApplication(Adw.Application):
 
     def __init__(self):
         super().__init__(
-            application_id="io.github.diegopvlk.Cine",
+            application_id="moe.nyarchlinux.nekoplay",
             flags=Gio.ApplicationFlags.HANDLES_OPEN,
-            resource_base_path="/io/github/diegopvlk/Cine",
+            resource_base_path="/moe/nyarchlinux/nekoplay",
         )
 
         self.add_main_option(
@@ -217,7 +217,7 @@ class CineApplication(Adw.Application):
             if options.contains("new-window"):
                 return -1
 
-            print("Cine is running, to open a new window, run with --new-window.")
+            print("NekoPlay is running; to open a new window, use --new-window.")
             return 0
 
         return -1
@@ -231,12 +231,12 @@ class CineApplication(Adw.Application):
         """Callback for the app.about action."""
         APP_VERSION = sys.modules["__main__"].VERSION
         about = Adw.AboutDialog(
-            application_name=_("Cine"),
-            application_icon="io.github.diegopvlk.Cine",
+            application_name=_("NekoPlay"),
+            application_icon="moe.nyarchlinux.nekoplay",
             developer_name="Diego Povliuk",
             version=APP_VERSION,
             copyright="© 2026 Diego Povliuk",
-            issue_url="https://github.com/diegopvlk/Cine/issues",
+            issue_url="https://github.com/NyarchLinux/NekoPlay/issues",
             license_type=Gtk.License.GPL_3_0,
         )
         try:
