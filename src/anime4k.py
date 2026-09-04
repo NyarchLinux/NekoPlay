@@ -79,13 +79,20 @@ def apply_anime4k_shaders(player, mode: str) -> None:
         player: mpv.MPV instance
         mode: "off", "a", "b", or "c"
     """
-    if mode == "off" or mode not in ("a", "b", "c"):
-        player.command("change-list", "glsl-shaders", "clr", "")
+    # Cine also uses GLSL shaders for video flipping. Remove only Anime4K
+    # entries so switching presets does not discard those or user shaders.
+    current_shaders = player.glsl_shaders or []
+    if isinstance(current_shaders, str):
+        current_shaders = [current_shaders]
+    for shader_path in current_shaders:
+        if os.path.basename(shader_path).startswith("Anime4K_"):
+            player.command("change-list", "glsl-shaders", "remove", shader_path)
+
+    if mode == "off" or mode not in SHADER_CHAINS:
         return
 
     chain = SHADER_CHAINS.get(mode)
     if not chain:
-        player.command("change-list", "glsl-shaders", "clr", "")
         return
 
     shaders_dir = get_shaders_dir()
@@ -95,10 +102,8 @@ def apply_anime4k_shaders(player, mode: str) -> None:
     missing = [p for p in shader_paths if not os.path.isfile(p)]
     if missing:
         print(f"Anime4K: missing shader files: {missing}")
-        player.command("change-list", "glsl-shaders", "clr", "")
         return
 
-    player.command("change-list", "glsl-shaders", "clr", "")
     for shader_path in shader_paths:
         player.command("change-list", "glsl-shaders", "append", shader_path)
 

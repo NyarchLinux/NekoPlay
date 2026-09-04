@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:gpa="https://www.gtk.org/grappa" width="16" height="16" gpa:version="1" gpa:state="0" gpa:keywords="book open pages catalog"><defs id="defs1" fill="url(&quot;#gpa:foreground&quot;) rgb(0,0,0)" stroke="none" class="foreground foreground-fill" gpa:states="none" gpa:animation-repeat="0" gpa:animation-segment="0" gpa:fill="foreground">
+    </defs><path id="catalog" fill="none" stroke="url(&quot;#gpa:foreground&quot;) rgb(0,0,0)" stroke-opacity="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="4" stroke-dasharray="none" d="M 4 6 L 1 6 L 1 13 C 1 14.1045694, 1.89543045 15, 3 15 L 13 15 C 14.1045694 15, 15 14.1045694, 15 13 L 15 6 L 12 6 M 12 0.999999821 L 8 5 L 8 14 L 12 10 L 12 0.999999821 M 4 1 L 8 5 L 8 14 L 4 10 L 4 1" class="transparent-fill foreground-stroke" gpa:stroke-width="0.5 2 3" gpa:stroke="foreground" gpa:fill="none">
+    </path></svg>

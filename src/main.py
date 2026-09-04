@@ -17,21 +17,29 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import logging
 import os
-import gi
-import sys
 import subprocess
-from typing import cast
+import sys
 from gettext import gettext as _
+from typing import cast
+
+import gi
 
 gi.require_version("Adw", "1")
 gi.require_version("Gio", "2.0")
 gi.require_version("GLib", "2.0")
 gi.require_version("Gtk", "4.0")
 from gi.repository import Adw, Gio, GLib, Gtk
-from .window import CineWindow
-from .preferences import Preferences, settings
+
 from .mpris import MPRIS
+from .preferences import Preferences, settings
+from .save_session import is_same_playlist
+from .window import CineWindow
+
+logger = logging.getLogger(__name__)
+
+os.environ["GSK_RENDERER"] = "gl"
 
 # Set the icon shown in gnome sound settings
 os.environ["PIPEWIRE_PROPS"] = '{application.icon-name="moe.nyarchlinux.nekoplay"}'
@@ -56,10 +64,10 @@ class CineApplication(Adw.Application):
             None,
         )
 
-        self.connect("window-removed", self._on_window_removed)
+        self.connect("shutdown", self._on_shutdown)
 
     def do_startup(self):
-        MPRIS(self)
+        self.mpris = MPRIS(self)
 
         Adw.Application.do_startup(self)
         Adw.StyleManager.get_default().props.color_scheme = Adw.ColorScheme.FORCE_DARK
@@ -72,12 +80,10 @@ class CineApplication(Adw.Application):
         )
 
     def do_activate(self):
-        win = CineWindow(application=self)
+        win = CineWindow(application=self, is_activate=True)
         win.present()
 
-    def do_open(  # pyright: ignore[reportIncompatibleMethodOverride]
-        self, gfiles, _n_files, _hint
-    ):
+    def do_open(self, files, n_files, hint):
         win: CineWindow = cast(CineWindow, self.props.active_window)
         open_new = settings.get_boolean("open-new-windows") or not win
 
@@ -86,7 +92,7 @@ class CineApplication(Adw.Application):
             win.start_page.set_visible(False)
 
             first_video_path = None
-            for gfile in gfiles:
+            for gfile in files:
                 first_video_path = self.find_first_file(gfile)
 
                 if first_video_path:
@@ -101,7 +107,7 @@ class CineApplication(Adw.Application):
                         "-select_streams",
                         "v:0",
                         "-show_entries",
-                        "stream=width,height",
+                        "stream=width,height:stream_side_data=rotation",
                         "-of",
                         "csv=s=x:p=0",
                         first_video_path,
@@ -111,18 +117,36 @@ class CineApplication(Adw.Application):
                     ).strip()
 
                     if output:
-                        # 1920x1080
-                        res = output.splitlines()[0].split("x")
-                        if len(res) >= 2:
-                            win._set_window_size(int(res[0]), int(res[1]))
-                except Exception as e:
-                    print(f"Metadata probe skipped or failed: {e}")
+                        # "1920x1080x-90" or just "1920x1080"
+                        parts = output.splitlines()[0].split("x")
+
+                        width = int(parts[0])
+                        height = int(parts[1])
+
+                        try:
+                            rotation = int(parts[2]) if len(parts) > 2 else 0
+                        except Exception:
+                            logger.exception("Failed to get rotation")
+                            rotation = 0
+
+                        if abs(rotation) in (90, 270):
+                            w = height
+                            h = width
+                        else:
+                            w = width
+                            h = height
+
+                        win.set_window_size(w, h)
+                except Exception:
+                    logger.exception("Metadata probe failed")
             win.present()
         else:
             win.present()
+            if is_same_playlist(win.mpv.playlist):
+                win.mpv.write_watch_later_config()
             win.mpv.stop()
 
-        for gfile in gfiles:
+        for gfile in files:
             path = gfile.get_path() or gfile.get_uri()
             if path:
                 win.mpv.loadfile(path, "append-play")
@@ -132,7 +156,7 @@ class CineApplication(Adw.Application):
             # Pause previous opened windows
             w.mpv.pause = w != win
 
-        win._hide_ui_timeout()
+        win.hide_ui_timeout()
 
     def find_first_file(self, gfile, visited=None):
         """Local-only recursive search."""
@@ -181,7 +205,7 @@ class CineApplication(Adw.Application):
                     if found:
                         return found
         except Exception:
-            pass
+            logger.exception("find_first_file failed")
         return None
 
     # From showtime
@@ -193,7 +217,7 @@ class CineApplication(Adw.Application):
             if options.contains("new-window"):
                 return -1
 
-            print("Nekoplay is runnning, to open a new window, run with --new-window.")
+            print("NekoPlay is running; to open a new window, use --new-window.")
             return 0
 
         return -1
@@ -205,14 +229,14 @@ class CineApplication(Adw.Application):
 
     def _on_about_action(self, *args):
         """Callback for the app.about action."""
-        APP_VERSION = getattr(sys.modules["__main__"], "VERSION")
+        APP_VERSION = sys.modules["__main__"].VERSION
         about = Adw.AboutDialog(
-            application_name=_("Nekoplay"),
+            application_name=_("NekoPlay"),
             application_icon="moe.nyarchlinux.nekoplay",
             developer_name="Diego Povliuk",
             version=APP_VERSION,
             copyright="© 2026 Diego Povliuk",
-            issue_url="https://github.com/diegopvlk/NekoPlay/issues",
+            issue_url="https://github.com/NyarchLinux/NekoPlay/issues",
             license_type=Gtk.License.GPL_3_0,
         )
         try:
@@ -230,6 +254,11 @@ class CineApplication(Adw.Application):
                 "Showtime https://apps.gnome.org/Showtime/",
                 "Workbench https://apps.gnome.org/Workbench/",
             ],
+        )
+
+        about.add_link(
+            "Sponsor on GitHub",
+            "https://github.com/sponsors/diegopvlk",
         )
 
         about.add_link(
@@ -260,8 +289,9 @@ class CineApplication(Adw.Application):
         if shortcuts:
             self.set_accels_for_action(f"app.{name}", shortcuts)
 
-    def _on_window_removed(self, _obj, win):
-        win.mpv.quit()
+    def _on_shutdown(self, *args):
+        for win in self.get_windows():
+            win.close()
 
 
 def main(version):

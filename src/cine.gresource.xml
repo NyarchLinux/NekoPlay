@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix="/moe/nyarchlinux/nekoplay">
     <file alias="style.css">style.css</file>
+    <file preprocess="xml-stripblanks">history.ui</file>
     <file preprocess="xml-stripblanks">playlist.ui</file>
     <file preprocess="xml-stripblanks">preferences.ui</file>
     <file preprocess="xml-stripblanks">options.ui</file>
@@ -9,6 +10,7 @@
     <file preprocess="xml-stripblanks">shortcuts-dialog.ui</file>
   </gresource>
   <gresource prefix="/moe/nyarchlinux/nekoplay/icons/scalable/actions">
+    <file alias="cine-ab-loop-symbolic.svg">../data/icons/scalable/actions/cine-ab-loop-symbolic.svg</file>
     <file alias="cine-audio-off-symbolic.svg">../data/icons/scalable/actions/cine-audio-off-symbolic.svg</file>
     <file alias="cine-audio-symbolic.svg">../data/icons/scalable/actions/cine-audio-symbolic.svg</file>
     <file alias="cine-list-add-symbolic.svg">../data/icons/scalable/actions/cine-list-add-symbolic.svg</file>
@@ -18,6 +20,7 @@
     <file alias="cine-playlist-repeat-symbolic.svg">../data/icons/scalable/actions/cine-playlist-repeat-symbolic.svg</file>
     <file alias="cine-playlist-shuffle-symbolic.svg">../data/icons/scalable/actions/cine-playlist-shuffle-symbolic.svg</file>
     <file alias="cine-playlist-symbolic.svg">../data/icons/scalable/actions/cine-playlist-symbolic.svg</file>
+    <file alias="cine-play-or-sub-symbolic.svg">../data/icons/scalable/actions/cine-play-or-sub-symbolic.svg</file>
     <file alias="cine-playlist-symbolic-rtl.svg">../data/icons/scalable/actions/cine-playlist-symbolic-rtl.svg</file>
     <file alias="cine-repeat-file-symbolic.svg">../data/icons/scalable/actions/cine-repeat-file-symbolic.svg</file>
     <file alias="cine-skip-backward-symbolic.svg">../data/icons/scalable/actions/cine-skip-backward-symbolic.svg</file>
@@ -32,6 +35,7 @@
     <file alias="cine-subtitles-off-symbolic.svg">../data/icons/scalable/actions/cine-subtitles-off-symbolic.svg</file>
     <file alias="cine-subtitles-symbolic.svg">../data/icons/scalable/actions/cine-subtitles-symbolic.svg</file>
     <file alias="cine-video-symbolic.svg">../data/icons/scalable/actions/cine-video-symbolic.svg</file>
+    <file alias="cine-chapters-symbolic.svg">../data/icons/scalable/actions/cine-chapters-symbolic.svg</file>
     <file alias="cine-view-fullscreen-symbolic.svg">../data/icons/scalable/actions/cine-view-fullscreen-symbolic.svg</file>
     <file alias="cine-view-restore-symbolic.svg">../data/icons/scalable/actions/cine-view-restore-symbolic.svg</file>
 
@@ -46,7 +50,6 @@
     <!-- missing icons from runtime(?) -->
     <file alias="document-edit-symbolic.svg">../data/icons/scalable/actions/document-edit-symbolic.svg</file>
     <file alias="edit-undo-symbolic.svg">../data/icons/scalable/actions/edit-undo-symbolic.svg</file>
-    <file alias="insert-link-symbolic.svg">../data/icons/scalable/actions/insert-link-symbolic.svg</file>
     <file alias="object-flip-horizontal-symbolic.svg">../data/icons/scalable/actions/object-flip-horizontal-symbolic.svg</file>
     <file alias="object-flip-vertical-symbolic.svg">../data/icons/scalable/actions/object-flip-vertical-symbolic.svg</file>
     <file alias="object-rotate-left-symbolic.svg">../data/icons/scalable/actions/object-rotate-left-symbolic.svg</file>

@@ -2,14 +2,9 @@ using Gtk 4.0;
 using Adw 1;
 
 template $Playlist: Adw.Dialog {
-	title: _("Playlist");
-	content-width: 600;
+	content-width: 610;
 	presentation-mode: bottom_sheet;
 	name: "playlist";
-
-	styles [
-		"osd",
-	]
 
 	Adw.ToastOverlay toast_overlay {
 		Overlay {
@@ -17,49 +12,91 @@ template $Playlist: Adw.Dialog {
 			Adw.ToolbarView {
 				[top]
 				Adw.HeaderBar {
+					title-widget: Adw.WindowTitle title_widget {
+						title: _("Playlist");
+					};
+
 					[start]
-					Button {
+					MenuButton {
 						icon-name: "list-add-symbolic";
-						clicked => $_on_add_playlist_files();
-						tooltip-text: _("Add Files");
+						tooltip-text: _("Add");
+
+						menu-model: menu {
+							item {
+								label: _("Add Files");
+								action: "win.add-playlist-files";
+							}
+
+							item {
+								label: _("Add Folder");
+								action: "win.add-playlist-folder";
+							}
+
+							item {
+								label: _("Add URL");
+								action: "win.add-url";
+							}
+						};
 					}
 
-					Button {
-						icon-name: "folder-new-symbolic";
-						action-name: "win.add-playlist-folder";
-						tooltip-text: _("Add Folder");
+					[start]
+					ToggleButton search_btn {
+						icon-name: "system-search-symbolic";
+						tooltip-text: _("Search");
 					}
 
-					Button {
-						icon-name: "insert-link-symbolic";
-						action-name: "win.add-url";
-						tooltip-text: _("Add URL");
+					[start]
+					Button save_playlist_btn {
+						icon-name: "document-save-symbolic";
+						clicked => $_on_save_playlist();
+						tooltip-text: _("Save Playlist");
 					}
 
 					[start]
 					Adw.Spinner spinner {
 						visible: false;
+						margin-start: 8;
 					}
 				}
 
 				content: ScrolledWindow {
-					Adw.Clamp playlist_clamp {
-						ListBox playlist_list_box {
-							hexpand: true;
-							valign: start;
-							activate-on-single-click: true;
-							selection-mode: none;
-							margin-top: 2;
-							margin-end: 10;
-							margin-start: 10;
-							margin-bottom: 20;
+					Adw.ClampScrollable playlist_clamp {
+						maximum-size: 650;
 
-							styles [
-								"boxed-list",
-							]
+						ListView playlist_list_view {
+							single-click-activate: true;
+							activate => $_on_list_item_activate();
+							css-name: "cine-list-view";
+
+							factory: SignalListItemFactory factory {
+								setup => $_on_factory_setup();
+								bind => $_on_factory_bind();
+								unbind => $_on_factory_unbind();
+							};
 						}
 					}
 				};
+
+				[top]
+				SearchBar search_bar {
+					SearchEntry search_entry {
+						margin-bottom: 5;
+						search-delay: 100;
+						width-request: 300;
+					}
+				}
+			}
+
+			[overlay]
+			Label no_results_label {
+				margin-top: 82;
+				margin-bottom: 18;
+				label: _("No Results Found");
+				visible: false;
+
+				styles [
+					"title-3",
+				]
 			}
 
 			[overlay]

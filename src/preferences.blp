@@ -3,171 +3,332 @@ using Adw 1;
 
 template $Preferences: Adw.Dialog {
 	title: _("Preferences");
-	content-width: 491;
+	name: "preferences";
+	content-width: 514;
 
 	Adw.ToolbarView {
 		[top]
-		Adw.HeaderBar {}
+		Adw.HeaderBar {
+			[start]
+			MenuButton warning_header_btn {
+				map => $_on_warning_header_btn_map();
+				tooltip-text: _("About Permissions");
+				icon-name: "info-outline-symbolic";
 
-		content: Adw.Clamp {
-			Adw.PreferencesPage prefs_page {
-				Adw.PreferencesGroup {
-					Adw.SwitchRow open_new_row {
-						title: _("Open New Window for New Files");
-					}
+				styles [
+					"warning-header-btn",
+					"flat",
+				]
 
-					Adw.ActionRow sub_color_row {
-						title: _("Subtitle Color");
-						activatable: true;
-						activatable-widget: color_dialog_button;
+				popover: Popover {
+					closed => $_on_warning_popover_closed();
 
-						[suffix]
-						ColorDialogButton color_dialog_button {
-							valign: center;
-						}
+					ScrolledWindow {
+						propagate-natural-width: true;
+						propagate-natural-height: true;
+						margin-top: 6;
+						margin-start: 6;
+						margin-end: 6;
 
-						[suffix]
-						Button reset_sub_color {
-							valign: center;
-							icon-name: "edit-undo-symbolic";
-							tooltip-text: _("Reset");
-							margin-start: 8;
+						Box {
+							orientation: vertical;
+							halign: center;
+							spacing: 8;
 
-							styles [
-								"circular",
-							]
-						}
-					}
+							Label about_permissions_label {
+								halign: start;
+								justify: fill;
+								max-width-chars: 58;
+								wrap: true;
+								natural-wrap-mode: none;
+								wrap-mode: word_char;
+							}
 
-					Adw.ActionRow font_row {
-						title: _("Subtitle Font");
-						activatable: true;
+							Label cmd_label {
+								label: "flatpak override --filesystem=host moe.nyarchlinux.nekoplay --user";
+								max-width-chars: 66;
+								wrap: true;
 
-						MenuButton {
-							icon-name: "info-outline-symbolic";
-							valign: center;
+								styles [
+									"warning-command",
+								]
+							}
 
-							styles [
-								"flat",
-							]
+							Button copy_cmd_button {
+								label: _("Copy");
+								halign: center;
+								valign: center;
+								margin-top: 4;
+								margin-bottom: 6;
 
-							popover: Popover {
-								Label {
-									label: _("Some fonts may not work");
+								styles [
+									"suggested-action",
+								]
 
-									styles [
-										"warning",
-									]
-								}
-							};
-						}
-
-						[suffix]
-						Label font_label {
-							label: "$FONT";
-							wrap: true;
-							natural-wrap-mode: none;
-
-							styles [
-								"heading",
-							]
-						}
-
-						Button reset_sub_font {
-							valign: center;
-							icon-name: "edit-undo-symbolic";
-							tooltip-text: _("Reset");
-							margin-start: 8;
-
-							styles [
-								"circular",
-							]
+								clicked => $_on_copy_cmd_btn_clicked();
+							}
 						}
 					}
+				};
+			}
+		}
 
-					Adw.SpinRow subtitle_scale_row {
-						title: _("Subtitle Scale");
-						digits: 2;
+		content: Adw.PreferencesPage prefs_page {
+			title: _("Preferences");
 
-						adjustment: Adjustment {
-							lower: 0.1;
-							upper: 3;
-							step-increment: 0.05;
+			Adw.PreferencesGroup {
+				Adw.SwitchRow open_new_row {
+					title: _("Open New Window for New Files");
+				}
+
+				Adw.SwitchRow thumb_preview_row {
+					title: _("Seek Bar Thumbnail");
+				}
+
+				Adw.SwitchRow normalize_volume_row {
+					title: _("Normalize Volume");
+				}
+
+				Adw.SwitchRow offload_row {
+					title: _("Graphics Offload");
+					subtitle: _("Reduces resource usage; disable if you encounter playback issues");
+				}
+
+				Adw.SwitchRow hwdec_row {
+					title: _("Hardware Acceleration");
+					subtitle: _("Use GPU for video decoding when available");
+				}
+
+				Adw.ComboRow anime4k_mode_row {
+					title: _("Default Upscale Mode (Anime4K)");
+					subtitle: _("Applied automatically when a video is loaded");
+
+					model: Gtk.StringList {
+						strings [
+							_("Off"),
+							// TRANSLATORS: Anime4K preset optimized for 1080p anime
+							_("1080p Anime"),
+							// TRANSLATORS: Anime4K preset optimized for 720p anime
+							_("720p Anime"),
+							// TRANSLATORS: Anime4K preset optimized for 480p anime
+							_("480p Anime"),
+						]
+					};
+				}
+
+				Adw.ActionRow {
+					title: _("Restore Saved Session");
+					subtitle: _("Pick up where you left off after saving from the menu");
+					activatable-widget: save_session_switch;
+
+					[suffix]
+					MenuButton {
+						map => $_on_btn_warning_map();
+						icon-name: "info-outline-symbolic";
+						valign: center;
+
+						styles [
+							"flat",
+						]
+
+						popover: Popover {
+							Label {
+								max-width-chars: 35;
+								label: _("Requires flatpak permission to read the folder where the video is stored");
+								wrap: true;
+								justify: center;
+
+								styles [
+									"warning",
+								]
+							}
 						};
 					}
 
-					Adw.EntryRow subtitle_lang_row {
-						title: _("Preferred Subtitle Languages");
-						tooltip-text: _("Example: en,es,pt");
+					[suffix]
+					Switch save_session_switch {
+						valign: center;
 					}
+				}
 
-					Adw.EntryRow audio_lang_row {
-						title: _("Preferred Audio Languages");
-						tooltip-text: _("Example: en,es,pt");
-					}
+				Adw.ActionRow {
+					title: _("Save Video Position on Close");
+					subtitle: _("Also save options like brightness, subtitle delay, etc.");
+					activatable-widget: save_position_switch;
 
-					Adw.SwitchRow thumb_preview_row {
-						title: _("Progress Bar Thumbnail");
-					}
+					[suffix]
+					MenuButton {
+						map => $_on_btn_warning_map();
+						icon-name: "info-outline-symbolic";
+						valign: center;
 
-					Adw.SwitchRow hwdec_row {
-						title: _("Hardware Decoding");
-					}
+						styles [
+							"flat",
+						]
 
-					Adw.SwitchRow normalize_volume_row {
-						title: _("Normalize Volume");
-					}
+						popover: Popover {
+							Label {
+								max-width-chars: 35;
+								label: _("Requires flatpak permission to read the folder where the video is stored");
+								wrap: true;
+								justify: center;
 
-					Adw.ComboRow anime4k_mode_row {
-						title: _("Default Upscale Mode (Anime4K)");
-						subtitle: _("Applied automatically when a video is loaded");
-
-						model: Gtk.StringList {
-							strings [
-								_("Off"),
-								// TRANSLATORS: Anime4K preset optimized for 1080p anime
-								_("1080p Anime"),
-								// TRANSLATORS: Anime4K preset optimized for 720p anime
-								_("720p Anime"),
-								// TRANSLATORS: Anime4K preset optimized for 480p anime
-								_("480p Anime"),
-							]
+								styles [
+									"warning",
+								]
+							}
 						};
 					}
 
-					Adw.ActionRow {
-						title: _("Save Video Position on Close");
-						subtitle: _("Also save options like brightness, subtitle delay, etc.");
-						activatable-widget: save_position_switch;
-
-						[suffix]
-						MenuButton {
-							icon-name: "info-outline-symbolic";
-							valign: center;
-
-							styles [
-								"flat",
-							]
-
-							popover: Popover {
-								Label {
-									max-width-chars: 35;
-									label: _("Requires flatpak permission to read the folder where the video is stored");
-									wrap: true;
-									justify: center;
-
-									styles [
-										"warning",
-									]
-								}
-							};
-						}
-
-						[suffix]
-						Switch save_position_switch {
-							valign: center;
-						}
+					[suffix]
+					Switch save_position_switch {
+						valign: center;
 					}
+				}
+			}
+
+			Adw.PreferencesGroup {
+				Adw.ActionRow sub_color_row {
+					title: _("Subtitle Color");
+					activatable: true;
+					activatable-widget: sub_color_btn;
+
+					[suffix]
+					ColorDialogButton sub_color_btn {
+						valign: center;
+					}
+
+					[suffix]
+					Button reset_sub_color {
+						valign: center;
+						icon-name: "edit-undo-symbolic";
+						tooltip-text: _("Reset");
+						margin-start: 8;
+
+						styles [
+							"circular",
+						]
+					}
+				}
+
+				Adw.ActionRow font_row {
+					title: _("Subtitle Font");
+					activatable: true;
+
+					MenuButton {
+						icon-name: "info-outline-symbolic";
+						valign: center;
+
+						styles [
+							"flat",
+						]
+
+						popover: Popover {
+							Label {
+								label: _("Some fonts may not work");
+
+								styles [
+									"warning",
+								]
+							}
+						};
+					}
+
+					[suffix]
+					Label font_label {
+						label: "$FONT";
+						wrap: true;
+						natural-wrap-mode: none;
+
+						styles [
+							"heading",
+						]
+					}
+
+					Button reset_sub_font {
+						valign: center;
+						icon-name: "edit-undo-symbolic";
+						tooltip-text: _("Reset");
+						margin-start: 8;
+
+						styles [
+							"circular",
+						]
+					}
+				}
+
+				Adw.SpinRow subtitle_scale_row {
+					title: _("Subtitle Scale");
+					digits: 2;
+
+					adjustment: Adjustment {
+						lower: 0.1;
+						upper: 3;
+						step-increment: 0.05;
+					};
+				}
+
+				Adw.ActionRow {
+					title: _("Subtitle Background");
+					activatable-widget: subtitle_bg_switch;
+
+					[suffix]
+					ColorDialogButton sub_bg_color_btn {
+						valign: center;
+						sensitive: bind subtitle_bg_switch.active;
+					}
+
+					[suffix]
+					Switch subtitle_bg_switch {
+						valign: center;
+						margin-start: 8;
+					}
+				}
+			}
+
+			Adw.PreferencesGroup {
+				Adw.ComboRow primary_click_row {
+					title: _("Primary Click");
+
+					model: StringList {
+						strings [
+							_("Play/Pause"),
+							_("Focus/Play/Pause"),
+							_("Bypass"),
+						]
+					};
+				}
+
+				Adw.ComboRow secondary_click_row {
+					title: _("Secondary Click");
+
+					model: StringList {
+						strings [
+							_("Play/Pause"),
+							_("Context Menu"),
+							_("Bypass"),
+						]
+					};
+				}
+			}
+
+			Adw.PreferencesGroup {
+				Adw.EntryRow subtitle_lang_row {
+					title: _("Preferred Subtitle Languages");
+					tooltip-text: _("Example: en,es,pt");
+				}
+
+				Adw.EntryRow audio_lang_row {
+					title: _("Preferred Audio Languages");
+					tooltip-text: _("Example: en,es,pt");
+				}
+			}
+
+			Adw.PreferencesGroup {
+				Adw.ButtonRow open_config_row {
+					title: _("Open Config Folder");
+					end-icon-name: "pan-end-symbolic";
+					activated => $_on_open_config_dir();
 				}
 			}
 		};

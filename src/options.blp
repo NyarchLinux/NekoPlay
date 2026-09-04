@@ -13,11 +13,7 @@ template $OptionsMenuButton: MenuButton {
   icon-name: "cine-options-symbolic";
   tooltip-text: _("Options");
 
-  popover: Popover {
-    styles [
-      "popover-scrolled",
-    ]
-
+  popover: Popover popover {
     ScrolledWindow {
       propagate-natural-height: true;
       propagate-natural-width: true;
@@ -92,7 +88,7 @@ template $OptionsMenuButton: MenuButton {
           Box {
             halign: start;
 
-            Button {
+            Button aspect_reset_btn {
               icon-name: "edit-undo-symbolic";
               tooltip-text: _("Reset Aspect Ratio");
 
@@ -109,6 +105,7 @@ template $OptionsMenuButton: MenuButton {
               natural-wrap-mode: none;
               halign: start;
               margin-start: 8;
+              xalign: 0.0;
 
               styles [
                 "heading",
@@ -150,7 +147,7 @@ template $OptionsMenuButton: MenuButton {
           Box {
             halign: start;
 
-            Button {
+            Button crop_reset_btn {
               icon-name: "edit-undo-symbolic";
               tooltip-text: _("Reset Crop");
 
@@ -167,6 +164,7 @@ template $OptionsMenuButton: MenuButton {
               natural-wrap-mode: none;
               halign: start;
               margin-start: 8;
+              xalign: 0.0;
 
               styles [
                 "heading",
@@ -209,7 +207,7 @@ template $OptionsMenuButton: MenuButton {
           Box {
             halign: start;
 
-            Button {
+            Button rotate_reset_btn {
               icon-name: "edit-undo-symbolic";
               tooltip-text: _("Reset Rotation");
 
@@ -226,6 +224,7 @@ template $OptionsMenuButton: MenuButton {
               natural-wrap-mode: none;
               halign: start;
               margin-start: 8;
+              xalign: 0.0;
 
               styles [
                 "heading",
@@ -262,11 +261,11 @@ template $OptionsMenuButton: MenuButton {
         }
 
         // --- FLIP ---
-        Box flip_box {
+        Box {
           Box {
             halign: start;
 
-            Button {
+            Button flip_reset_btn {
               icon-name: "edit-undo-symbolic";
               tooltip-text: _("Reset Flip");
 
@@ -283,6 +282,7 @@ template $OptionsMenuButton: MenuButton {
               natural-wrap-mode: none;
               halign: start;
               margin-start: 8;
+              xalign: 0.0;
 
               styles [
                 "heading",
@@ -323,7 +323,7 @@ template $OptionsMenuButton: MenuButton {
           Box {
             halign: start;
 
-            Button {
+            Button zoom_reset_btn {
               icon-name: "edit-undo-symbolic";
               tooltip-text: _("Reset Zoom");
 
@@ -340,6 +340,7 @@ template $OptionsMenuButton: MenuButton {
               natural-wrap-mode: none;
               halign: start;
               margin-start: 8;
+              xalign: 0.0;
 
               styles [
                 "heading",
@@ -354,6 +355,7 @@ template $OptionsMenuButton: MenuButton {
           }
 
           SpinButton zoom_spin {
+            css-name: "cine-spinbutton";
             halign: end;
             climb-rate: 1;
             digits: 2;
@@ -378,7 +380,7 @@ template $OptionsMenuButton: MenuButton {
           Box {
             halign: start;
 
-            Button {
+            Button contrast_reset_btn {
               icon-name: "edit-undo-symbolic";
               tooltip-text: _("Reset Contrast");
 
@@ -395,6 +397,7 @@ template $OptionsMenuButton: MenuButton {
               natural-wrap-mode: none;
               halign: start;
               margin-start: 8;
+              xalign: 0.0;
 
               styles [
                 "heading",
@@ -409,6 +412,7 @@ template $OptionsMenuButton: MenuButton {
           }
 
           SpinButton contrast_spin {
+            css-name: "cine-spinbutton";
             halign: end;
             climb-rate: 1;
 
@@ -432,7 +436,7 @@ template $OptionsMenuButton: MenuButton {
           Box {
             halign: start;
 
-            Button {
+            Button brightness_reset_btn {
               icon-name: "edit-undo-symbolic";
               tooltip-text: _("Reset Brightness");
 
@@ -449,6 +453,7 @@ template $OptionsMenuButton: MenuButton {
               natural-wrap-mode: none;
               halign: start;
               margin-start: 8;
+              xalign: 0.0;
 
               styles [
                 "heading",
@@ -463,6 +468,7 @@ template $OptionsMenuButton: MenuButton {
           }
 
           SpinButton brightness_spin {
+            css-name: "cine-spinbutton";
             halign: end;
             climb-rate: 1;
 
@@ -486,7 +492,7 @@ template $OptionsMenuButton: MenuButton {
           Box {
             halign: start;
 
-            Button {
+            Button gamma_reset_btn {
               icon-name: "edit-undo-symbolic";
               tooltip-text: _("Reset Gamma");
 
@@ -503,6 +509,7 @@ template $OptionsMenuButton: MenuButton {
               natural-wrap-mode: none;
               halign: start;
               margin-start: 8;
+              xalign: 0.0;
 
               styles [
                 "heading",
@@ -517,6 +524,7 @@ template $OptionsMenuButton: MenuButton {
           }
 
           SpinButton gamma_spin {
+            css-name: "cine-spinbutton";
             halign: end;
             climb-rate: 1;
 
@@ -540,7 +548,7 @@ template $OptionsMenuButton: MenuButton {
           Box {
             halign: start;
 
-            Button {
+            Button saturation_reset_btn {
               icon-name: "edit-undo-symbolic";
               tooltip-text: _("Reset Saturation");
 
@@ -557,6 +565,7 @@ template $OptionsMenuButton: MenuButton {
               natural-wrap-mode: none;
               halign: start;
               margin-start: 8;
+              xalign: 0.0;
 
               styles [
                 "heading",
@@ -571,6 +580,7 @@ template $OptionsMenuButton: MenuButton {
           }
 
           SpinButton saturation_spin {
+            css-name: "cine-spinbutton";
             halign: end;
             climb-rate: 1;
 
@@ -594,7 +604,7 @@ template $OptionsMenuButton: MenuButton {
           Box {
             halign: start;
 
-            Button {
+            Button hue_reset_btn {
               icon-name: "edit-undo-symbolic";
               tooltip-text: _("Reset Hue");
 
@@ -611,6 +621,7 @@ template $OptionsMenuButton: MenuButton {
               wrap: true;
               natural-wrap-mode: none;
               halign: start;
+              xalign: 0.0;
               margin-start: 8;
 
               styles [
@@ -626,6 +637,7 @@ template $OptionsMenuButton: MenuButton {
           }
 
           SpinButton hue_spin {
+            css-name: "cine-spinbutton";
             halign: end;
             climb-rate: 1;
 
@@ -649,7 +661,7 @@ template $OptionsMenuButton: MenuButton {
           Box {
             halign: start;
 
-            Button {
+            Button sub_delay_reset_btn {
               icon-name: "edit-undo-symbolic";
               tooltip-text: _("Reset Subtitle Delay");
 
@@ -666,6 +678,7 @@ template $OptionsMenuButton: MenuButton {
               natural-wrap-mode: none;
               halign: start;
               margin-start: 8;
+              xalign: 0.0;
 
               styles [
                 "heading",
@@ -680,6 +693,7 @@ template $OptionsMenuButton: MenuButton {
           }
 
           SpinButton sub_delay_spin {
+            css-name: "cine-spinbutton";
             halign: end;
             climb-rate: 1;
             digits: 1;
@@ -704,7 +718,7 @@ template $OptionsMenuButton: MenuButton {
           Box {
             halign: start;
 
-            Button {
+            Button audio_delay_reset_btn {
               icon-name: "edit-undo-symbolic";
               tooltip-text: _("Reset Audio Delay");
 
@@ -721,6 +735,7 @@ template $OptionsMenuButton: MenuButton {
               natural-wrap-mode: none;
               halign: start;
               margin-start: 8;
+              xalign: 0.0;
 
               styles [
                 "heading",
@@ -735,6 +750,7 @@ template $OptionsMenuButton: MenuButton {
           }
 
           SpinButton audio_delay_spin {
+            css-name: "cine-spinbutton";
             halign: end;
             climb-rate: 1;
             digits: 1;
@@ -759,7 +775,7 @@ template $OptionsMenuButton: MenuButton {
           Box {
             halign: start;
 
-            Button {
+            Button speed_reset_btn {
               icon-name: "edit-undo-symbolic";
               tooltip-text: _("Reset Playback Speed");
 
@@ -776,6 +792,7 @@ template $OptionsMenuButton: MenuButton {
               natural-wrap-mode: none;
               halign: start;
               margin-start: 8;
+              xalign: 0.0;
 
               styles [
                 "heading",
@@ -790,6 +807,7 @@ template $OptionsMenuButton: MenuButton {
           }
 
           SpinButton speed_spin {
+            css-name: "cine-spinbutton";
             halign: end;
             climb-rate: 1;
             digits: 2;

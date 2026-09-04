@@ -8,9 +8,9 @@
   <launchable type="desktop-id">moe.nyarchlinux.nekoplay.desktop</launchable>
   <content_rating type="oars-1.1" />
 
-  <url type="homepage">https://github.com/diegopvlk/Cine</url>
-  <url type="bugtracker">https://github.com/diegopvlk/Cine/issues</url>
-  <url type="vcs-browser">https://github.com/diegopvlk/Cine</url>
+  <url type="homepage">https://github.com/NyarchLinux/NekoPlay</url>
+  <url type="bugtracker">https://github.com/NyarchLinux/NekoPlay/issues</url>
+  <url type="vcs-browser">https://github.com/NyarchLinux/NekoPlay</url>
   <url type="donation">https://www.paypal.com/donate?hosted_button_id=DVL7H35GA66X6</url>
   <url type="translate">https://hosted.weblate.org/projects/cine/app/</url>
   <update_contact>diego.pvlk@gmail.com</update_contact>
@@ -19,10 +19,10 @@
     <name translate="no">Diego Povliuk</name>
   </developer>
 
-  <name translate="no">Nekoplay</name>
+  <name translate="no">NekoPlay</name>
   <summary>Play your videos</summary>
   <description>
-    <p>Nekoplay combines a clean interface with a high-performance engine to deliver a seamless viewing experience.</p>
+    <p>NekoPlay combines a clean interface with a high-performance engine to deliver a seamless viewing experience.</p>
 		<ul>
 			<li>Simple Design: A refined, distraction-free interface</li>
       <li>MPV-Based: Leverages the robust power of MPV for great playback and format support</li>
@@ -38,19 +38,19 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/diegopvlk/Cine/f5b21fb60d862dc05bad6cf0089bbd7369fb396a/screenshots/video.png</image>
+      <image>https://raw.githubusercontent.com/diegopvlk/Cine/eedf30ef798707f391df7904af124def524da8c4/screenshots/video.png</image>
       <caption>Video Playing</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/diegopvlk/Cine/f5b21fb60d862dc05bad6cf0089bbd7369fb396a/screenshots/preferences.png</image>
-      <caption>Preferences</caption>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/diegopvlk/Cine/f5b21fb60d862dc05bad6cf0089bbd7369fb396a/screenshots/options.png</image>
+      <image>https://raw.githubusercontent.com/diegopvlk/Cine/eedf30ef798707f391df7904af124def524da8c4/screenshots/options.png</image>
       <caption>Video Options</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/diegopvlk/Cine/f5b21fb60d862dc05bad6cf0089bbd7369fb396a/screenshots/window.png</image>
+      <image>https://raw.githubusercontent.com/diegopvlk/Cine/da6be9875623b347fe72bdbb4a7bedc898808409/screenshots/preferences.png</image>
+      <caption>Preferences</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/diegopvlk/Cine/da6be9875623b347fe72bdbb4a7bedc898808409/screenshots/window.png</image>
       <caption>Main Window</caption>
     </screenshot>
   </screenshots>
@@ -59,6 +59,7 @@
     <category>AudioVideo</category>
     <category>Audio</category>
     <category>Video</category>
+    <category>Player</category>
   </categories>
 
   <recommends>
@@ -71,6 +72,206 @@
   </requires>
 
   <releases>
+    <release version="1.8.4" date="2026-08-16">
+      <description translate="no">
+        <ul>
+          <li>Changed directory filter types to load images in playlist as well</li>
+          <li>The loop state is now persistent</li>
+          <li>Video flip now works with hardware decoding enabled</li>
+          <li>Fixed thumbnail wrongly showing for online videos</li>
+          <li>Fixed seek bar chapter marks not showing sometimes</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.8.2" date="2026-08-03">
+      <description translate="no">
+        <ul>
+          <li>New: Added A-B Loop button</li>
+          <li>Fixed thumbnail showing for audio files</li>
+          <li>Fixed drop overlay being stuck sometimes</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.8.1" date="2026-07-29">
+      <description translate="no">
+        <ul>
+          <li>Added a preference for Graphics Offload; disable if you encounter playback issues</li>
+          <li>Is now possible to set "ENTER" or "KP_ENTER" keys in input.conf</li>
+          <li>Improved performance of time/chapter tooltip</li>
+          <li>Thumbnail preview is super fast now</li>
+          <li>Moving the cursor over the tooltip/thumbnail while scrubbing will not lose the drag event anymore</li>
+          <li>Fixed HDR not working for thumbnail</li>
+          <li>Fixed a crash that could occur when hiding the time tooltip</li>
+          <li>Fixed video jitter while scrubbing and stopping</li>
+          <li>Fixed some custom keys not working</li>
+          <li>Fixed subtitle file drop not adding when video was paused</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.7.4" date="2026-07-18">
+      <description translate="no">
+        <ul>
+          <li>New: Changed window menu to context menu for secondary click option</li>
+          <li>Window menu still accessible via secondary click on title bar or controls</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.7.3" date="2026-07-11">
+      <description translate="no">
+        <ul>
+          <li>Fixed a crash occurring when restoring session</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.7.2" date="2026-07-10">
+      <description translate="no">
+        <ul>
+          <li>New: middle click volume icon to toggle mute</li>
+          <li>A toast is now displayed when restoring session</li>
+          <li>Fixed a crash occurring when closing the video options menu</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.7.1" date="2026-07-07">
+      <description translate="no">
+        <ul>
+          <li>New: middle click progress bar to jump to start of chapter</li>
+          <li>Added Greek and Korean translations</li>
+          <li>Updated Arabic and French translations</li>
+          <li>Improved stylesheet and icons</li>
+          <li>Bug fixes and improvements</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.7.0" date="2026-06-28">
+      <description translate="no">
+        <ul>
+          <li>New: Added Watch History</li>
+          <li>Updated visual styles of all dialogs</li>
+          <li>Fixed errors when closing the app</li>
+          <li>Fixed empty title on some taskbars</li>
+          <li>Fixed app not unpausing when opening new files</li>
+          <li>Added Ukranian and Tamil translations</li>
+          <li>Plus minor fixes and improvements</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.6.0" date="2026-06-22">
+      <description translate="no">
+        <ul>
+          <li>Improvements and fixes for MPRIS</li>
+          <li>Zooming with Ctrl + Scroll Wheel is now cursor-centric</li>
+          <li>Added action to save session without closing the app</li>
+          <li>Added button in preferences to open config folder</li>
+          <li>Fixed mouse back/forward buttons not working</li>
+          <li>Fixed playlist search not working after adding/opening new items</li>
+          <li>Improved file error handling</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.5.4" date="2026-06-10">
+      <description translate="no">
+        <ul>
+          <li>Hotfix for the app not opening</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.5.3" date="2026-06-10">
+      <description translate="no">
+        <ul>
+          <li>Improved speed while seeking from progress bar</li>
+          <li>Fixed scrolling not working for high resolution mouses</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.5.1" date="2026-06-04">
+      <description translate="no">
+        <ul>
+          <li>Performance improvements for playlist</li>
+          <li>Changed GSK default renderer to "gl", fixing frame drops on Niri DE and video blackouts on NVIDIA cards</li>
+          <li>Fixed playlist not updating sometimes</li>
+          <li>Removed the parent folder label from playlist for a cleaner look (still available in file name tooltip)</li>
+          <li>Added support for a wider range of characters in input.conf</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.4.5" date="2026-05-28">
+      <description translate="no">
+        <ul>
+          <li>The app now auto load files from the same folder to playlist (requires extra permission)</li>
+          <li>Added options to change left/right clicks</li>
+          <li>Fixed styles for subtitles with dark text and light background</li>
+          <li>Added an explanation of permissions to preferences</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.4.1" date="2026-05-22">
+      <description translate="no">
+        <ul>
+          <li>New: Hold space bar to double speed</li>
+          <li>New: It's now possible to search the playlist</li>
+          <li>Improved performance for large playlists</li>
+          <li>The playlist now shows the item count</li>
+          <li>The open url dialog now pre-fills with the clipboard contents</li>
+          <li>Fixed progress bar thumbnail not working in some cases</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.3.1" date="2026-05-06">
+      <description translate="no">
+        <ul>
+          <li>The session is now saved when using the menu or shortcut action, instead of on close, which could lead to acidentally losing a session</li>
+          <li>UI improvements</li>
+          <li>The maximized state of the window is now remembered</li>
+          <li>Added Urdu translation</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.2.5" date="2026-04-17">
+      <description translate="no">
+        <ul>
+          <li>New: Added preference for subtitle background color</li>
+          <li>Added Estonian translation</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.2.4" date="2026-04-12">
+      <description translate="no">
+        <ul>
+          <li>New: Added preference to save session on close</li>
+          <li>New: Right click menu in playlist to open item location or remove item</li>
+          <li>New: Added menu to select video chapters</li>
+          <li>Fixed subtitle size not being saved</li>
+          <li>Fixed mouse cursor not hiding during fullscreen in some cases</li>
+          <li>Added support for scrolling with modifier keys</li>
+          <li>Added more file extensions when adding subtitles</li>
+          <li>Performance improvements</li>
+          <li>Added Finnish translation</li>
+          <li>Added Occitan translation</li>
+          <li>Updated GNOME runtime to 50</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.1.1" date="2026-03-14">
+      <description translate="no">
+        <ul>
+          <li>Added Chinese translation</li>
+          <li>Added support for window-maximized=yes</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.1.0" date="2026-03-05">
+      <description translate="no">
+        <ul>
+          <li>New: Added support for URLs/streaming</li>
+          <li>New: Preference for progress bar thumbnail preview</li>
+          <li>New: Added crop to options menu</li>
+          <li>Improved UI for RTL languages</li>
+          <li>Improved high contrast support</li>
+          <li>Added shortcuts to change subtitle/audio</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.0.9" date="2026-02-20">
       <description translate="no">
         <ul>
@@ -94,7 +295,7 @@
       <description translate="no">
         <ul>
           <li>The playlist now has custom icons for different file types + small fixes</li>
-          <li>The Weblate page for translations is now available at: https://hosted.weblate.org/projects/cine/app/</li>
+          <li>The Weblate page for translations is now available at: hosted.weblate.org/projects/cine/app/</li>
         </ul>
       </description>
     </release>

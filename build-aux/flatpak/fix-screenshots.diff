@@ -12,4 +12,4 @@ index c733a2bdb1490..32d10a047db58 100644
 +    if (image && IMGFMT_IS_HWACCEL(image->imgfmt)) {
          struct mp_image *nimage = mp_image_hw_download(image, NULL);
          talloc_free(image);
-         if (!nimage)
+        if (!nimage)

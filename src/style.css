@@ -1,3 +1,36 @@
+@define-color window_bg_color rgb(5, 5, 6);
+@define-color window_fg_color #e5e5e5;
+@define-color headerbar_bg_color @window_bg_color;
+@define-color card_bg_color rgba(60, 60, 62, 0.66);
+@define-color popover_bg_color rgba(25, 25, 27, 0.975);
+@define-color popover_fg_color @window_fg_color;
+@define-color dialog_bg_color @window_bg_color;
+
+window {
+  --cine-grey: #e5e5e5;
+  --window-bg-color: rgb(5, 5, 6);
+  --window-fg-color: var(--cine-grey);
+  --headerbar-bg-color: var(--window-bg-color);
+  --card-bg-color: rgba(60, 60, 62, 0.66);
+  --popover-bg-color: rgba(25, 25, 27, 0.975);
+  --popover-fg-color: var(--cine-grey);
+  --dialog-bg-color: var(--window-bg-color);
+}
+
+sheet {
+  background-color: rgb(
+    from var(--window-bg-color) r g b / calc(alpha * 0.925)
+  );
+}
+
+label.link {
+  --accent-color: @accent_color;
+}
+
+toast {
+  margin-bottom: 26px;
+}
+
 .osd {
   box-shadow: none;
   text-shadow: 0px 1px 6px rgba(0, 0, 0, 0.6);
@@ -22,68 +55,157 @@
   );
 }
 .header-and-controls {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.3) 0%,
-      rgba(0, 0, 0, 0.15) 5%,
-      rgba(0, 0, 0, 0) 17%
-    ),
-    linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.4) 0%,
-      rgba(0, 0, 0, 0.23) 10%,
-      rgba(0, 0, 0, 0) 35%
-    );
+  background-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.32) 0%,
+    rgba(0, 0, 0, 0.16) 5%,
+    rgba(0, 0, 0, 0) 17%,
+    rgba(0, 0, 0, 0) 65%,
+    rgba(0, 0, 0, 0.24) 90%,
+    rgba(0, 0, 0, 0.43) 100%
+  );
+}
+
+window:backdrop .controls button,
+window:backdrop .controls .heading,
+window:backdrop scale {
+  transition: opacity 300ms;
+  opacity: 0.66;
+}
+
+button.pill.suggested-action,
+button.circular.suggested-action {
+  background: var(--cine-grey);
+  color: black;
+}
+button.pill.suggested-action:hover,
+button.circular.suggested-action:hover {
+  background: white;
+}
+button.pill:active,
+.start-page button.circular:active {
+  transform: scale(0.98);
+}
+
+dialog:not(#playlist),
+#playlist headerbar,
+#playlist searchbar,
+cine-list-view,
+.start-page button {
+  --accent-color: var(--window-fg-color);
+}
+#playlist:drop(active) {
+  box-shadow: none;
 }
 
 .start-page {
-  color: #e5e5e5;
+  color: var(--cine-grey);
   background: linear-gradient(180deg, transparent 0%, #0c0c0e 100%);
 }
-.start-page button.suggested-action {
-  background: #e5e5e5;
-  color: black;
-}
-.start-page button.suggested-action:hover {
-  background: white;
-}
 .start-page button {
-  --accent-color: #e5e5e5;
-  background: rgba(255, 255, 255, 0.12);
-}
-.start-page button:hover {
   background: rgba(255, 255, 255, 0.15);
 }
-.start-page button:active {
-  transform: scale(0.98);
+.start-page button:hover {
+  background: rgba(255, 255, 255, 0.18);
 }
-.osd button:hover:not(.close):not(.maximize):not(.minimize) {
-  background: rgba(255, 255, 255, 0.17);
+.start-page button.watch-history {
+  min-width: 44px;
 }
-.osd button:active:not(.close):not(.maximize):not(.minimize) {
-  background: rgba(255, 255, 255, 0.25);
+
+#history preferencesgroup > box {
+  margin-bottom: -6px;
+}
+#history preferencesgroup .header.single-line {
+  margin-top: -8px;
+  margin-bottom: -6px;
+}
+#history .row-history .header {
+  margin-top: -4px;
+  margin-bottom: -4px;
+}
+#history .row-history:dir(ltr) button {
+  margin-right: -8px;
+}
+#history .row-history:dir(rtl) button {
+  margin-left: -8px;
+}
+
+button:hover:not(.close):not(.maximize):not(.minimize):not(.pill):not(
+    .suggested-action
+  ):not(:checked),
+menubutton
+  button:checked:not(.close):not(.maximize):not(.minimize):not(.pill):not(
+    .suggested-action
+  ):not(.toggle-mute) {
+  background: rgb(from currentColor r g b / calc(alpha * 0.2));
+}
+button:active:not(.close):not(.maximize):not(.minimize):not(.pill):not(
+    .suggested-action
+  ):not(:checked) {
+  background-color: rgb(from currentColor r g b / calc(alpha * 0.3));
 }
 
 .osd.controls button:disabled {
   -gtk-icon-shadow: 0px 1px 5px black;
+  opacity: 1;
 }
+
+button.a-loop {
+  color: oklab(from @accent_color var(--standalone-color-oklab));
+  background-color: rgb(from @accent_bg_color r g b / calc(alpha * 0.25));
+  box-shadow:
+    inset 0 0px 0px 1px rgb(from currentColor r g b / calc(alpha * 0.5)),
+    0 1px 2px 0px rgba(0, 0, 0, 0.4);
+  -gtk-icon-shadow: 0px 1px 6px black;
+}
+
 .osd.controls button.flat.toggle:checked {
-  background-color: white;
-  color: black;
-  -gtk-icon-shadow: none;
-  box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2);
+  background: radial-gradient(
+    closest-side,
+    transparent,
+    rgb(from currentColor r g b / calc(alpha * 0.2)),
+    rgb(from currentColor r g b / calc(alpha * 0.5))
+  );
+  box-shadow:
+    inset 0 0px 0px 1px rgba(255, 255, 255, 0.25),
+    0 1px 2px 0px rgba(0, 0, 0, 0.4);
+  -gtk-icon-shadow: 0px 1px 6px rgba(0, 0, 0, 0.8);
+  transition: all 250ms ease-out;
 }
+.osd.controls button.flat.toggle:checked:hover {
+  background: radial-gradient(
+    closest-side,
+    rgb(from currentColor r g b / calc(alpha * 0.2)),
+    rgb(from currentColor r g b / calc(alpha * 0.3)),
+    rgb(from currentColor r g b / calc(alpha * 0.65))
+  );
+}
+.osd.controls button.flat.toggle:checked:active {
+  background: radial-gradient(
+    closest-side,
+    rgb(from currentColor r g b / calc(alpha * 0.3)),
+    rgb(from currentColor r g b / calc(alpha * 0.4)),
+    rgb(from currentColor r g b / calc(alpha * 0.8))
+  );
+}
+
 .osd.controls .time-separator {
   background-color: #ddd;
   opacity: 0.4;
   border-radius: 2px;
 }
 
-.osd popover:not(.chapter-popover) > contents,
-.osd popover > arrow {
-  border: 1px solid #212122;
-  background: rgba(25, 25, 27, 0.95);
+popover * {
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+}
+
+popover:not(.chapter-popover) > contents,
+popover > arrow {
+  border: 1px solid
+    color-mix(in srgb, var(--popover-bg-color) 96%, currentColor);
+  background: var(--popover-bg-color);
+  color: var(--popover-fg-color);
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.33);
 }
 
@@ -98,21 +220,26 @@ scale highlight,
 scale > trough > slider {
   background-color: white;
 }
+popover scale highlight,
+popover scale > trough > slider {
+  background-color: hsl(from var(--popover-fg-color) h s calc(l + 15%));
+}
 
 scale > trough > slider {
   border-radius: 100%;
-  min-width: 20px;
-  min-height: 20px;
-  margin: -8px;
 }
-
 scale trough {
-  background-color: rgba(255, 255, 255, 0.225);
+  background-color: rgba(255, 255, 255, 0.3);
 }
-
+popover trough {
+  background-color: rgb(from var(--popover-fg-color) r g b / calc(alpha * 0.3));
+}
 scale mark {
   color: white;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.33);
+}
+popover scale mark {
+  color: hsl(from var(--popover-fg-color) h s calc(l + 15%));
 }
 
 .first-label-bold popover modelbutton:first-child {
@@ -125,7 +252,6 @@ scale mark {
 }
 
 .icon-indicator {
-  -gtk-icon-size: 72px;
   -gtk-icon-shadow: 0px 1px 9px rgba(0, 0, 0, 0.66);
   color: white;
 }
@@ -145,26 +271,19 @@ scale mark {
   margin: 12px;
 }
 
-.popover-scrolled > contents scrollbar.vertical > range > trough > slider {
-  min-height: 16px;
-}
-
 dialog:not(.shortcuts) preferencespage scrolledwindow viewport clamp {
   margin-top: -22px;
+}
+
+#preferences preferencesgroup:not(:last-child) {
+  margin-bottom: -14px;
 }
 
 statuspage box {
   margin-top: 0px;
 }
 
-.playing-item-playlist {
-  background-color: rgb(from var(--accent-color) r g b / calc(alpha * 0.16));
-}
-.playing-item-playlist:hover {
-  background-color: rgb(from var(--accent-color) r g b / calc(alpha * 0.21));
-}
-
-#options spinbutton {
+cine-spinbutton {
   background: none;
   outline: none;
   padding: 0;
@@ -172,59 +291,154 @@ statuspage box {
   box-shadow: none;
 }
 
-#options dropdown button * {
-  background: none;
-}
-
-.chapter-popover label {
-  padding: 7px 11px;
-  margin-bottom: -7px;
-}
-.chapter-popover > contents {
-  background: transparent;
-}
-.chapter-popover > contents picture,
-.chapter-popover > contents label {
-  border: 1px solid #212122;
-  background: rgba(25, 25, 27, 0.95);
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.33);
-  border-radius: 13px;
-}
-.chapter-popover > contents picture {
-  margin-bottom: 8px;
+time-tooltip frame {
+  margin: 12px 6px;
   border: none;
   box-shadow:
     0px 0px 5px 1px rgba(20, 20, 20, 0.5),
-    0px 0px 0px 1px rgba(144, 144, 144, 0.2);
+    0px 0px 0px 1px rgba(144, 144, 144, 0.44);
+}
+time-tooltip label {
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--popover-bg-color) 96%,
+      rgb(from currentColor r g b / calc(alpha * 1))
+    );
+  background: var(--popover-bg-color);
+  color: var(--popover-fg-color);
+  padding: 7px 10px;
+  margin: 6px;
+  margin-bottom: 4px;
+  line-height: 18px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.33);
+  text-shadow: none;
+  border-radius: 12px;
 }
 
-.options-menu-btn popover button,
-.options-menu-btn popover spinbutton {
+#options popover button,
+#options popover cine-spinbutton {
   min-height: 22px;
+}
+#options dropdown button * {
+  background: none;
+}
+#options popover scrollbar:dir(ltr) {
+  margin-right: -10px;
+}
+#options popover scrollbar:dir(rtl) {
+  margin-left: -10px;
+}
+
+cine-list-view {
+  background-color: transparent;
+  padding-top: 1px;
+  padding-bottom: 22px;
+}
+cine-list-view row {
+  background-color: transparent;
+  margin-right: 12px;
+  margin-left: 12px;
+  padding: 0;
+}
+cine-list-view row > box {
+  transition: background-color 200ms ease-in-out;
+  color: var(--card-fg-color);
+  background-color: var(--card-bg-color);
+  margin-bottom: -1px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+cine-list-view row > box:hover {
+  background-color: color-mix(in srgb, var(--card-bg-color) 95%, currentColor);
+}
+cine-list-view row > box:active {
+  background-color: color-mix(in srgb, var(--card-bg-color) 90%, currentColor);
+}
+cine-list-view row:first-child,
+cine-list-view row:first-child > box {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+cine-list-view row:last-child,
+cine-list-view row:last-child > box {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.playing-item-playlist {
+  background-image: linear-gradient(
+    rgba(245, 245, 255, 0.15),
+    rgba(245, 245, 255, 0.15)
+  );
+}
+
+.warning-header-btn button:first-child {
+  color: var(--warning-color);
+  --accent-color: var(--warning-color);
+}
+.warning-command {
+  padding: 10px 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background-color: var(--card-bg-color);
+  font-size: 0.875em;
+  font-family: "monospace";
+}
+
+@media (prefers-contrast: no-preference) {
+  floating-sheet sheet {
+    box-shadow:
+      inset 0 0 0 1px rgba(245, 245, 255, 0.08),
+      0 0 12px 2px rgba(245, 245, 255, 0.1),
+      0 0 6px 2px rgba(0, 0, 6, 0.25);
+  }
+  bottom-sheet sheet outline {
+    box-shadow:
+      1px 0 rgba(255, 255, 255, 0.13) inset,
+      -1px 0 rgba(255, 255, 255, 0.13) inset,
+      0 1px rgba(255, 255, 255, 0.13) inset,
+      0 0 12px 2px rgba(245, 245, 255, 0.1),
+      0 0 6px 2px rgba(0, 0, 6, 0.25);
+  }
+  popover scrollbar range trough {
+    background-color: transparent;
+  }
 }
 
 @media (prefers-contrast: more) {
-  .osd popover:not(.chapter-popover) > contents,
-  .osd popover > arrow,
-  .chapter-popover > contents label {
+  popover > contents,
+  popover > arrow {
     border: 1px solid var(--border-color);
   }
-  .chapter-popover > contents picture {
-    border: 1px solid rgba(255, 255, 255, 0.9);
+
+  time-tooltip label,
+  cine-list-view row > box {
+    border: 1px solid var(--border-color);
   }
+
+  time-tooltip frame {
+    box-shadow:
+      0px 0px 5px 1px rgba(20, 20, 20, 0.5),
+      0px 0px 0px 1px white;
+  }
+
   .header-and-controls {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.6) 0%,
-        rgba(0, 0, 0, 0.3) 5%,
-        rgba(0, 0, 0, 0) 17%
-      ),
-      linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.8) 0%,
-        rgba(0, 0, 0, 0.46) 10%,
-        rgba(0, 0, 0, 0) 35%
-      );
+    background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.3) 5%,
+      rgba(0, 0, 0, 0) 17%,
+      rgba(0, 0, 0, 0) 65%,
+      rgba(0, 0, 0, 0.46) 90%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+  }
+
+  cine-list-view row > box {
+    border: 1px solid var(--border-color);
+  }
+
+  popover scrollbar range trough {
+    background-color: rgb(from currentColor r g b / calc(alpha * 0.15));
   }
 }

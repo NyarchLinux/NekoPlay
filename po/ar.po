@@ -1,30 +1,34 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the moe.nyarchlinux.nekoplay package.
+# This file is distributed under the same license as the io.github.diegopvlk.Cine package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Muhammed Al-Basha <contact.mu7basha@gmail.com>, 2026.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: moe.nyarchlinux.nekoplay\n"
+"Project-Id-Version: io.github.diegopvlk.Cine\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-23 17:21-0300\n"
-"PO-Revision-Date: 2026-02-17 14:50-0300\n"
-"Last-Translator: Muhammed Al-Basha <contact.mu7basha@gmail.com>\n"
-"Language-Team: Arabic\n"
+"POT-Creation-Date: 2026-09-05 00:17+0200\n"
+"PO-Revision-Date: 2026-07-06 10:01+0000\n"
+"Last-Translator: Muhammed Al-Basha "
+"<mu7basha@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/cine/app/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural= n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: Gtranslator 49.0\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 2026.7.1.dev0\n"
 
-#: data/moe.nyarchlinux.nekoplay.desktop.in:2 src/main.py:210 src/mpris.py:146
-#: src/mpris.py:364 src/window.py:154 src/window.py:253 src/window.py:1416
-#: src/window.blp:6
-msgid "Cine"
-msgstr "سيني"
+#: data/moe.nyarchlinux.nekoplay.desktop.in:2
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:22 src/main.py:234
+#: src/mpris.py:144 src/mpris.py:362 src/window.py:194 src/window.py:2082
+#: src/window.blp:6 src/window.blp:81 src/window.blp:447
+#, fuzzy
+#| msgid "Play"
+msgid "NekoPlay"
+msgstr "شغِّل"
 
 #: data/moe.nyarchlinux.nekoplay.desktop.in:3
 #: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:23
@@ -33,35 +37,44 @@ msgstr "شغّل فيديوهاتك"
 
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/moe.nyarchlinux.nekoplay.desktop.in:10
-msgid "Audio;Video;Movie;TV;Film;Clip;Player;Cine;mpv;"
-msgstr "Audio;Video;Movie;TV;Film;Clip;Player;Cine;mpv;صوت;فيديو;مقطع;فيلم;مشغل;سيني;لقطة;"
+#, fuzzy
+#| msgid "Audio;Video;Movie;TV;Film;Clip;Player;Cine;mpv;"
+msgid "Audio;Video;Movie;TV;Film;Clip;Player;NekoPlay;mpv;"
+msgstr "صوت;فيديو;فيلم;تلفاز;فيلم;مقطع;مشغل;سيني;mpv;"
 
 #: data/moe.nyarchlinux.nekoplay.desktop.in:18 src/shortcuts-dialog.blp:11
-#: src/window.blp:125
+#: src/window.blp:122
 msgid "New Window"
 msgstr "نافذة جديدة"
 
 #: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:25
+#, fuzzy
+#| msgid ""
+#| "Cine combines a clean interface with a high-performance engine to deliver "
+#| "a seamless viewing experience."
 msgid ""
-"Cine combines a clean interface with a high-performance engine to deliver a "
-"seamless viewing experience."
+"NekoPlay combines a clean interface with a high-performance engine to "
+"deliver a seamless viewing experience."
 msgstr ""
-"سيني يجمع بين واجهة نظيفة ومحرك عالي الأداء لتوفير تجربة مشاهدة لا مثيل لها"
+"يجمع تطبيق Cine بين واجهة استخدام نظيفة ومحرك أداء عالي ليمنحك تجربة مشاهدة "
+"سلسلة ومتكاملة."
 
 #: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:27
 msgid "Simple Design: A refined, distraction-free interface"
-msgstr "تصميم بسيط: واجهة موحَّدة، بلا ازعاج"
+msgstr "تصميم بسيط: واجهة راقية وخالية من المشتتات."
 
 #: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:28
 msgid ""
 "MPV-Based: Leverages the robust power of MPV for great playback and format "
 "support"
-msgstr "MPV كأساس: مستغلًا قوة MPV لتجربة تشغيل رائعة ودعم جيد للصيغة"
+msgstr ""
+"يعتمد على محرك MPV: يستفيد من القوة الجبارة لـ MPV لضمان دعم ممتاز للصيغ "
+"وتشغيل مثالي."
 
 #: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:29
 msgid ""
 "Audio and Subtitles: Control track selection and synchronization for both"
-msgstr "الصوت والترجمات: تحكم بإختيار المسار وزامن كلاهما"
+msgstr "الصوت والترجمات: تحكم بإختيار المقطوعة ومزامنة الصوت والترجمة"
 
 #: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:30
 msgid ""
@@ -73,175 +86,804 @@ msgstr ""
 msgid "Video Playing"
 msgstr "الفيديو يُشغل"
 
-#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:46 src/preferences.blp:5
-#: src/window.blp:130
-msgid "Preferences"
-msgstr "التفضيلات"
-
-#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:50
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:46
 msgid "Video Options"
 msgstr "خيارات الفيديو"
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:50 src/preferences.blp:5
+#: src/preferences.blp:77 src/window.blp:123 src/window.blp:563
+msgid "Preferences"
+msgstr "التفضيلات"
 
 #: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:54
 msgid "Main Window"
 msgstr "النافذة الرئيسية"
 
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:78
+msgid "Changed directory filter types to load images in playlist as well"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:79
+msgid "The loop state is now persistent"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:80
+msgid "Video flip now works with hardware decoding enabled"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:81
+msgid "Fixed thumbnail wrongly showing for online videos"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:82
+msgid "Fixed seek bar chapter marks not showing sometimes"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:89
+msgid "New: Added A-B Loop button"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:90
+msgid "Fixed thumbnail showing for audio files"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:91
+msgid "Fixed drop overlay being stuck sometimes"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:98
+#, fuzzy
+#| msgid "Reduces resource usage; disable if you encounter playback issues"
+msgid ""
+"Added a preference for Graphics Offload; disable if you encounter playback "
+"issues"
+msgstr "يقلل استهلاك الموارد؛ قم بتعطيله إذا واجهت مشاكل في التشغيل"
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:99
+msgid "Is now possible to set \"ENTER\" or \"KP_ENTER\" keys in input.conf"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:100
+msgid "Improved performance of time/chapter tooltip"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:101
+msgid "Thumbnail preview is super fast now"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:102
+msgid ""
+"Moving the cursor over the tooltip/thumbnail while scrubbing will not lose "
+"the drag event anymore"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:103
+msgid "Fixed HDR not working for thumbnail"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:104
+msgid "Fixed a crash that could occur when hiding the time tooltip"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:105
+msgid "Fixed video jitter while scrubbing and stopping"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:106
+msgid "Fixed some custom keys not working"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:107
+msgid "Fixed subtitle file drop not adding when video was paused"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:114
+msgid "New: Changed window menu to context menu for secondary click option"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:115
+msgid ""
+"Window menu still accessible via secondary click on title bar or controls"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:122
+msgid "Fixed a crash occurring when restoring session"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:129
+msgid "New: middle click volume icon to toggle mute"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:130
+msgid "A toast is now displayed when restoring session"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:131
+msgid "Fixed a crash occurring when closing the video options menu"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:138
+msgid "New: middle click progress bar to jump to start of chapter"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:139
+msgid "Added Greek and Korean translations"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:140
+msgid "Updated Arabic and French translations"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:141
+msgid "Improved stylesheet and icons"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:142
+msgid "Bug fixes and improvements"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:149
+#, fuzzy
+#| msgid "Watch History"
+msgid "New: Added Watch History"
+msgstr "سجل المشاهدة"
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:150
+msgid "Updated visual styles of all dialogs"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:151
+msgid "Fixed errors when closing the app"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:152
+msgid "Fixed empty title on some taskbars"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:153
+msgid "Fixed app not unpausing when opening new files"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:154
+msgid "Added Ukranian and Tamil translations"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:155
+msgid "Plus minor fixes and improvements"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:162
+msgid "Improvements and fixes for MPRIS"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:163
+msgid "Zooming with Ctrl + Scroll Wheel is now cursor-centric"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:164
+msgid "Added action to save session without closing the app"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:165
+msgid "Added button in preferences to open config folder"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:166
+msgid "Fixed mouse back/forward buttons not working"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:167
+msgid "Fixed playlist search not working after adding/opening new items"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:168
+msgid "Improved file error handling"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:175
+msgid "Hotfix for the app not opening"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:182
+msgid "Improved speed while seeking from progress bar"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:183
+msgid "Fixed scrolling not working for high resolution mouses"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:190
+msgid "Performance improvements for playlist"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:191
+msgid ""
+"Changed GSK default renderer to \"gl\", fixing frame drops on Niri DE and "
+"video blackouts on NVIDIA cards"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:192
+msgid "Fixed playlist not updating sometimes"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:193
+msgid ""
+"Removed the parent folder label from playlist for a cleaner look (still "
+"available in file name tooltip)"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:194
+msgid "Added support for a wider range of characters in input.conf"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:201
+#, fuzzy
+#| msgid "Auto add files from the same folder to playlist"
+msgid ""
+"The app now auto load files from the same folder to playlist (requires extra "
+"permission)"
+msgstr "إضافة الملفات من نفس المجلد تلقائيًا إلى قائمة التشغيل"
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:202
+msgid "Added options to change left/right clicks"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:203
+msgid "Fixed styles for subtitles with dark text and light background"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:204
+msgid "Added an explanation of permissions to preferences"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:211
+msgid "New: Hold space bar to double speed"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:212
+msgid "New: It's now possible to search the playlist"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:213
+msgid "Improved performance for large playlists"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:214
+msgid "The playlist now shows the item count"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:215
+msgid "The open url dialog now pre-fills with the clipboard contents"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:216
+msgid "Fixed progress bar thumbnail not working in some cases"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:223
+msgid ""
+"The session is now saved when using the menu or shortcut action, instead of "
+"on close, which could lead to acidentally losing a session"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:224
+msgid "UI improvements"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:225
+msgid "The maximized state of the window is now remembered"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:226
+msgid "Added Urdu translation"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:233
+msgid "New: Added preference for subtitle background color"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:234
+msgid "Added Estonian translation"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:241
+msgid "New: Added preference to save session on close"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:242
+msgid "New: Right click menu in playlist to open item location or remove item"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:243
+msgid "New: Added menu to select video chapters"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:244
+msgid "Fixed subtitle size not being saved"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:245
+msgid "Fixed mouse cursor not hiding during fullscreen in some cases"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:246
+msgid "Added support for scrolling with modifier keys"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:247
+msgid "Added more file extensions when adding subtitles"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:248
+msgid "Performance improvements"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:249
+msgid "Added Finnish translation"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:250
+msgid "Added Occitan translation"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:251
+msgid "Updated GNOME runtime to 50"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:258
+msgid "Added Chinese translation"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:259
+msgid "Added support for window-maximized=yes"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:266
+msgid "New: Added support for URLs/streaming"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:267
+msgid "New: Preference for progress bar thumbnail preview"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:268
+msgid "New: Added crop to options menu"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:269
+msgid "Improved UI for RTL languages"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:270
+msgid "Improved high contrast support"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:271
+msgid "Added shortcuts to change subtitle/audio"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:278
+msgid "New: Volume level is now always restored at startup"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:279
+msgid "New: Toggle elapsed/remaining time by clicking on it"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:280
+#, fuzzy
+#| msgid "Auto add files from the same folder to playlist"
+msgid "New: Button/action to add folder to playlist"
+msgstr "إضافة الملفات من نفس المجلد تلقائيًا إلى قائمة التشغيل"
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:281
+msgid "New: Hold click to double playback speed"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:282
+msgid "Added icon indicators for subtitle/mute on/off"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:283
+msgid "Unmute when changing volume"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:290
+msgid "Added German translation"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:297
+msgid ""
+"The playlist now has custom icons for different file types + small fixes"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:298
+msgid ""
+"The Weblate page for translations is now available at: hosted.weblate.org/"
+"projects/cine/app/"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:305
+msgid "Added Dutch translation + small fixes"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:312
+msgid "Fixed NVIDIA video flickering"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:313
+msgid ""
+"Default drop action is now \"Play\". To \"Add to Playlist\", drop directly "
+"into Playlist view"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:320
+msgid "Added hue to video options"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:321
+msgid "Improved shortcuts categorization"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:322
+msgid "Added shortcuts for prev/next chapters"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:323
+msgid "The controls now uses custom icons for better compatibility"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:324
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:335
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:343
+msgid "Fixes and performance improvements"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:325
+msgid "Added Arabic translation"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:326
+msgid "Added Italian translation"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:333
+msgid "Added a preference for hardware decoding"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:334
+#, fuzzy
+#| msgid "Video Options"
+msgid "Improved video options"
+msgstr "خيارات الفيديو"
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:336
+msgid "Added French translation"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:344
+msgid "Added support for opening video as audio track"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:345
+msgid "Added button to reset all video options"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:346
+msgid "Added support for selecting different video tracks"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:347
+msgid "Improved mouse and touchpad scrolling"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:348
+msgid "Added Russian translation"
+msgstr ""
+
+#: data/moe.nyarchlinux.nekoplay.metainfo.xml.in:355
+msgid "Initial Release"
+msgstr ""
+
+#: src/history.py:59 src/history.py:63
+msgid "Load All"
+msgstr "تحميل الكل"
+
+#: src/history.py:145
+msgid "Remove from History"
+msgstr "إزالة من السجل"
+
+#: src/history.py:215 src/playlist.py:426
+msgid "Open Item Location"
+msgstr "افتح مكان العنصر"
+
+#: src/history.py:304
+msgid "Clear Watch History?"
+msgstr "هل تريد مسح سجل المشاهدة؟"
+
+#: src/history.py:305
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: src/history.py:306 src/history.blp:16
+msgid "Clear All"
+msgstr "مسح الكل"
+
 #. Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
-#: src/main.py:220
+#: src/main.py:244
 msgid "translator-credits"
 msgstr "محمد الباشا <contact.mu7basha@gmail.com>"
 
-#: src/mpris.py:153 src/mpris.py:221 src/mpris.py:356
-msgid "Unknown title"
-msgstr "عنوان مجهول"
+#: src/playlist.py:122 src/playlist.blp:45
+msgid "Search"
+msgstr "بحث"
 
-#: src/options.py:151 src/options.blp:79
-msgid "Original"
-msgstr "الأصلي"
+#: src/playlist.py:185 src/playlist.py:193 src/playlist.py:465
+#: src/preferences.py:371 src/playlist.blp:52
+msgid "Save Playlist"
+msgstr "حفظ قائمة التشغيل"
 
-#: src/playlist.py:47 src/window.py:929 src/window.py:1264
+#: src/playlist.py:188 src/preferences.blp:137 src/preferences.blp:172
+msgid ""
+"Requires flatpak permission to read the folder where the video is stored"
+msgstr "تتطلب قراءة المجلد الذي يتواجد فيه الفيديو أذن من Flatpak"
+
+#: src/playlist.py:321 src/window.py:1829
 msgid "File Error"
 msgstr "خطأ في الملف"
 
-#: src/playlist.py:161 src/window.py:586 src/playlist.blp:23 src/window.blp:94
-msgid "Add Files"
-msgstr "اضف ملفات"
+#: src/playlist.py:427
+msgid "Remove from Playlist"
+msgstr "حذف من قائمة التشغيل"
 
-#: src/shortcuts.py:29 src/shortcuts.py:30 src/shortcuts.py:31
-#: src/shortcuts.py:32 src/shortcuts.py:78 src/shortcuts.py:79
-#: src/window.py:1345 src/window.blp:205
+#: src/playlist.py:466 src/playlist.blp:16 src/window.blp:352
+#: src/window.blp:565
+msgid "Playlist"
+msgstr "قائمة التشغيل"
+
+#: src/playlist.py:486
+#, python-brace-format
+msgid "{n} item"
+msgid_plural "{n} items"
+msgstr[0] "لا يوجد أي عنصر"
+msgstr[1] "عنصر واحد"
+msgstr[2] "عنصران"
+msgstr[3] "{n} عناصر"
+msgstr[4] "{n} عنصرًا"
+msgstr[5] "{n} عنصر"
+
+#: src/preferences.py:137 src/preferences.blp:192
+msgid "Subtitle Color"
+msgstr "لون الترجمة"
+
+#: src/preferences.py:151 src/preferences.blp:272
+msgid "Subtitle Background"
+msgstr "خلفية الترجمة"
+
+#: src/preferences.py:368
+msgid "Some features require extra permission to work properly:"
+msgstr "تتطلب بعض الميزات أذونات إضافية لتعمل بشكل صحيح:"
+
+#: src/preferences.py:369
+msgid "Auto load subtitle file"
+msgstr "تحميل ملف الترجمة تلقائيًا"
+
+#: src/preferences.py:370
+msgid "Auto add files from the same folder to playlist"
+msgstr "إضافة الملفات من نفس المجلد تلقائيًا إلى قائمة التشغيل"
+
+#: src/preferences.py:372 src/preferences.blp:120
+msgid "Restore Saved Session"
+msgstr "استعادة الجلسة المحفوظة"
+
+#: src/preferences.py:373 src/preferences.blp:155
+msgid "Save Video Position on Close"
+msgstr "حفظ تقدُّم الفيديو عند الإغلاق"
+
+#: src/preferences.py:374 src/history.blp:5 src/shortcuts-dialog.blp:61
+#: src/window.blp:108 src/window.blp:479 src/window.blp:564
+msgid "Watch History"
+msgstr "سجل المشاهدة"
+
+#: src/preferences.py:378
+msgid ""
+"If you wish to use those features, install Flatseal for granular folder "
+"control, or run this command to grant access to all folders in the system:"
+msgstr ""
+"إذا كنت ترغب في استخدام هذه الميزات، فقم بتثبيت Flatseal للتحكم الدقيق في "
+"المجلدات، أو قم بتشغيل هذا الأمر لمنح الوصول إلى جميع المجلدات في النظام:"
+
+#: src/preferences.py:384
+msgid "Extra permission enabled."
+msgstr "تم تمكين الإذن الإضافي."
+
+#: src/preferences.py:400
+msgid "Copied"
+msgstr "تم النسخ"
+
+#: src/preferences.py:406 src/preferences.blp:58
+msgid "Copy"
+msgstr "نسخ"
+
+#: src/save_session.py:68
+msgid "Restoring Session…"
+msgstr "استعادة الجلسة…"
+
+#: src/shortcuts.py:33 src/shortcuts.py:34 src/shortcuts.py:35
+#: src/shortcuts.py:36 src/window.py:2000 src/window.blp:212
 msgid "Volume"
 msgstr "مستوى الصوت"
 
-#: src/shortcuts.py:29
+#: src/shortcuts.py:33
 msgid "Volume Increase"
 msgstr "ارفع مستوى الصوت"
 
-#: src/shortcuts.py:30
+#: src/shortcuts.py:34
 msgid "Volume Decrease"
-msgstr "اخفض متسوى الصوت"
+msgstr "اخفض مستوى الصوت"
 
-#: src/shortcuts.py:33 src/shortcuts.py:34 src/shortcuts.py:35
-#: src/window.blp:188
+#: src/shortcuts.py:37 src/shortcuts.py:38 src/shortcuts.py:39
+#: src/preferences.blp:295 src/preferences.blp:307 src/window.blp:180
+#: src/window.blp:551
 msgid "Play/Pause"
-msgstr "تشغيل/ايقاف"
-
-#: src/shortcuts.py:36
-msgid "Show/Hide Subtitles"
-msgstr "اظهر/اخفي الترجمات"
-
-#: src/shortcuts.py:37
-msgid "Seek 10s Backward"
-msgstr "اسعي ١٠ث للوراء"
-
-#: src/shortcuts.py:38
-msgid "Seek 10s Forward"
-msgstr "اسعي ١٠ث للأمام"
-
-#: src/shortcuts.py:39
-msgid "Seek 5s Backward"
-msgstr "اسعي ٥ث للوراء"
+msgstr "تشغيل/إلباث"
 
 #: src/shortcuts.py:40
+msgid "Show/Hide Subtitles"
+msgstr "اظهر/اخفِ الترجمات"
+
+#: src/shortcuts.py:41 src/shortcuts.py:42 src/shortcuts.py:170
+#: src/shortcuts.py:234 src/window.py:788 src/window.blp:255
+msgid "Subtitles"
+msgstr "الترجمات"
+
+#: src/shortcuts.py:41
+msgid "Next Subtitle Track"
+msgstr "مسار الترجمة التالي"
+
+#: src/shortcuts.py:42
+msgid "Previous Subtitle Track"
+msgstr "مسار الترجمة السابق"
+
+#: src/shortcuts.py:43 src/shortcuts.py:44
+msgid "Secondary Subtitles"
+msgstr "ترجمات ثانوية"
+
+#: src/shortcuts.py:43
+msgid "Next Secondary Subtitle Track"
+msgstr "مسار الترجمة الثانوية التالي"
+
+#: src/shortcuts.py:44
+msgid "Previous Secondary Subtitle Track"
+msgstr "مسار الترجمة الثانوية السابق"
+
+#: src/shortcuts.py:45 src/shortcuts.py:46 src/window.py:793 src/window.blp:270
+msgid "Audio"
+msgstr "صوت"
+
+#: src/shortcuts.py:45
+msgid "Next Audio Track"
+msgstr "المسار الصوتي التالي"
+
+#: src/shortcuts.py:46
+msgid "Previous Audio Track"
+msgstr "المسار الصوتي السابق"
+
+#: src/shortcuts.py:47
+msgid "Seek 10s Backward"
+msgstr "السعي ١٠ث للوراء"
+
+#: src/shortcuts.py:48
+msgid "Seek 10s Forward"
+msgstr "السعي ١٠ث للأمام"
+
+#: src/shortcuts.py:49
+msgid "Seek 5s Backward"
+msgstr "السعي ٥ث للوراء"
+
+#: src/shortcuts.py:50
 msgid "Seek 5s Forward"
-msgstr "اسعي ٥ث للأمام"
+msgstr "السعي ٥ث للأمام"
 
-#: src/shortcuts.py:41 src/shortcuts.py:42 src/window.py:1294
-#: src/window.blp:340
+#: src/shortcuts.py:51 src/shortcuts.py:52 src/window.py:1947
+#: src/window.blp:368
 msgid "Fullscreen"
-msgstr "ملء الشاشة"
+msgstr "ملأ الشاشة"
 
-#: src/shortcuts.py:50 src/shortcuts.py:51 src/shortcuts.py:52
-#: src/shortcuts.py:53 src/shortcuts.py:54 src/options.blp:226
-#: src/options.blp:250
+#: src/shortcuts.py:53 src/window.py:1947
+msgid "Exit Fullscreen"
+msgstr "اُخرج من ملئ الشاشة"
+
+#: src/shortcuts.py:62 src/shortcuts.py:63 src/shortcuts.py:64
+#: src/options.blp:338 src/options.blp:364
 msgid "Zoom"
 msgstr "التقريب"
 
-#: src/shortcuts.py:50 src/shortcuts.py:51 src/shortcuts.py:52
+#: src/shortcuts.py:62 src/shortcuts.py:63
 msgid "Zoom In"
-msgstr "كبِّر"
+msgstr "تكبير"
 
-#: src/shortcuts.py:53 src/shortcuts.py:54
+#: src/shortcuts.py:64
 msgid "Zoom Out"
-msgstr "صغِّر"
+msgstr "تصغير"
 
-#: src/shortcuts.py:55 src/shortcuts.py:56 src/options.blp:552
-#: src/options.blp:576
+#: src/shortcuts.py:67 src/shortcuts.py:68 src/options.blp:676
+#: src/options.blp:702
 msgid "Subtitle Delay"
 msgstr "تأخير الترجمة"
 
-#: src/shortcuts.py:55
+#: src/shortcuts.py:67
 msgid "Decrease Subtitle Delay"
 msgstr "قلل تأخير الترجمة"
 
-#: src/shortcuts.py:56
+#: src/shortcuts.py:68
 msgid "Increase Subtitle Delay"
-msgstr "زِد تأخير الترجمة"
+msgstr "زيادة تأخير الترجمة"
 
-#: src/shortcuts.py:57 src/shortcuts.py:58
+#: src/shortcuts.py:69 src/shortcuts.py:70
 msgid "Subtitle Position"
-msgstr "موضع الترجمة"
+msgstr "مُوضِع الترجمة"
 
-#: src/shortcuts.py:57
+#: src/shortcuts.py:69
 msgid "Move Subtitles Up"
-msgstr "حرك الترجمات للأعلى"
+msgstr "تحريك الترجمات للأعلى"
 
-#: src/shortcuts.py:58
+#: src/shortcuts.py:70
 msgid "Move Subtitles Down"
-msgstr "حرك الترجمات للاسفل"
+msgstr "تحريك الترجمات للأسفل"
 
-#: src/shortcuts.py:59 src/shortcuts.py:60 src/preferences.blp:89
+#: src/shortcuts.py:71 src/shortcuts.py:72 src/preferences.blp:261
 msgid "Subtitle Scale"
 msgstr "حجم الترجمة"
 
-#: src/shortcuts.py:59
+#: src/shortcuts.py:71
 msgid "Increase Subtitle Scale"
 msgstr "تكبير حجم الترجمة"
 
-#: src/shortcuts.py:60
+#: src/shortcuts.py:72
 msgid "Decrease Subtitle Scale"
 msgstr "تصغير حجم الترجمة"
 
-#: src/shortcuts.py:61 src/window.blp:216
+#: src/shortcuts.py:73 src/window.blp:223
 msgid "Mute/Unmute"
 msgstr "كتم/إلغاء الكتم"
 
-#: src/shortcuts.py:62 src/shortcuts.py:63 src/shortcuts.py:64
-#: src/options.blp:607 src/options.blp:631
+#: src/shortcuts.py:74 src/shortcuts.py:75 src/shortcuts.py:76
+#: src/options.blp:733 src/options.blp:759
 msgid "Audio Delay"
 msgstr "تأخير الصوت"
 
-#: src/shortcuts.py:62
-msgid "Decrease Audio Delay"
-msgstr "قلل تأخير الصوت"
-
-#: src/shortcuts.py:63 src/shortcuts.py:64
-msgid "Increase Audio Delay"
-msgstr "زِد تأخير الصوت"
-
 #: src/shortcuts.py:74
+msgid "Decrease Audio Delay"
+msgstr "تقليل تأخير الصوت"
+
+#: src/shortcuts.py:75 src/shortcuts.py:76
+msgid "Increase Audio Delay"
+msgstr "زيادة تأخير الصوت"
+
+#: src/shortcuts.py:77
 msgid "Go Back One Frame"
 msgstr "عُد إطارًا"
 
-#: src/shortcuts.py:75
+#: src/shortcuts.py:78
 msgid "Advance One Frame"
-msgstr "تقدم إطارًا"
+msgstr "تقدّم إطارًا"
 
-#: src/shortcuts.py:76
+#: src/shortcuts.py:79
 msgid "Seek to the Previous Chapter"
-msgstr "اسعي للفصل السابق"
+msgstr "السعي للفصل السابق"
 
-#: src/shortcuts.py:77
+#: src/shortcuts.py:80
 msgid "Seek to the Next Chapter"
-msgstr "اسعي للفصل التالي"
+msgstr "السعي للفصل التالي"
 
 #: src/shortcuts.py:81
 msgid "Take Screenshot With Subtitles"
-msgstr "ألتقط لقطة شاشة مع الترجمات"
+msgstr "التقاط لقطة شاشة بالترجمات"
 
 #: src/shortcuts.py:82
 msgid "Take Screenshot Without Subtitles"
-msgstr "ألتقط لقطة شاشة بدون الترجمات"
+msgstr "التقاط لقطة شاشة بلا ترجمات"
 
 #: src/shortcuts.py:83
 msgid "Statistics"
@@ -251,396 +893,585 @@ msgstr "الإحصائيات"
 msgid "Statistics Overlay"
 msgstr "تراكب الإحصائيات"
 
-#: src/shortcuts.py:85
+#: src/shortcuts.py:85 src/window.blp:329
+msgid "Set/Clear A-B Loop Points"
+msgstr "تعيين/إلغاء نقاط تكرار A-B"
+
+#: src/shortcuts.py:86 src/window.py:1289 src/window.blp:341
 msgid "Loop"
 msgstr "التكرار"
 
-#: src/shortcuts.py:85 src/window.blp:315
+#: src/shortcuts.py:86 src/window.py:1286
 msgid "Loop File"
-msgstr "كرّر الملف"
+msgstr "تكرار الملف"
 
-#: src/shortcuts.py:86 src/shortcuts.py:87 src/options.blp:281
-#: src/options.blp:304
+#: src/shortcuts.py:87 src/shortcuts.py:88 src/options.blp:395
+#: src/options.blp:420
 msgid "Contrast"
 msgstr "التباين"
 
-#: src/shortcuts.py:86
-msgid "Decrease Contrast"
-msgstr "قلل التباين"
-
 #: src/shortcuts.py:87
-msgid "Increase Contrast"
-msgstr "زِد التباين"
+msgid "Decrease Contrast"
+msgstr "تقليل التباين"
 
-#: src/shortcuts.py:88 src/shortcuts.py:89 src/options.blp:335
-#: src/options.blp:358
+#: src/shortcuts.py:88
+msgid "Increase Contrast"
+msgstr "زيادة التباين"
+
+#: src/shortcuts.py:89 src/shortcuts.py:90 src/options.blp:451
+#: src/options.blp:476
 msgid "Brightness"
 msgstr "السطوع"
 
-#: src/shortcuts.py:88
-msgid "Decrease Brightness"
-msgstr "قلل السطوع"
-
 #: src/shortcuts.py:89
-msgid "Increase Brightness"
-msgstr "زِد السطوع"
-
-#: src/shortcuts.py:90 src/shortcuts.py:91 src/options.blp:389
-#: src/options.blp:412
-msgid "Gamma"
-msgstr "الجاما"
+msgid "Decrease Brightness"
+msgstr "تقليل السطوع"
 
 #: src/shortcuts.py:90
-msgid "Decrease Gamma"
-msgstr "قلل الجاما"
+msgid "Increase Brightness"
+msgstr "زيادة السطوع"
+
+#: src/shortcuts.py:91 src/shortcuts.py:92 src/options.blp:507
+#: src/options.blp:532
+msgid "Gamma"
+msgstr "الچاما"
 
 #: src/shortcuts.py:91
-msgid "Increase Gamma"
-msgstr "زِد الجاما"
+msgid "Decrease Gamma"
+msgstr "تقليل الچاما"
 
-#: src/shortcuts.py:92 src/shortcuts.py:93 src/options.blp:443
-#: src/options.blp:466
+#: src/shortcuts.py:92
+msgid "Increase Gamma"
+msgstr "زيادة الچاما"
+
+#: src/shortcuts.py:93 src/shortcuts.py:94 src/options.blp:563
+#: src/options.blp:588
 msgid "Saturation"
 msgstr "التشبع"
 
-#: src/shortcuts.py:92
-msgid "Decrease Saturation"
-msgstr "قلل التشبع"
-
 #: src/shortcuts.py:93
-msgid "Increase Saturation"
-msgstr "زِد التشبع"
+msgid "Decrease Saturation"
+msgstr "تقليل التشبع"
 
-#: src/shortcuts.py:94 src/shortcuts.py:95 src/shortcuts.py:96
+#: src/shortcuts.py:94
+msgid "Increase Saturation"
+msgstr "زيادة التشبع"
+
+#: src/shortcuts.py:95 src/shortcuts.py:96 src/shortcuts.py:97
 msgid "Speed"
 msgstr "السرعة"
 
-#: src/shortcuts.py:94
-msgid "Decrease Playback Speed"
-msgstr "قلل سرعة التشغيل"
-
 #: src/shortcuts.py:95
+msgid "Decrease Playback Speed"
+msgstr "تقليل سرعة التشغيل"
+
+#: src/shortcuts.py:96
 msgid "Increase Playback Speed"
-msgstr "زِد سرعة التشغيل"
+msgstr "زيادة سرعة التشغيل"
 
-#: src/shortcuts.py:96 src/options.blp:652
+#: src/shortcuts.py:97 src/options.blp:780
 msgid "Reset Playback Speed"
-msgstr "صفّر سرعة التشغيل"
+msgstr "تصفير سرعة التشغيل"
 
-#: src/shortcuts.py:185
+#: src/shortcuts.py:154 src/shortcuts.py:237
 msgid "Display & Video"
 msgstr "العرض والفيديو"
 
-#: src/shortcuts.py:201 src/window.blp:247
-msgid "Subtitles"
-msgstr "الترجمات"
-
-#: src/shortcuts.py:202
+#: src/shortcuts.py:171 src/shortcuts.py:235
 msgid "Audio & Volume"
 msgstr "الصوت ومستواه"
 
-#: src/shortcuts.py:203
+#: src/shortcuts.py:172 src/shortcuts.py:236
 msgid "Navigation"
 msgstr "التنقل"
 
-#: src/shortcuts.py:204
+#: src/shortcuts.py:173 src/shortcuts.py:238
 msgid "Playback"
 msgstr "التشغيل"
 
-#: src/shortcuts.py:208 src/shortcuts.py:214
+#: src/shortcuts.py:177 src/shortcuts.py:183 src/shortcuts.py:239
+#: src/shortcuts.py:243
 msgid "Miscellaneous"
 msgstr "المتنوعات"
 
-#: src/window.py:463 src/window.py:921 src/window.blp:104
+#: src/window.py:643 src/window.blp:104
 msgid "Add Subtitle Track"
-msgstr "اضف ملف ترجمة"
+msgstr "اضِف ملف ترجمة"
 
-#: src/window.py:465 src/window.py:474
+#: src/window.py:645 src/window.py:654
 msgid "None"
 msgstr "لا يوجد"
 
-#: src/window.py:472 src/window.blp:109
+#: src/window.py:652 src/window.blp:105
 msgid "Add Audio Track"
-msgstr "اضف ملف صوت"
+msgstr "اضِف ملف صوت"
 
-#: src/window.py:511
+#: src/window.py:692
 msgid "Track"
-msgstr "مسار"
+msgstr "مقطوعة"
 
-#: src/window.py:554 src/playlist.blp:29 src/window.blp:99
+#: src/window.py:735 src/playlist.blp:31 src/window.blp:102
 msgid "Add Folder"
-msgstr "إضافة مجلد"
+msgstr "اضِف مجلد"
 
-#: src/window.py:554 src/shortcuts-dialog.blp:21 src/window.blp:89
-#: src/window.blp:442
+#: src/window.py:735 src/shortcuts-dialog.blp:21 src/window.blp:99
+#: src/window.blp:492 src/window.blp:558
 msgid "Open Folder"
 msgstr "افتح مجلد"
 
-#: src/window.py:583 src/shortcuts-dialog.blp:16 src/window.blp:84
+#: src/window.py:762 src/shortcuts-dialog.blp:16 src/window.blp:98
+#: src/window.blp:557
 msgid "Open Files"
 msgstr "افتح ملفات"
 
-#: src/window.py:589
+#: src/window.py:765 src/playlist.blp:26 src/window.blp:101
+msgid "Add Files"
+msgstr "اضف ملفات"
+
+#: src/window.py:769
 msgid "Add Subtitle"
-msgstr "اضف ترجمة"
+msgstr "اضِف ترجمة"
 
-#: src/window.py:592
+#: src/window.py:772
 msgid "Add Audio"
-msgstr "اضف صوت"
+msgstr "اضِف صوت"
 
-#: src/window.py:605
-msgid "Subtitle"
-msgstr "ترجمة"
-
-#: src/window.py:610 src/window.blp:262
-msgid "Audio"
-msgstr "صوت"
-
-#: src/window.py:614
+#: src/window.py:797
 msgid "Media"
 msgstr "وسائط"
 
-#: src/window.py:827
-msgid "Pause"
-msgstr "ألبِث"
+#: src/window.py:860
+msgid "Session Saved"
+msgstr "تم حفظ الجلسة"
 
-#: src/window.py:827 src/window.py:925
+#: src/window.py:868 src/playlist.blp:36 src/window.blp:103
+msgid "Add URL"
+msgstr "اضِف رابط"
+
+#: src/window.py:868 src/shortcuts-dialog.blp:26 src/window.blp:100
+#: src/window.blp:501 src/window.blp:559
+msgid "Open URL"
+msgstr "افتح رابط"
+
+#: src/window.py:881
+msgid "URL"
+msgstr "رابط"
+
+#: src/window.py:889 src/playlist.blp:22
+msgid "Add"
+msgstr "إضافة"
+
+#: src/window.py:889 src/window.blp:93
+msgid "Open"
+msgstr "فتح"
+
+#: src/window.py:1131
+msgid "Chapter"
+msgstr "فصل"
+
+#: src/window.py:1197 src/window.py:2071
 msgid "Play"
 msgstr "شغِّل"
 
-#: src/window.py:1294
-msgid "Exit Fullscreen"
-msgstr "اُخرج من ملء الشاشة"
+#: src/window.py:1197
+msgid "Pause"
+msgstr "ألبِث"
+
+#: src/window.py:1283
+msgid "Loop Playlist"
+msgstr "تكرار قائمة التشغيل"
+
+#: src/window.py:1459
+msgid "Upscale: Off"
+msgstr ""
+
+#: src/window.py:1460
+msgid "Upscale: 1080p Anime"
+msgstr ""
+
+#: src/window.py:1461
+msgid "Upscale: 720p Anime"
+msgstr ""
+
+#: src/window.py:1462
+msgid "Upscale: 480p Anime"
+msgstr ""
+
+#: src/window.py:2071
+msgid "Play or Add Subtitles"
+msgstr "شغِّل أو أضف الترجمات"
 
 #: src/options.blp:14
 msgid "Options"
 msgstr "الخيارات"
 
-#: src/options.blp:32
+#: src/options.blp:28
 msgid "Reset All"
-msgstr "صفّر الكل"
+msgstr "تصفير الكل"
 
-#: src/options.blp:44
+#: src/options.blp:40
+#, fuzzy
+#| msgid "Reset All"
+msgid "Reset Upscale"
+msgstr "تصفير الكل"
+
+#: src/options.blp:50
+msgid "Upscale (Anime4K)"
+msgstr ""
+
+#: src/options.blp:75 src/preferences.blp:108
+msgid "Off"
+msgstr ""
+
+#. TRANSLATORS: Anime4K preset optimized for 1080p anime
+#: src/options.blp:76 src/preferences.blp:110
+msgid "1080p Anime"
+msgstr ""
+
+#. TRANSLATORS: Anime4K preset optimized for 720p anime
+#: src/options.blp:77 src/preferences.blp:112
+msgid "720p Anime"
+msgstr ""
+
+#. TRANSLATORS: Anime4K preset optimized for 480p anime
+#: src/options.blp:78 src/preferences.blp:114
+msgid "480p Anime"
+msgstr ""
+
+#: src/options.blp:93
 msgid "Reset Aspect Ratio"
-msgstr "صفّر نسبة الأبعاد"
+msgstr "تصفير نسبة الأبعاد"
 
-#: src/options.blp:54
+#: src/options.blp:103
 msgid "Aspect Ratio"
 msgstr "نسبة الأبعاد"
 
-#: src/options.blp:102
-msgid "Reset Rotation"
-msgstr "صفّر الدوران"
+#: src/options.blp:129 src/options.blp:188
+msgid "Original"
+msgstr "الأصلي"
 
-#: src/options.blp:112
+#: src/options.blp:152
+msgid "Reset Crop"
+msgstr "تصفير القص"
+
+#: src/options.blp:162
+msgid "Crop"
+msgstr "قص"
+
+#: src/options.blp:212
+msgid "Reset Rotation"
+msgstr "تصفير الدوران"
+
+#: src/options.blp:222
 msgid "Rotate"
 msgstr "الدوران"
 
-#: src/options.blp:138
+#: src/options.blp:249
 msgid "Rotate Left"
-msgstr "ادِر يسارًا"
+msgstr "تدوير لليسار"
 
-#: src/options.blp:146
+#: src/options.blp:257
 msgid "Rotate Right"
-msgstr "ادِر يمينًا"
+msgstr "تدوير لليمين"
 
-#: src/options.blp:159
+#: src/options.blp:270
 msgid "Reset Flip"
-msgstr "صفّر القَلب"
+msgstr "تصفير القَلب"
 
-#: src/options.blp:169
+#: src/options.blp:280
 msgid "Flip"
 msgstr "القَلب"
 
-#: src/options.blp:195
+#: src/options.blp:307
 msgid "Flip Horizontally"
-msgstr "اقلب افقيًا"
+msgstr "القَلب أفقيًا"
 
-#: src/options.blp:203
+#: src/options.blp:315
 msgid "Flip Vertically"
-msgstr "اقلب عموديًا"
+msgstr "القَلب عموديًا"
 
-#: src/options.blp:216
+#: src/options.blp:328
 msgid "Reset Zoom"
-msgstr "صفّر التقريب"
+msgstr "تصفير التقريب"
 
-#: src/options.blp:271
+#: src/options.blp:385
 msgid "Reset Contrast"
-msgstr "صفّر التباين"
+msgstr "تصفير التباين"
 
-#: src/options.blp:325
+#: src/options.blp:441
 msgid "Reset Brightness"
-msgstr "صفّر السطوع"
+msgstr "تصفير السطوع"
 
-#: src/options.blp:379
+#: src/options.blp:497
 msgid "Reset Gamma"
-msgstr "صفّر الجاما"
+msgstr "تصفير الچاما"
 
-#: src/options.blp:433
+#: src/options.blp:553
 msgid "Reset Saturation"
-msgstr "صفّر التشبع"
+msgstr "تصفير التشبع"
 
-#: src/options.blp:487
+#: src/options.blp:609
 msgid "Reset Hue"
-msgstr "صفّر تدرج اللون"
+msgstr "تصفير تدرج اللون"
 
 #. TRANSLATORS: Do not use "Color" or "Temperature", those are different things
-#: src/options.blp:498 src/options.blp:521
+#: src/options.blp:620 src/options.blp:645
 msgid "Hue"
 msgstr "تدرج اللون"
 
-#: src/options.blp:542
+#: src/options.blp:666
 msgid "Reset Subtitle Delay"
-msgstr "صفّر تأخير الترجمة"
+msgstr "تصفير تأخير الترجمة"
 
-#: src/options.blp:597
+#: src/options.blp:723
 msgid "Reset Audio Delay"
-msgstr "صفّر تأخير الصوت"
+msgstr "تصفير تأخير الصوت"
 
-#: src/options.blp:662 src/options.blp:686
+#: src/options.blp:790 src/options.blp:816
 msgid "Playback Speed"
 msgstr "سرعة التشغيل"
 
-#: src/playlist.blp:5 src/window.blp:325
-msgid "Playlist"
-msgstr "قائمة التشغيل"
+#: src/playlist.blp:94
+msgid "No Results Found"
+msgstr "لم يتم العثور على نتائج"
 
-#: src/playlist.blp:84
+#: src/playlist.blp:128
 msgid "Add to Playlist"
-msgstr "اضف لقائمة التشغيل"
+msgstr "اضِف لقائمة التشغيل"
 
-#: src/preferences.blp:16
+#: src/preferences.blp:15
+msgid "About Permissions"
+msgstr "حول الأذونات"
+
+#: src/preferences.blp:81
 msgid "Open New Window for New Files"
-msgstr "افتح نافذة جديدة للملفات الجديدة"
+msgstr "فتح نافذة جديدة لكل ملف"
 
-#: src/preferences.blp:20
-msgid "Subtitle Color"
-msgstr "لون الترجمة"
+#: src/preferences.blp:85
+msgid "Seek Bar Thumbnail"
+msgstr "صورة مصغرة لشريط التقدم"
 
-#: src/preferences.blp:33 src/preferences.blp:79
-msgid "Reset"
-msgstr "صفّر"
-
-#: src/preferences.blp:43
-msgid "Subtitle Font"
-msgstr "خط الترجمة"
-
-#: src/preferences.blp:56
-msgid "Some fonts may not work"
-msgstr "قد لا تعمل بعض الخطوط"
-
-#: src/preferences.blp:100
-msgid "Preferred Subtitle Languages"
-msgstr "لغات الترجمة المفضَّلة"
-
-#: src/preferences.blp:101 src/preferences.blp:106
-msgid "Example: en,es,pt"
-msgstr "مثال: ar,en,fr"
-
-#: src/preferences.blp:105
-msgid "Preferred Audio Languages"
-msgstr "لغات الصوت المفضَّلة"
-
-#: src/preferences.blp:110
-msgid "Hardware Decoding"
-msgstr "فك الترميز باستخدام العتاد"
-
-#: src/preferences.blp:114
+#: src/preferences.blp:89
 msgid "Normalize Volume"
 msgstr "مساواة الصوت"
 
-#: src/preferences.blp:118
-msgid "Save Video Position on Close"
-msgstr "احفظ موضع الفيديو عند الإغلاق"
+#: src/preferences.blp:93
+msgid "Graphics Offload"
+msgstr "تفريغ الرسوميات"
 
-#: src/preferences.blp:119
+#: src/preferences.blp:94
+msgid "Reduces resource usage; disable if you encounter playback issues"
+msgstr "يقلل استهلاك الموارد؛ قم بتعطيله إذا واجهت مشاكل في التشغيل"
+
+#: src/preferences.blp:98
+msgid "Hardware Acceleration"
+msgstr "تسريع الأجهزة"
+
+#: src/preferences.blp:99
+msgid "Use GPU for video decoding when available"
+msgstr "استخدم وحدة معالجة الرسوميات لفك ترميز الفيديو عند توفرها"
+
+#: src/preferences.blp:103
+msgid "Default Upscale Mode (Anime4K)"
+msgstr ""
+
+#: src/preferences.blp:104
+msgid "Applied automatically when a video is loaded"
+msgstr ""
+
+#: src/preferences.blp:121
+msgid "Pick up where you left off after saving from the menu"
+msgstr "استكمل من حيث توقفت بعد الحفظ من القائمة"
+
+#: src/preferences.blp:156
 msgid "Also save options like brightness, subtitle delay, etc."
-msgstr "يحفظ ايضًا الخيارات كالسطوع، تأخير الترجمة، إلخ."
+msgstr "يحفظ أيضًا الخيارات كالسطوع، تأخير الترجمة، إلخ."
 
-#: src/preferences.blp:134
-msgid ""
-"Requires flatpak permission to read the folder where the video is stored"
-msgstr "قراءة المجلد الذي يتواجد فيه الفيديو يتطلب صلاحية من فلاتباك"
+#: src/preferences.blp:205 src/preferences.blp:251
+msgid "Reset"
+msgstr "تصفير"
+
+#: src/preferences.blp:215
+msgid "Subtitle Font"
+msgstr "خط الترجمة"
+
+#: src/preferences.blp:228
+msgid "Some fonts may not work"
+msgstr "قد لا تعمل بعض الخطوط"
+
+#: src/preferences.blp:291
+msgid "Primary Click"
+msgstr "النقرة الأساسية"
+
+#: src/preferences.blp:296
+msgid "Focus/Play/Pause"
+msgstr "تركيز/تشغيل/إيقاف مؤقت"
+
+#: src/preferences.blp:297 src/preferences.blp:309
+msgid "Bypass"
+msgstr "تجاوز"
+
+#: src/preferences.blp:303
+msgid "Secondary Click"
+msgstr "النقرة الثانوية"
+
+#: src/preferences.blp:308
+msgid "Context Menu"
+msgstr "قائمة السياق"
+
+#: src/preferences.blp:317
+msgid "Preferred Subtitle Languages"
+msgstr "لغات الترجمة المفضَّلة"
+
+#: src/preferences.blp:318 src/preferences.blp:323
+msgid "Example: en,es,pt"
+msgstr "مثال: ar,en,fr"
+
+#: src/preferences.blp:322
+msgid "Preferred Audio Languages"
+msgstr "لغات الصوت المفضَّلة"
+
+#: src/preferences.blp:329
+msgid "Open Config Folder"
+msgstr "فتح مجلد الإعدادات"
 
 #: src/shortcuts-dialog.blp:8
-msgid "Shortcuts"
-msgstr "الإختصارات"
-
-#: src/shortcuts-dialog.blp:26
-msgid "Add Files to Playlist"
-msgstr "اضف ملفات لقائمة التشغيل"
+msgid "General"
+msgstr "عامّ"
 
 #: src/shortcuts-dialog.blp:31
-msgid "Add Folder to Playlist"
-msgstr "إضافة مجلد لقائمة التشغيل"
+msgid "Add Files to Playlist"
+msgstr "اضِف ملفات لقائمة التشغيل"
 
 #: src/shortcuts-dialog.blp:36
+msgid "Add Folder to Playlist"
+msgstr "اضِف مجلد لقائمة التشغيل"
+
+#: src/shortcuts-dialog.blp:41
+msgid "Add URL to Playlist"
+msgstr "اضِف رابط لقائمة التشغيل"
+
+#: src/shortcuts-dialog.blp:46
 msgid "Open Subtitles Menu"
 msgstr "افتح قائمة الترجمات"
 
-#: src/shortcuts-dialog.blp:41
+#: src/shortcuts-dialog.blp:51
 msgid "Open Audio Menu"
 msgstr "افتح قائمة الصوت"
 
-#: src/shortcuts-dialog.blp:46
-msgid "Show Shortcuts"
-msgstr "اظهر الإختصارات"
-
-#: src/shortcuts-dialog.blp:51
-msgid "Close Window"
-msgstr "اغلق النافذة"
-
 #: src/shortcuts-dialog.blp:56
+msgid "Open Chapters Menu"
+msgstr "افتح قائمة الفصول"
+
+#: src/shortcuts-dialog.blp:66
+msgid "Show Shortcuts"
+msgstr "إظهار الاختصارات"
+
+#: src/shortcuts-dialog.blp:71
+msgid "Close Window"
+msgstr "إغلاق النافذة"
+
+#: src/shortcuts-dialog.blp:76 src/window.blp:129
+msgid "Save Session"
+msgstr "حفظ الجلسة"
+
+#: src/shortcuts-dialog.blp:81 src/window.blp:130
+msgid "Save Session and Close"
+msgstr "حفظ الجلسة وإغلاقها"
+
+#: src/shortcuts-dialog.blp:86
 msgid "Quit"
-msgstr "غادِر"
+msgstr "خروج"
 
-#: src/window.blp:78
-msgid "Open"
-msgstr "افتح"
-
-#: src/window.blp:120
+#: src/window.blp:118
 msgid "Main Menu"
 msgstr "القائمة الرئيسية"
 
-#: src/window.blp:135
+#: src/window.blp:124
 msgid "Keyboard Shortcuts"
-msgstr "إختصارات لوحة المفاتيح"
+msgstr "اختصارات لوحة المفاتيح"
 
-#: src/window.blp:140
-msgid "About Cine"
-msgstr "حول سيني"
+#: src/window.blp:125
+msgid "About NekoPlay"
+msgstr ""
 
-#: src/window.blp:178
+#: src/window.blp:169 src/window.blp:552
 msgid "Previous"
 msgstr "السابق"
 
-#: src/window.blp:198
+#: src/window.blp:192 src/window.blp:553
 msgid "Next"
 msgstr "التالي"
 
-#: src/window.blp:276
+#: src/window.blp:204
+msgid "Skip 90 Seconds"
+msgstr ""
+
+#: src/window.blp:284
 msgid "Video"
 msgstr "الفيديو"
 
-#: src/window.blp:293
+#: src/window.blp:299
+msgid "Chapters"
+msgstr "فصول"
+
+#: src/window.blp:316
 msgid "Shuffle Playlist"
-msgstr "اخلط قائمة التشغيل"
+msgstr "خلط قائمة التشغيل"
 
-#: src/window.blp:304
-msgid "Loop Playlist"
-msgstr "كرّر قائمة التشغيل"
-
-#: src/window.blp:372
+#: src/window.blp:401
 msgid "Toggle Elapsed/Remaining"
 msgstr "تبديل الوقت المنقضي/المتبقي"
 
-#: src/window.blp:418
-msgid "Drag and Drop Files Here"
+#: src/window.blp:448
+msgid "Drag and drop files here"
 msgstr "اسحب وأفلت الملفات هنا"
 
-#: src/window.blp:431
+#: src/window.blp:468
 msgid "Open…"
-msgstr "افتح..."
+msgstr "افتح…"
+
+#~ msgid "Cine"
+#~ msgstr "سيني"
+
+#~ msgid "About Cine"
+#~ msgstr "حول سيني"
+
+#~ msgid "Hardware Decoding"
+#~ msgstr "فك الترميز باستخدام العتاد"
+
+#~ msgid "Drag and Drop Files Here"
+#~ msgstr "اسحب وأفلت الملفات هنا"
+
+#~ msgid "Left Click"
+#~ msgstr "النقر بزر الفأرة الأيسر"
+
+#~ msgid "Disabled"
+#~ msgstr "معطل"
+
+#~ msgid "Right Click"
+#~ msgstr "النقر بزر الفأرة الأيمن"
+
+#~ msgid "Window Menu"
+#~ msgstr "قائمة النافذة"
+
+#~ msgid "Subtitle"
+#~ msgstr "ترجمة"
+
+#~ msgid "Unknown title"
+#~ msgstr "عنوان مجهول"
+
+#~ msgid "Shortcuts"
+#~ msgstr "الاختصارات"
+
+#~ msgid "Switch to Next Subtitle Track"
+#~ msgstr "التبديل إلى مقطوعة الترجمة التالية"
+
+#~ msgid "Switch to Next Audio Track"
+#~ msgstr "التبديل إلى المقطوعة الصوتية التالية"
+
+#~ msgid "Restore files and auto-play on startup"
+#~ msgstr "استعادة الملفات والتشغيل التلقائي عند بدء التشغيل"
 
 #~ msgid "Muted"
 #~ msgstr "كتم الصوت"

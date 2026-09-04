@@ -1,6 +1,6 @@
 <img style="vertical-align: middle;" src="data/icons/hicolor/scalable/apps/moe.nyarchlinux.nekoplay.svg" width="112" height="112" align="left">
 
-### Nekoplay
+### NekoPlay
 
 Play your 4K animes.
 
@@ -8,7 +8,7 @@ Play your 4K animes.
 
 ### Description
 
-Nekoplay is a fork of [Cine](https://github.com/diegopvlk/Cine) but with a few extra features specifically for anime watching.
+NekoPlay is a fork of [Cine](https://github.com/diegopvlk/Cine) but with a few extra features specifically for anime watching.
 
 ### Features
 
@@ -17,7 +17,7 @@ Nekoplay is a fork of [Cine](https://github.com/diegopvlk/Cine) but with a few e
 - **Audio and Subtitles** — Control track selection and synchronization for both
 - **Video Controls** — Easily adjust brightness, contrast, zoom, aspect ratio, etc.
 
-**Nekoplay specific features**
+**NekoPlay-specific features**
 
 - **4K Anime upscaling** — Watch in 4K your anime legally downloaded in 720p
 - **90s Skip** — Skip openings directly with one button (*most* anime openings are 90s duration)
@@ -29,7 +29,7 @@ Nekoplay is a fork of [Cine](https://github.com/diegopvlk/Cine) but with a few e
 <div>
   <details>
     <summary>More Screenshots (Expand):</summary><br>
-      <p align="center"><img src="screenshots/preferences.png" alt="Preferences"/></p>
+      <p align="center"><img height="943" src="screenshots/preferences.png" alt="Preferences"/></p>
       <p align="center"><img src="screenshots/options.png" alt="Video Options"/></p>
       <p align="center"><img src="screenshots/window.png" alt="Main Window"/></p>
   </details>

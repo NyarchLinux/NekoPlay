@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=moe.nyarchlinux.nekoplay
-Exec=@bindir@/nekoplay --gapplication-service

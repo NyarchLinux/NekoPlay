@@ -2,10 +2,10 @@ using Gtk 4.0;
 using Adw 1;
 
 Adw.ShortcutsDialog shortcuts_dialog {
-  content-width: 524;
+  content-width: 514;
 
   Adw.ShortcutsSection {
-    title: _("Shortcuts");
+    title: _("General");
 
     Adw.ShortcutsItem {
       title: _("New Window");
@@ -53,6 +53,16 @@ Adw.ShortcutsDialog shortcuts_dialog {
     }
 
     Adw.ShortcutsItem {
+      title: _("Open Chapters Menu");
+      action-name: "win.open-chapters-menu";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Watch History");
+      action-name: "win.open-history";
+    }
+
+    Adw.ShortcutsItem {
       title: _("Show Shortcuts");
       action-name: "win.custom-shortcuts";
     }
@@ -60,6 +70,16 @@ Adw.ShortcutsDialog shortcuts_dialog {
     Adw.ShortcutsItem {
       title: _("Close Window");
       action-name: "win.quit";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Save Session");
+      action-name: "win.save-session";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Save Session and Close");
+      action-name: "win.save-session-close";
     }
 
     Adw.ShortcutsItem {

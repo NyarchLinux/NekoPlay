@@ -1,0 +1,56 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $HistoryDialog: Adw.Dialog {
+  title: _("Watch History");
+  name: "history";
+  content-width: 514;
+
+  Adw.ToastOverlay toast_overlay {
+    Adw.ToolbarView {
+      [top]
+      Adw.HeaderBar {
+        [start]
+        Button clear_btn {
+          icon-name: "edit-clear-all-symbolic";
+          tooltip-text: _("Clear All");
+          clicked => $_on_clear_history();
+
+          styles [
+            "destructive-action",
+            "flat",
+          ]
+        }
+      }
+
+      content: Box hist_box {
+        orientation: vertical;
+        valign: fill;
+
+        Adw.PreferencesPage history_prefs_page {
+          valign: start;
+        }
+
+        Adw.Spinner spinner {
+          halign: center;
+          valign: center;
+          width-request: 72;
+          height-request: 72;
+          margin-bottom: 60;
+          vexpand: true;
+        }
+
+        Image placeholder_img {
+          icon-name: "document-open-recent-symbolic";
+          pixel-size: 48;
+          opacity: 0.5;
+          width-request: 72;
+          height-request: 72;
+          margin-bottom: 24;
+          valign: center;
+          vexpand: true;
+        }
+      };
+    }
+  }
+}

@@ -4,6 +4,7 @@ gnome = import('gnome')
 
 blueprints = custom_target('blueprints',
   input: files(
+    'history.blp',
     'playlist.blp',
     'preferences.blp',
     'options.blp',
@@ -40,13 +41,18 @@ configure_file(
 )
 
 cine_sources = [
+  'shaders/flip-h.glsl',
+  'shaders/flip-v.glsl',
   '__init__.py',
   'anime4k.py',
+  'history.py',
   'main.py',
+  'mpv_gl_area.py',
   'mpris.py',
   'options.py',
   'playlist.py',
   'preferences.py',
+  'save_session.py',
   'shortcuts.py',
   'utils.py',
   'window.py',

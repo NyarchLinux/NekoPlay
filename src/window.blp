@@ -3,26 +3,35 @@ using Adw 1;
 
 template $CineWindow: Adw.ApplicationWindow {
   name: "moe-nyarchlinux-nekoplay";
-  title: _("Nekoplay");
+  title: _("NekoPlay");
   default-width: 800;
   default-height: 600;
   width-request: 332;
   height-request: 187;
 
   Adw.Breakpoint breakpoint {
-    condition ("max-width: 495sp")
+    condition ("max-width: 550sp")
 
     setters {
       controls_separator.visible: false;
+      controls_wrap_box.child-spacing: 6;
     }
   }
 
   content: Adw.ToastOverlay toast_overlay {
-    WindowHandle {
+    WindowHandle window_handle {
       Overlay video_overlay {
         styles [
           "video-overlay",
         ]
+
+        [overlay]
+        Image audio_only_icon {
+          icon-name: "cine-audio-x-generic-symbolic";
+          visible: false;
+          pixel-size: 128;
+          opacity: 0.33;
+        }
 
         [overlay]
         Revealer revealer_icon_indicator {
@@ -32,6 +41,7 @@ template $CineWindow: Adw.ApplicationWindow {
           Image icon_indicator {
             halign: center;
             valign: center;
+            pixel-size: 64;
 
             styles [
               "icon-indicator",
@@ -67,63 +77,41 @@ template $CineWindow: Adw.ApplicationWindow {
             Adw.HeaderBar headerbar {
               valign: start;
 
+              title-widget: Adw.WindowTitle title_widget {
+                title: _("NekoPlay");
+                visible: false;
+              };
+
               styles [
                 "osd",
                 "header-bar",
               ]
 
               [start]
-              MenuButton open_menu_button {
+              MenuButton open_menu_btn {
                 valign: center;
                 label: _("Open");
                 visible: bind start_page.visible inverted;
                 always-show-arrow: true;
 
                 menu-model: menu {
-                  item {
-                    label: _("Open Files");
-                    action: "win.clear-and-add";
-                  }
+                  item (_("Open Files"), "win.clear-and-add")
+                  item (_("Open Folder"), "win.open-folder")
+                  item (_("Open URL"), "win.open-url")
+                  item (_("Add Files"), "win.add-playlist-files")
+                  item (_("Add Folder"), "win.add-playlist-folder")
+                  item (_("Add URL"), "win.add-url")
+                  item (_("Add Subtitle Track"), "win.add-sub-tracks")
+                  item (_("Add Audio Track"), "win.add-audio-tracks")
 
-                  item {
-                    label: _("Open Folder");
-                    action: "win.open-folder";
-                  }
-
-                  item {
-                    label: _("Open URL");
-                    action: "win.open-url";
-                  }
-
-                  item {
-                    label: _("Add Files");
-                    action: "win.add-playlist-files";
-                  }
-
-                  item {
-                    label: _("Add Folder");
-                    action: "win.add-playlist-folder";
-                  }
-
-                  item {
-                    label: _("Add URL");
-                    action: "win.add-url";
-                  }
-
-                  item {
-                    label: _("Add Subtitle Track");
-                    action: "win.add-sub-tracks";
-                  }
-
-                  item {
-                    label: _("Add Audio Track");
-                    action: "win.add-audio-tracks";
+                  section {
+                    item (_("Watch History"), "win.open-history")
                   }
                 };
               }
 
               [end]
-              MenuButton primary_menu_button {
+              MenuButton primary_menu_btn {
                 valign: center;
                 primary: true;
                 icon-name: "open-menu-symbolic";
@@ -131,25 +119,15 @@ template $CineWindow: Adw.ApplicationWindow {
 
                 menu-model: menu primary_menu {
                   section {
-                    item {
-                      label: _("New Window");
-                      action: "app.new-window";
-                    }
+                    item (_("New Window"), "app.new-window")
+                    item (_("Preferences"), "app.preferences")
+                    item (_("Keyboard Shortcuts"), "win.custom-shortcuts")
+                    item (_("About NekoPlay"), "app.about")
+                  }
 
-                    item {
-                      label: _("Preferences");
-                      action: "app.preferences";
-                    }
-
-                    item {
-                      label: _("Keyboard Shortcuts");
-                      action: "win.custom-shortcuts";
-                    }
-
-                    item {
-                      label: _("About Nekoplay");
-                      action: "app.about";
-                    }
+                  section {
+                    item (_("Save Session"), "win.save-session")
+                    item (_("Save Session and Close"), "win.save-session-close")
                   }
                 };
               }
@@ -173,12 +151,15 @@ template $CineWindow: Adw.ApplicationWindow {
               Adw.WrapBox controls_wrap_box {
                 align: 0.5;
                 valign: center;
-                margin-top: 10;
                 margin-start: 13;
                 margin-end: 13;
                 child-spacing: 4;
+                wrap-reverse: true;
+                justify: spread;
+                justify-last-line: true;
+                line-spacing: 5;
 
-                Button previous_button {
+                Button previous_btn {
                   styles [
                     "circular",
                     "flat",
@@ -186,9 +167,10 @@ template $CineWindow: Adw.ApplicationWindow {
 
                   icon-name: "cine-skip-backward-symbolic";
                   tooltip-text: _("Previous");
+                  clicked => $on_previous_clicked();
                 }
 
-                Button play_pause_button {
+                Button play_pause_btn {
                   styles [
                     "circular",
                     "flat",
@@ -196,9 +178,11 @@ template $CineWindow: Adw.ApplicationWindow {
 
                   icon-name: "cine-playback-start-symbolic";
                   tooltip-text: _("Play/Pause");
+                  halign: center;
+                  clicked => $_cycle_pause();
                 }
 
-                Button next_button {
+                Button next_btn {
                   styles [
                     "circular",
                     "flat",
@@ -206,19 +190,22 @@ template $CineWindow: Adw.ApplicationWindow {
 
                   icon-name: "cine-skip-forward-symbolic";
                   tooltip-text: _("Next");
+                  halign: center;
+                  clicked => $on_next_clicked();
                 }
 
-                Button skip_90_button {
+                Button skip_90_btn {
                   styles [
                     "circular",
                     "flat",
                   ]
 
                   icon-name: "cine-opening-skip-symbolic";
-                  tooltip-text: _("Skip 90s");
+                  tooltip-text: _("Skip 90 Seconds");
+                  clicked => $on_skip_90_clicked();
                 }
 
-                MenuButton volume_menu_button {
+                MenuButton volume_menu_btn {
                   halign: center;
                   icon-name: "cine-volume-max-symbolic";
                   direction: up;
@@ -231,20 +218,21 @@ template $CineWindow: Adw.ApplicationWindow {
 
                   popover: Popover {
                     Box volume_box {
-                      ToggleButton mute_toggle_button {
+                      ToggleButton mute_toggle_btn {
                         icon-name: "cine-volume-mute-symbolic";
                         tooltip-text: _("Mute/Unmute");
 
                         styles [
                           "flat",
                           "circular",
+                          "toggle-mute",
                         ]
                       }
 
                       Scale volume_scale {
                         width-request: 180;
 
-                        adjustment: Adjustment volume_scale_adjustment {
+                        adjustment: Adjustment volume_scale_adj {
                           lower: 0;
                           upper: 130;
                           value: 0;
@@ -254,7 +242,7 @@ template $CineWindow: Adw.ApplicationWindow {
                   };
                 }
 
-                MenuButton subtitles_menu_button {
+                MenuButton subtitles_menu_btn {
                   styles [
                     "circular",
                     "flat",
@@ -269,7 +257,7 @@ template $CineWindow: Adw.ApplicationWindow {
                   menu-model: menu subtitles_menu {};
                 }
 
-                MenuButton audio_tracks_menu_button {
+                MenuButton audio_tracks_menu_btn {
                   styles [
                     "circular",
                     "flat",
@@ -284,7 +272,7 @@ template $CineWindow: Adw.ApplicationWindow {
                   menu-model: menu audio_tracks_menu {};
                 }
 
-                MenuButton video_tracks_menu_button {
+                MenuButton video_tracks_menu_btn {
                   styles [
                     "circular",
                     "flat",
@@ -298,12 +286,27 @@ template $CineWindow: Adw.ApplicationWindow {
                   menu-model: menu video_tracks_menu {};
                 }
 
+                MenuButton chapters_menu_btn {
+                  styles [
+                    "circular",
+                    "flat",
+                  ]
+
+                  notify::active => $_sync_chapter_menu_selected();
+                  direction: up;
+                  halign: center;
+                  icon-name: "cine-chapters-symbolic";
+                  tooltip-text: _("Chapters");
+
+                  menu-model: menu chapters_menu {};
+                }
+
                 Separator controls_separator {
                   hexpand: true;
                   opacity: 0;
                 }
 
-                ToggleButton playlist_shuffle_toggle_button {
+                ToggleButton shuffle_toggle_btn {
                   styles [
                     "circular",
                     "flat",
@@ -312,28 +315,32 @@ template $CineWindow: Adw.ApplicationWindow {
                   icon-name: "cine-playlist-shuffle-symbolic";
                   tooltip-text: _("Shuffle Playlist");
                   valign: end;
+                  halign: center;
+                  toggled => $_on_shuffle_toggled();
                 }
 
-                ToggleButton playlist_loop_toggle_button {
+                ToggleButton ab_loop_btn {
+                  styles [
+                    "circular",
+                    "flat",
+                  ]
+
+                  icon-name: "cine-ab-loop-symbolic";
+                  tooltip-text: _("Set/Clear A-B Loop Points");
+                  valign: end;
+                  halign: center;
+                }
+
+                ToggleButton loop_btn {
                   styles [
                     "circular",
                     "flat",
                   ]
 
                   icon-name: "cine-playlist-repeat-symbolic";
-                  tooltip-text: _("Loop Playlist");
+                  tooltip-text: _("Loop");
                   valign: end;
-                }
-
-                ToggleButton loop_file_toggle_button {
-                  styles [
-                    "circular",
-                    "flat",
-                  ]
-
-                  icon-name: "cine-repeat-file-symbolic";
-                  tooltip-text: _("Loop File");
-                  valign: end;
+                  halign: center;
                 }
 
                 Button {
@@ -345,12 +352,13 @@ template $CineWindow: Adw.ApplicationWindow {
                   tooltip-text: _("Playlist");
                   icon-name: "cine-playlist-symbolic";
                   valign: end;
+                  halign: center;
                   action-name: "win.open-playlist-dialog";
                 }
 
-                $OptionsMenuButton options_menu_button {}
+                $OptionsMenuButton options_menu_btn {}
 
-                Button fullscreen_button {
+                Button fullscreen_btn {
                   styles [
                     "circular",
                     "flat",
@@ -359,6 +367,7 @@ template $CineWindow: Adw.ApplicationWindow {
                   icon-name: "cine-view-fullscreen-symbolic";
                   tooltip-text: _("Fullscreen");
                   valign: end;
+                  halign: center;
                 }
               }
 
@@ -377,7 +386,7 @@ template $CineWindow: Adw.ApplicationWindow {
                     margin-start: 8;
                     margin-end: 3;
 
-                    adjustment: Adjustment video_progress_adjustment {
+                    adjustment: Adjustment video_progress_adj {
                       lower: 0;
                       upper: 100;
                       value: 0;
@@ -435,7 +444,8 @@ template $CineWindow: Adw.ApplicationWindow {
         Adw.StatusPage start_page {
           margin-top: 48;
           icon-name: "moe.nyarchlinux.nekoplay";
-          title: _("Drag and Drop Files Here");
+          title: _("NekoPlay");
+          description: _("Drag and drop files here");
 
           styles [
             "start-page",
@@ -447,20 +457,39 @@ template $CineWindow: Adw.ApplicationWindow {
             valign: center;
             orientation: vertical;
 
-            Button {
-              label: _("Open…");
-              halign: center;
-              action-name: "win.clear-and-add";
+            Box {
+              spacing: 5;
 
               styles [
-                "suggested-action",
-                "pill",
+                "open-btns-box",
               ]
+
+              Button {
+                label: _("Open…");
+                action-name: "win.clear-and-add";
+                hexpand: true;
+
+                styles [
+                  "suggested-action",
+                  "pill",
+                ]
+              }
+
+              Button {
+                tooltip-text: _("Watch History");
+                icon-name: "document-open-recent-symbolic";
+                action-name: "win.open-history";
+
+                styles [
+                  "suggested-action",
+                  "circular",
+                  "watch-history",
+                ]
+              }
             }
 
             Button {
               label: _("Open Folder");
-              halign: center;
               action-name: "win.open-folder";
 
               styles [
@@ -470,7 +499,6 @@ template $CineWindow: Adw.ApplicationWindow {
 
             Button {
               label: _("Open URL");
-              halign: center;
               action-name: "win.open-url";
 
               styles [
@@ -511,6 +539,32 @@ template $CineWindow: Adw.ApplicationWindow {
               }
             }
           }
+        }
+
+        [overlay]
+        PopoverMenu context_popover_menu {
+          has-arrow: false;
+          halign: start;
+
+          menu-model: menu {
+            section {
+              item (_("Play/Pause"), "win.play-pause")
+              item (_("Previous"), "win.previous")
+              item (_("Next"), "win.next")
+            }
+
+            section {
+              item (_("Open Files"), "win.clear-and-add")
+              item (_("Open Folder"), "win.open-folder")
+              item (_("Open URL"), "win.open-url")
+            }
+
+            section {
+              item (_("Preferences"), "app.preferences")
+              item (_("Watch History"), "win.open-history")
+              item (_("Playlist"), "win.open-playlist-dialog")
+            }
+          };
         }
       }
     }

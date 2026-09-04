@@ -17,72 +17,100 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import logging
+from gettext import gettext as _
+
 import gi
 
 gi.require_version("Adw", "1")
 gi.require_version("Gdk", "4.0")
+gi.require_version("GLib", "2.0")
 gi.require_version("Gio", "2.0")
 gi.require_version("Gtk", "4.0")
 from gi.repository import Adw, Gdk, Gio, Gtk
 
-from .anime4k import apply_anime4k_shaders, MODE_INDEX_MAP, MODE_TO_INDEX
+from .anime4k import MODE_INDEX_MAP, MODE_TO_INDEX, apply_anime4k_shaders
+from .utils import CONFIG_DIR, display, has_host_permission, is_flatpak
 
+logger = logging.getLogger(__name__)
 settings = Gio.Settings.new("moe.nyarchlinux.nekoplay")
 
 
 def sync_mpv_with_settings(window):
     """Apply settings values to the mpv instance"""
-    player = window.mpv
-    player["sub-color"] = settings.get_string("subtitle-color")
-    player["sub-scale"] = settings.get_double("subtitle-scale")
-    player["sub-font"] = settings.get_string("subtitle-font")
-    player["slang"] = settings.get_string("subtitle-languages")
-    player["alang"] = settings.get_string("audio-languages")
-    player["save-position-on-quit"] = settings.get_boolean("save-video-position")
-    player["volume"] = settings.get_int("volume")
+    mpv = window.mpv
+    mpv["sub-color"] = settings.get_string("subtitle-color")
+    mpv["sub-scale"] = settings.get_double("subtitle-scale")
+    mpv["sub-font"] = settings.get_string("subtitle-font")
+    mpv["slang"] = settings.get_string("subtitle-languages")
+    mpv["alang"] = settings.get_string("audio-languages")
+    mpv["volume"] = settings.get_int("volume")
+    mpv["save-position-on-quit"] = settings.get_boolean("save-video-position")
     hwdec_enabled = settings.get_boolean("hwdec")
     norm_enabled = settings.get_boolean("normalize-volume")
 
-    if hwdec_enabled:
-        player.command_async("vf", "remove", "@hflip")
-        player.command_async("vf", "remove", "@vflip")
-        player["hwdec"] = window.conf_hwdec + ["auto"]
-    else:
-        player["hwdec"] = "no"
+    sub_bg = settings.get_boolean("subtitle-bg")
+    mpv["sub-border-style"] = "background-box" if sub_bg else "outline-and-shadow"
+    mpv["sub-shadow-offset"] = 8 if sub_bg else 0.6
+    mpv["sub-back-color"] = (
+        settings.get_string("subtitle-bg-color") if sub_bg else "#97000000"
+    )
+    mpv["sub-border-color"] = mpv["sub-back-color"]
+
+    # for older versions
+    mpv.command_async("vf", "remove", "@hflip")
+    mpv.command_async("vf", "remove", "@vflip")
+
+    mpv["hwdec"] = window.conf_hwdec + ["auto"] if hwdec_enabled else "no"
 
     if norm_enabled:
-        player.command("af", "add", "@cine_loudnorm:lavfi=[loudnorm=I=-20]")
+        mpv.command("af", "add", "@cine_loudnorm:lavfi=[loudnorm=I=-20]")
 
-    # Apply Anime4K shaders if a default mode is set
+    loop = settings.get_string("loop-state")
+    if loop == "playlist":
+        mpv.loop_playlist = "inf"
+    elif loop == "file":
+        mpv.loop_file = "inf"
+
+    # Apply the configured Anime4K preset while preserving other shaders.
     anime4k_mode = settings.get_string("anime4k-mode")
-    if anime4k_mode != "off":
-        apply_anime4k_shaders(player, anime4k_mode)
+    apply_anime4k_shaders(mpv, anime4k_mode)
 
 
 @Gtk.Template(resource_path="/moe/nyarchlinux/nekoplay/preferences.ui")
 class Preferences(Adw.Dialog):
     __gtype_name__ = "Preferences"
 
+    warning_header_btn: Gtk.Button = Gtk.Template.Child()
+    about_permissions_label: Gtk.Label = Gtk.Template.Child()
+    cmd_label: Gtk.Label = Gtk.Template.Child()
+    copy_cmd_button: Gtk.Button = Gtk.Template.Child()
     open_new_row: Adw.SwitchRow = Gtk.Template.Child()
-    color_dialog_button: Gtk.ColorDialogButton = Gtk.Template.Child()
+    thumb_preview_row: Adw.SwitchRow = Gtk.Template.Child()
+    offload_row: Adw.SwitchRow = Gtk.Template.Child()
+    hwdec_row: Adw.SwitchRow = Gtk.Template.Child()
+    normalize_volume_row: Adw.SwitchRow = Gtk.Template.Child()
+    save_session_switch: Gtk.Switch = Gtk.Template.Child()
+    save_position_switch: Gtk.Switch = Gtk.Template.Child()
     sub_color_row: Adw.ActionRow = Gtk.Template.Child()
     reset_sub_color: Gtk.Button = Gtk.Template.Child()
     reset_sub_font: Gtk.Button = Gtk.Template.Child()
     font_row: Adw.ActionRow = Gtk.Template.Child()
     font_label: Gtk.Label = Gtk.Template.Child()
     subtitle_scale_row: Adw.SpinRow = Gtk.Template.Child()
+    sub_color_btn: Gtk.ColorDialogButton = Gtk.Template.Child()
+    sub_bg_color_btn: Gtk.ColorDialogButton = Gtk.Template.Child()
+    primary_click_row: Adw.ComboRow = Gtk.Template.Child()
+    secondary_click_row: Adw.ComboRow = Gtk.Template.Child()
+    subtitle_bg_switch: Gtk.Switch = Gtk.Template.Child()
     subtitle_lang_row: Adw.EntryRow = Gtk.Template.Child()
     audio_lang_row: Adw.EntryRow = Gtk.Template.Child()
-    thumb_preview_row: Adw.SwitchRow = Gtk.Template.Child()
-    hwdec_row: Adw.SwitchRow = Gtk.Template.Child()
-    normalize_volume_row: Adw.SwitchRow = Gtk.Template.Child()
     anime4k_mode_row: Adw.ComboRow = Gtk.Template.Child()
-    save_position_switch: Gtk.Switch = Gtk.Template.Child()
 
-    def __init__(self, active_window, **kwargs):
+    def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
-        self.win = active_window
-        self.player = active_window.mpv
+        self._win = window
+        self._mpv = window.mpv
 
         self._bind_ui()
         self._setup_mpv_updates()
@@ -90,79 +118,61 @@ class Preferences(Adw.Dialog):
         font = settings.get_string("subtitle-font")
         self.font_label.set_label(font)
 
+        self.sub_color_btn.connect("notify::rgba", self._on_sub_color_selected)
+        self.reset_sub_color.connect("clicked", self._on_sub_color_reset)
+
         # Initialize Anime4K combo rows from GSettings
         anime4k_mode = settings.get_string("anime4k-mode")
         mode_idx = MODE_TO_INDEX.get(anime4k_mode, 0)
         self.anime4k_mode_row.set_selected(mode_idx)
-
-        self.anime4k_mode_row.connect("notify::selected", self._on_anime4k_mode_ui_changed)
-
-        self.color_dialog_button.connect("notify::rgba", self._on_color_selected)
-        self.reset_sub_color.connect("clicked", self._on_color_reset)
+        self.anime4k_mode_row.connect(
+            "notify::selected", self._on_anime4k_mode_ui_changed
+        )
         self.font_row.connect("activated", self._on_font_activated)
         self.reset_sub_font.connect("clicked", self._on_font_reset)
 
         self.sub_color = Gdk.RGBA()
         self.sub_color.parse(settings.get_string("subtitle-color"))
-        self.color_dialog_button.set_dialog(
-            Gtk.ColorDialog(
-                modal=True,
-                with_alpha=False,
-            )
+        self.sub_color_btn.set_dialog(
+            Gtk.ColorDialog(title=_("Subtitle Color"), modal=True, with_alpha=False)
         )
-        self.color_dialog_button.set_rgba(self.sub_color)
+        self.sub_color_btn.set_rgba(self.sub_color)
+
+        self.sub_bg_color_btn.connect("notify::rgba", self._on_sub_bg_color_selected)
+
+        bg_hex = settings.get_string("subtitle-bg-color").lstrip("#")
+        self.sub_bg_color = Gdk.RGBA()
+        self.sub_bg_color.alpha = int(bg_hex[0:2], 16) / 255
+        self.sub_bg_color.red = int(bg_hex[2:4], 16) / 255
+        self.sub_bg_color.green = int(bg_hex[4:6], 16) / 255
+        self.sub_bg_color.blue = int(bg_hex[6:8], 16) / 255
+
+        self.sub_bg_color_btn.set_dialog(
+            Gtk.ColorDialog(title=_("Subtitle Background"), modal=True, with_alpha=True)
+        )
+        self.sub_bg_color_btn.set_rgba(self.sub_bg_color)
 
         self.connect("closed", self._disconnect_settings)
 
     def _bind_ui(self):
-        settings.bind(
-            "open-new-windows",
-            self.open_new_row,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        settings.bind(
-            "subtitle-scale",
-            self.subtitle_scale_row,
-            "value",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        settings.bind(
-            "subtitle-languages",
-            self.subtitle_lang_row,
-            "text",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        settings.bind(
-            "audio-languages",
-            self.audio_lang_row,
-            "text",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        settings.bind(
-            "hwdec",
-            self.hwdec_row,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        settings.bind(
-            "thumbnail-preview",
-            self.thumb_preview_row,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        settings.bind(
-            "normalize-volume",
-            self.normalize_volume_row,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        settings.bind(
-            "save-video-position",
-            self.save_position_switch,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
+        bindings = [
+            ("open-new-windows", self.open_new_row, "active"),
+            ("thumbnail-preview", self.thumb_preview_row, "active"),
+            ("normalize-volume", self.normalize_volume_row, "active"),
+            ("graphics-offload", self.offload_row, "active"),
+            ("hwdec", self.hwdec_row, "active"),
+            ("save-session", self.save_session_switch, "active"),
+            ("save-video-position", self.save_position_switch, "active"),
+            ("subtitle-scale", self.subtitle_scale_row, "value"),
+            ("subtitle-bg", self.subtitle_bg_switch, "active"),
+            ("left-click", self.primary_click_row, "selected"),
+            ("right-click", self.secondary_click_row, "selected"),
+            ("subtitle-languages", self.subtitle_lang_row, "text"),
+            ("audio-languages", self.audio_lang_row, "text"),
+        ]
+
+        for key, widget, property in bindings:
+            settings.bind(key, widget, property, Gio.SettingsBindFlags.DEFAULT)
 
     def _setup_mpv_updates(self):
         handlers = {
@@ -170,8 +180,11 @@ class Preferences(Adw.Dialog):
             "subtitle-scale": self._on_sub_scale_changed,
             "subtitle-font": self._on_sub_font_changed,
             "subtitle-languages": self._on_slang_changed,
+            "subtitle-bg-color": self._on_sub_bg_color_changed,
+            "subtitle-bg": self._on_sub_bg_changed,
             "audio-languages": self._on_alang_changed,
             "thumbnail-preview": self._on_thumb_preview_changed,
+            "graphics-offload": self._on_offload_changed,
             "hwdec": self._on_hwdec_changed,
             "normalize-volume": self._on_norm_volume_changed,
             "save-video-position": self._on_save_pos_changed,
@@ -188,47 +201,75 @@ class Preferences(Adw.Dialog):
             settings.disconnect(connection_id)
 
     def _on_sub_color_changed(self, settings, key):
-        self.player["sub-color"] = settings.get_string(key)
+        self._mpv["sub-color"] = settings.get_string(key)
+
+    def _on_sub_bg_color_changed(self, _settings, key):
+        if settings.get_boolean("subtitle-bg"):
+            self._mpv["sub-back-color"] = settings.get_string(key)
+            self._mpv["sub-border-color"] = settings.get_string(key)
 
     def _on_sub_scale_changed(self, settings, key):
-        self.player["sub-scale"] = settings.get_double(key)
+        self._mpv["sub-scale"] = settings.get_double(key)
 
     def _on_sub_font_changed(self, settings, key):
-        self.player["sub-font"] = settings.get_string(key)
+        self._mpv["sub-font"] = settings.get_string(key)
+
+    def _on_sub_bg_changed(self, settings, key):
+        sub_bg = settings.get_boolean(key)
+        if sub_bg:
+            self._mpv["sub-shadow-offset"] = 8
+            self._mpv["sub-border-style"] = "background-box"
+            self._mpv["sub-back-color"] = settings.get_string("subtitle-bg-color")
+            self._mpv["sub-border-color"] = settings.get_string("subtitle-bg-color")
+        else:
+            self._mpv["sub-shadow-offset"] = 0.6
+            self._mpv["sub-border-style"] = "outline-and-shadow"
+            self._mpv["sub-shadow-color"] = "#97000000"
 
     def _on_slang_changed(self, settings, key):
-        self.player["slang"] = settings.get_string(key)
+        self._mpv["slang"] = settings.get_string(key)
 
     def _on_alang_changed(self, settings, key):
-        self.player["alang"] = settings.get_string(key)
+        self._mpv["alang"] = settings.get_string(key)
 
     def _on_thumb_preview_changed(self, settings, key):
-        if not settings.get_boolean(key) and self.win.preview_player:
-            self.win.preview_player.terminate()
-            self.win.preview_player = None
-            self.win.thumb_preview.props.visible = False
-        elif not self.player.idle_active:
-            self.win.thumb_preview.props.visible = True
-            self.win.setup_preview_player()
+        if settings.get_boolean(key):
+            for w in self._win.app.get_windows():
+                if not w.mpv.idle_active and w.is_local_path:
+                    w.setup_thumb_preview()
+            return
 
-    def _on_save_pos_changed(self, settings, key):
-        self.player["save-position-on-quit"] = settings.get_boolean(key)
+        for w in self._win.app.get_windows():
+            if w.thumb_area:
+                w.thumb_area.unrealize()
+                w.thumb_area.unmap()
+                w.thumb_area = None
+
+    def _on_offload_changed(self, settings, key):
+        self._win.offload.set_enabled(
+            Gtk.GraphicsOffloadEnabled.ENABLED
+            if settings.get_boolean(key)
+            else Gtk.GraphicsOffloadEnabled.DISABLED
+        )
 
     def _on_hwdec_changed(self, settings, key):
         hwdec_enabled = settings.get_boolean(key)
         if hwdec_enabled:
-            self.player.command_async("vf", "remove", "@hflip")
-            self.player.command_async("vf", "remove", "@vflip")
-            self.player["hwdec"] = self.win.conf_hwdec + ["auto"]
+            self._mpv.command_async("vf", "remove", "@hflip")
+            self._mpv.command_async("vf", "remove", "@vflip")
+            self._mpv["hwdec"] = self._win.conf_hwdec + ["auto"]
         else:
-            self.player["hwdec"] = "no"
+            self._mpv["hwdec"] = "no"
+
+    def _on_save_pos_changed(self, settings, _key):
+        self._mpv["save-position-on-quit"] = settings.get_boolean("save-video-position")
 
     def _on_norm_volume_changed(self, settings, key):
         norm_enabled = settings.get_boolean(key)
         if norm_enabled:
-            self.player.command("af", "add", "@cine_loudnorm:lavfi=[loudnorm=I=-20]")
+            self._mpv.command("af", "add", "@cine_loudnorm:lavfi=[loudnorm=I=-20]")
         else:
-            self.player.command("af", "remove", "@cine_loudnorm")
+            self._mpv.command("af", "remove", "@cine_loudnorm")
 
     def _on_anime4k_mode_ui_changed(self, row, *a):
         idx = row.get_selected()
@@ -237,19 +278,23 @@ class Preferences(Adw.Dialog):
 
     def _on_anime4k_mode_setting_changed(self, settings, _key):
         mode = settings.get_string("anime4k-mode")
-        apply_anime4k_shaders(self.player, mode)
+        apply_anime4k_shaders(self._mpv, mode)
 
-    def _on_color_selected(self, color_btn, *arg):
+    def _on_sub_color_selected(self, color_btn, *arg):
         rgba = color_btn.get_rgba()
-        hex_color = "#{:02x}{:02x}{:02x}".format(
-            int(rgba.red * 255), int(rgba.green * 255), int(rgba.blue * 255)
-        )
+        hex_color = f"#{''.join(f'{int(c * 255):02x}' for c in (rgba.red, rgba.green, rgba.blue))}"
         settings.set_string("subtitle-color", hex_color)
 
-    def _on_color_reset(self, _button):
+    def _on_sub_bg_color_selected(self, color_btn, *arg):
+        rgba = color_btn.get_rgba()
+        # sub-back-color is #AARRGGBB
+        hex_color = f"#{''.join(f'{int(c * 255):02x}' for c in (rgba.alpha, rgba.red, rgba.green, rgba.blue))}"
+        settings.set_string("subtitle-bg-color", hex_color)
+
+    def _on_sub_color_reset(self, _button):
         default_color = "#ebebeb"
         self.sub_color.parse(default_color)
-        self.color_dialog_button.set_rgba(self.sub_color)
+        self.sub_color_btn.set_rgba(self.sub_color)
 
     def _on_font_activated(self, _row):
         dialog = Gtk.FontDialog()
@@ -292,12 +337,70 @@ class Preferences(Adw.Dialog):
                 settings.set_string("subtitle-font", font_full)
                 self.font_label.set_label(font_full)
 
-            except Exception as e:
-                print(f"Features selection error: {e}")
+            except Exception:
+                logger.exception("Features selection failed")
 
-        dialog.choose_face(self.win, None, None, callback)
+        dialog.choose_face(self._win, None, None, callback)
 
     def _on_font_reset(self, _button):
         default_font = "Adwaita Sans SemiBold"
         settings.set_string("subtitle-font", default_font)
         self.font_label.set_label(default_font)
+
+    @Gtk.Template.Callback()
+    def _on_open_config_dir(self, _button):
+        def on_launch_finished(launcher, task, *args):
+            try:
+                launcher.launch_finish(task)
+            except Exception:
+                logger.exception("Failed to open folder")
+
+        f_launcher = Gtk.FileLauncher.new(Gio.File.new_for_path(CONFIG_DIR))
+        f_launcher.launch(self._win, None, on_launch_finished, None)
+
+    @Gtk.Template.Callback()
+    def _on_btn_warning_map(self, button):
+        button.set_visible(not has_host_permission)
+
+    @Gtk.Template.Callback()
+    def _on_warning_header_btn_map(self, button):
+        if is_flatpak:
+            l1 = _("Some features require extra permission to work properly:") + "\n\n"
+            l2 = "• " + _("Auto load subtitle file") + "\n"
+            l3 = "• " + _("Auto add files from the same folder to playlist") + "\n"
+            l4 = "• " + _("Save Playlist").capitalize() + "\n"
+            l5 = "• " + _("Restore Saved Session").capitalize() + "\n"
+            l6 = "• " + _("Save Video Position on Close").capitalize() + "\n"
+            l7 = "• " + _("Watch History").capitalize() + "\n\n"
+
+            if not has_host_permission:
+                l8 = _(
+                    "If you wish to use those features, install Flatseal for granular folder control, or run this command to grant access to all folders in the system:"
+                ).replace(
+                    "Flatseal",
+                    '<a href="https://flathub.org/apps/com.github.tchx84.Flatseal">Flatseal</a>',
+                )
+            else:
+                l8 = _("Extra permission enabled.")
+                self.warning_header_btn.remove_css_class("warning-header-btn")
+                self.about_permissions_label.set_margin_bottom(10)
+                self.cmd_label.set_visible(False)
+                self.copy_cmd_button.set_visible(False)
+
+            self.about_permissions_label.set_markup(
+                l1 + l2 + l3 + l4 + l5 + l6 + l7 + l8
+            )
+
+        button.set_visible(is_flatpak)
+
+    @Gtk.Template.Callback()
+    def _on_copy_cmd_btn_clicked(self, button: Gtk.Button):
+        if display and (clipboard := display.get_clipboard()):
+            button.remove_css_class("suggested-action")
+            button.set_label(_("Copied"))
+            clipboard.set(self.cmd_label.get_text())
+
+    @Gtk.Template.Callback()
+    def _on_warning_popover_closed(self, _popover):
+        self.copy_cmd_button.add_css_class("suggested-action")
+        self.copy_cmd_button.set_label(_("Copy"))
